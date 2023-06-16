@@ -1,19 +1,85 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="e_commerce.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="e_commerce.MasterPage" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Grupo30</title>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <nav class="navbar navbar-custom sticky-top">
+                <div class="container-fluid d-flex justify-content-between align-items-center flex-nowrap">
+
+                    <!--Logo-->
+                    <a class="navbar-brand" href="Default.aspx">
+                        <img src="https://imgur.com/QXX2qqy.png" alt="Logo" width="125" height="45">
+                    </a>
+
+                    <!--Search-->
+                    <div class="d-flex align-items-center  col-md-4" role="search">
+                        <asp:TextBox class="tbBuscar" ID="txtFiltro" AutoPostBack="true" runat="server" placeholder="Buscar por nombre o descripción" Style="padding: 10px; width: 350px; height: 45px;"></asp:TextBox>
+                        <button class="btn btn-outline-primary search-button" type="submit"><span class="material-symbols-outlined">search</span></button>
+                    </div>
+                </div>
+
+
+                <!--Navegable-->
+                <div class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="Default.aspx">INICIO</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="Productos.aspx">PRODUCTOS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Productos.aspx">IMPRESORAS</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="Productos.aspx" role="button" data-bs-toggle="dropdown" aria-expanded="false">CARTUCHOS
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="Productos.aspx">HP</a></li>
+                                        <li><a class="dropdown-item" href="Productos.aspx">EPSON</a></li>
+                                        <li><a class="dropdown-item" href="Productos.aspx">LEXMARK</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Productos.aspx">MAS PRODUCTOS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <!--Contenedor de pagina-->
+            <div class="container">
+                <hr />
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
         </div>
     </form>
 </body>

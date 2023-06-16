@@ -67,16 +67,84 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
+    <Content Include="Pag_Admin\AdministrarProductos.aspx" />
+    <Content Include="Pag_Admin\AgregarCategoria.aspx" />
+    <Content Include="Pag_Admin\AgregarMarca.aspx" />
+    <Content Include="Pag_Admin\AgregarProductos.aspx" />
+    <Content Include="Pag_Admin\ApagarWeb.aspx" />
+    <Content Include="Pag_Admin\PrincipalAdmin.aspx" />
+    <Content Include="Pag_Cliente\Carrito.aspx" />
+    <Content Include="Pag_Cliente\Default.aspx" />
+    <Content Include="Estilos\EstilosMasterPage.css" />
     <Content Include="Global.asax" />
+    <Content Include="Pag_Cliente\Detalle.aspx" />
+    <Content Include="Pag_Cliente\Envio_Pago.aspx" />
+    <Content Include="Pag_Cliente\FinDeCompra.aspx" />
+    <Content Include="Pag_Cliente\Productos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="MasterPageAdmin.Master.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdmin.Master.designer.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\AdministrarProductos.aspx.cs">
+      <DependentUpon>AdministrarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\AdministrarProductos.aspx.designer.cs">
+      <DependentUpon>AdministrarProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarCategoria.aspx.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarCategoria.aspx.designer.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarMarca.aspx.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarMarca.aspx.designer.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarProductos.aspx.cs">
+      <DependentUpon>AgregarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\AgregarProductos.aspx.designer.cs">
+      <DependentUpon>AgregarProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\ApagarWeb.aspx.cs">
+      <DependentUpon>ApagarWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\ApagarWeb.aspx.designer.cs">
+      <DependentUpon>ApagarWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Admin\PrincipalAdmin.aspx.cs">
+      <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Admin\PrincipalAdmin.aspx.designer.cs">
+      <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Cliente\Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Cliente\Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Cliente\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="Pag_Cliente\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -89,10 +157,39 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pag_Cliente\Detalle.aspx.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Cliente\Detalle.aspx.designer.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Cliente\Envio_Pago.aspx.cs">
+      <DependentUpon>Envio_Pago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Cliente\Envio_Pago.aspx.designer.cs">
+      <DependentUpon>Envio_Pago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Cliente\FinDeCompra.aspx.cs">
+      <DependentUpon>FinDeCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Cliente\FinDeCompra.aspx.designer.cs">
+      <DependentUpon>FinDeCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pag_Cliente\Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pag_Cliente\Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
+    <Content Include="MasterPageAdmin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -103,6 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Img\" />
+    <Folder Include="MasterPages\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

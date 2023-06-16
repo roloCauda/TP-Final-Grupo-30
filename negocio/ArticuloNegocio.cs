@@ -11,63 +11,6 @@ namespace negocio
 {
     public class ArticuloNegocio
     {
-        public List<Articulo> listar()
-        {
-            List<Articulo> lista = new List<Articulo>();
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearConsulta("Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, A.IdMarca, A.IdCategoria From ARTICULOS A, CATEGORIAS C, MARCAS M Where C.Id = A.IdCategoria And M.Id = A.IdMarca");
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    Articulo aux = new Articulo();
-
-                    aux.IdArticulo = (int)datos.Lector["Id"];
-
-                    if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
-                        aux.Codigo = (string)datos.Lector["Codigo"];
-
-                    if (!(datos.Lector["Nombre"] is DBNull))
-                        aux.Nombre = (string)datos.Lector["Nombre"];
-
-                    if (!(datos.Lector["Descripcion"] is DBNull))
-                        aux.Descripcion = (string)datos.Lector["Descripcion"];
-
-                    aux.IdMarca = new Marca();
-                    if (!(datos.Lector["marca"] is DBNull))
-                    {
-                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
-                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
-                    }
-
-                    aux.IdCategoria = new Categoria();
-                    if (!(datos.Lector["Categoria"] is DBNull))
-                    {
-                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
-                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
-                    }
-
-                    if (!(datos.Lector["Precio"] is DBNull))
-                        aux.Precio = (decimal)datos.Lector["Precio"];
-
-                    lista.Add(aux);
-                }
-
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
         public List<Articulo> listarConSP()
         {
             AccesoDatos datos = new AccesoDatos();
