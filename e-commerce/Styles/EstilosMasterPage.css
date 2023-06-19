@@ -1,0 +1,35 @@
+﻿body {
+    .navbar-custom
+
+{
+    background-color: #3b71ca;
+}
+
+.search-button {
+    background-color: #000000;
+    color: #3b71ca;
+    border-color: #3b71ca;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+    .search-button:hover {
+        background-color: #3b71ca;
+        color: #000000;
+    }
+
+.seccion-custom {
+    background-color: #3b71ca;
+    color: black;
+}
+
+}
+
+.footer-custom {
+    background-color: #2B558C;
+    color: #000000;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}

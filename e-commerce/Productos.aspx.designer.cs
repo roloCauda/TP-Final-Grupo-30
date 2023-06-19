@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace e_commerce.Pag_Cliente
+namespace e_commerce
 {
 
 

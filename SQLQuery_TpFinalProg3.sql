@@ -13,6 +13,7 @@ CREATE TABLE Imagenes (
 Id INT PRIMARY KEY IDENTITY,
 IdArticulo INT NOT NULL,
 ImagenURL VARCHAR(255) NULL
+FOREIGN KEY (Id) REFERENCES Articulos(Id),
 );
 go
 -- Crear la tabla de Marcas
@@ -52,7 +53,7 @@ CREATE TABLE Usuarios (
     Id INT PRIMARY KEY IDENTITY,
 	Usuario VARCHAR(100) UNIQUE NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
     Contraseña VARCHAR(100) NOT NULL,
 	TipoAcceso INT NOT NULL,
 	FOREIGN KEY (TipoAcceso) REFERENCES TipoDeAcceso(Id)
@@ -123,6 +124,8 @@ begin
 	Where C.Id = A.IdCategoria And M.Id = A.IdMarca
 end
 
+
+
 CREATE PROCEDURE storedImg
    @IdArticulo INT
 AS
@@ -131,6 +134,8 @@ BEGIN
    FROM IMAGENES
    WHERE IDARTICULO = @IdArticulo;
 END
+
+
 
 create PROCEDURE storedArticulo
    @IdArticulo INT

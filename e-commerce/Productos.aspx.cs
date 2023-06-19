@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace e_commerce.Pag_Cliente
+namespace e_commerce
 {
     public partial class Productos : System.Web.UI.Page
     {
@@ -22,11 +22,12 @@ namespace e_commerce.Pag_Cliente
             repRepetidor.DataSource = ListaArticulo;
             repRepetidor.DataBind();
 
-            if (carrito == null)
-            {
-                carrito = new Carrito();
-                Session["ListaItems"] = carrito;
-            }
+            /*  Actualiza las Label de la Master */
+            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+            Label lblPrecio = Master.FindControl("lblPrecio") as Label;
+            lblPrecio.Text = "$" + carrito.total.ToString();
         }
     }
 }
