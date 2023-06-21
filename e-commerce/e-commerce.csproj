@@ -69,8 +69,9 @@
   <ItemGroup>
     <Content Include="AdministrarProductos.aspx" />
     <Content Include="AgregarCategoria.aspx" />
+    <Content Include="AgregarCliente.aspx" />
     <Content Include="AgregarMarca.aspx" />
-    <Content Include="AgregarProductos.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="Carrito.aspx" />
@@ -81,9 +82,20 @@
     <Content Include="Envio_Pago.aspx" />
     <Content Include="FinDeCompra.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="VerCategorias.aspx" />
+    <Content Include="VerClientes.aspx" />
+    <Content Include="VerMarcas.aspx" />
+    <Content Include="VerProductos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarCliente.aspx.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarCliente.aspx.designer.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,12 +124,12 @@
     <Compile Include="AgregarMarca.aspx.designer.cs">
       <DependentUpon>AgregarMarca.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgregarProductos.aspx.cs">
-      <DependentUpon>AgregarProductos.aspx</DependentUpon>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarProductos.aspx.designer.cs">
-      <DependentUpon>AgregarProductos.aspx</DependentUpon>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApagarWeb.aspx.cs">
       <DependentUpon>ApagarWeb.aspx</DependentUpon>
@@ -186,6 +198,34 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerCategorias.aspx.cs">
+      <DependentUpon>VerCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerCategorias.aspx.designer.cs">
+      <DependentUpon>VerCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerClientes.aspx.cs">
+      <DependentUpon>VerClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerClientes.aspx.designer.cs">
+      <DependentUpon>VerClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerMarcas.aspx.cs">
+      <DependentUpon>VerMarcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerMarcas.aspx.designer.cs">
+      <DependentUpon>VerMarcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerProductos.aspx.cs">
+      <DependentUpon>VerProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerProductos.aspx.designer.cs">
+      <DependentUpon>VerProductos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
@@ -201,7 +241,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Img\" />
-    <Folder Include="MasterPages\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

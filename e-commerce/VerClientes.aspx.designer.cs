@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace e_commerce.Pag_Admin
+namespace e_commerce
 {
 
 
-    public partial class AgregarProductos
+    public partial class VerClientes
     {
     }
 }

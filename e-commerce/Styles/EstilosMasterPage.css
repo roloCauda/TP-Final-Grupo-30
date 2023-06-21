@@ -33,3 +33,8 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.container-admin {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
