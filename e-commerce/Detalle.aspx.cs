@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace e_commerce.Pag_Cliente
+namespace e_commerce
 {
     public partial class Detalle : System.Web.UI.Page
     {

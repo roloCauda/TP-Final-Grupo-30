@@ -2,7 +2,7 @@
     .navbar-custom
 
 {
-    background-color: #3b71ca;
+    background-color: #1C3166;
 }
 
 .search-button {
@@ -15,7 +15,7 @@
 
     .search-button:hover {
         background-color: #3b71ca;
-        color: #000000;
+        color: #ff0000;
     }
 
 .seccion-custom {
@@ -26,7 +26,7 @@
 }
 
 .footer-custom {
-    background-color: #2B558C;
+    background-color: #1C3166;
     color: #000000;
 }
 
@@ -37,4 +37,9 @@ body {
 .container-admin {
     display: grid;
     grid-template-columns: 3fr 9fr;
+}
+
+.offcanvas {
+    max-height: 70vh; /* Puedes ajustar el valor según tus necesidades */
+    overflow-y: auto;
 }

@@ -6,7 +6,7 @@
 
    <!--Carrouel-->
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="height:500px;">
             <div class="carousel-item active">
                 <img src="https://www.shutterstock.com/image-illustration/empty-circular-dark-grey-gradient-260nw-647914138.jpg" class="d-block w-100" alt="...">
             </div>
@@ -25,6 +25,18 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    <div class="arrow-down"></div>
     </div>
+    <style>
+.arrow-down {
+  border-left: 50vw solid transparent;
+  border-right: 50vw solid transparent;
+  border-top: 100px solid #FFF;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -100px;
+}
+    </style>
 
 </asp:Content>
