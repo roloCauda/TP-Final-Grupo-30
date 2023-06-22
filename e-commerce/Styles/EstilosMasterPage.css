@@ -40,7 +40,7 @@ body {
 }
 
 .offcanvas {
-    max-height: 70vh; /* Puedes ajustar el valor según tus necesidades */
+    max-height: 70vh;
     overflow-y: auto;
 }
 
@@ -52,4 +52,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
     bottom: -100px;
+}
+
+.carousel-img {
+    height: 500px;
+    object-fit: cover;
 }
