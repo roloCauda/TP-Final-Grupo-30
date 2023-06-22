@@ -25,18 +25,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    <div class="arrow-down"></div>
     </div>
-    <style>
-.arrow-down {
-  border-left: 50vw solid transparent;
-  border-right: 50vw solid transparent;
-  border-top: 100px solid #FFF;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -100px;
-}
-    </style>
 
 </asp:Content>

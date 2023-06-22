@@ -43,3 +43,13 @@ body {
     max-height: 70vh; /* Puedes ajustar el valor según tus necesidades */
     overflow-y: auto;
 }
+
+.arrow-down {
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-top: 100px solid #FFF;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -100px;
+}
