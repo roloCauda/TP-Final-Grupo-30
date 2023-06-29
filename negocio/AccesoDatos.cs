@@ -22,8 +22,8 @@ namespace negocio
         
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=BD_ecommerce; integrated security=true;");
-            conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=BD_ecommerce; integrated security=true;");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=BD_ecommerce; integrated security=true;");
+            //conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=BD_ecommerce; integrated security=true;");
 
             comando = new SqlCommand();
         }
@@ -41,6 +41,24 @@ namespace negocio
             limpiarParametros(this);
 
             comando.Parameters.AddWithValue("@IdArticulo", id);
+        }
+
+        public void setearSPconParametroCategoria(string sp, int id)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+            limpiarParametros(this);
+
+            comando.Parameters.AddWithValue("@IdCategoria", id);
+        }
+
+        public void setearSPconParametroMarca(string sp, int id)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+            limpiarParametros(this);
+
+            comando.Parameters.AddWithValue("@IdMarca", id);
         }
 
         public void setearConsulta(string consulta)

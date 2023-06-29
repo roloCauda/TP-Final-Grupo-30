@@ -10,7 +10,6 @@ namespace negocio
 {
     public class ImagenNegocio
     {
-
         public List<Imagen> listar(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
@@ -44,7 +43,7 @@ namespace negocio
 
         }
 
-        public void agregar(List<string> lista, int ID)
+        public void agregar(List<Imagen> lista, int ID)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -57,7 +56,7 @@ namespace negocio
                     datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
                     datos.limpiarParametros(datos);
                     datos.setearParametro("@IdArticulo", ID);
-                    datos.setearParametro("@ImagenURL", lista[x]);
+                    datos.setearParametro("@ImagenURL", lista[x].ImagenURL);
 
                     datos.ejecutarAccion();
                 }
@@ -72,7 +71,7 @@ namespace negocio
             }
         }
 
-        public void modificar(List<string> lista, List<string> listaBorrar, int iDArticulo)
+        public void modificar(List<Imagen> lista, int iDArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -84,37 +83,37 @@ namespace negocio
                 {
                     datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
                     datos.limpiarParametros(datos);
-                    datos.setearParametro("@imagenURL", lista[x]);
+                    datos.setearParametro("@imagenURL", lista[x].ImagenURL);
                     datos.setearParametro("@idArticulo", iDArticulo);
 
                     if (datos.ejecutarEscalar() == 0) //No la encontro, entonces la agregamos
                     {
                         datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@idArticulo, @imagenURL)");
                         datos.limpiarParametros(datos);
-                        datos.setearParametro("@imagenURL", lista[x]);
+                        datos.setearParametro("@imagenURL", lista[x].ImagenURL);
                         datos.setearParametro("@idArticulo", iDArticulo);
                         datos.ejecutarAccion();
                     }
                 }
 
-                int tamListaBorrar = listaBorrar.Count;
+                /*int tamListaBorrar = listaBorrar.Count;
 
                 for (int x = 0; x < tamListaBorrar; x++)
                 {
                     datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
                     datos.limpiarParametros(datos);
-                    datos.setearParametro("@imagenURL", listaBorrar[x]);
+                    datos.setearParametro("@imagenURL", listaBorrar[x].ImagenURL);
                     datos.setearParametro("@idArticulo", iDArticulo);
 
                     if (datos.ejecutarEscalar() > 0) //Si lo encontro, lo elimina
                     {
                         datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo AND ImagenURL=@imagenURL");
                         datos.limpiarParametros(datos);
-                        datos.setearParametro("@imagenURL", listaBorrar[x]);
+                        datos.setearParametro("@imagenURL", listaBorrar[x].ImagenURL);
                         datos.setearParametro("@idArticulo", iDArticulo);
                         datos.ejecutarAccion();
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -136,7 +135,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
     }

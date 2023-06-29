@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from CATEGORIAS");
+                datos.setearConsulta("select Id, Descripcion, ImagenURL from CATEGORIAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -25,10 +25,77 @@ namespace negocio
                     aux.IdCategoria = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
 
+                    if (!(datos.Lector["ImagenURL"] is DBNull))
+                        aux.ImagenURL = (string)datos.Lector["ImagenURL"];
+
                     lista.Add(aux);
                 }
 
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from CATEGORIAS where id=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void agregar(Categoria cat)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("insert into CATEGORIAS (Descripcion, ImagenURL) VALUES (@descripcion, @imagenURL)");
+                datos.setearParametro("@descripcion", cat.Descripcion);
+                datos.setearParametro("@imagenURL", cat.ImagenURL);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Categoria cargarCategoria(int id)
+        {
+            Categoria aux = new Categoria();
+            AccesoDatos datos = new AccesoDatos();
+
+            datos.setearSPconParametroCategoria("storedCategoria", id);
+            datos.ejecutarLectura();
+
+            try
+            {
+                while (datos.Lector.Read())
+                {
+                    aux.IdCategoria = (int)datos.Lector["Id"];
+
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    if (!(datos.Lector["ImagenURL"] is DBNull))
+                        aux.ImagenURL = (string)datos.Lector["ImagenURL"];
+                }
+                return aux;
             }
             catch (Exception ex)
             {

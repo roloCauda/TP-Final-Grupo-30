@@ -96,22 +96,40 @@ namespace e_commerce.Pag_Admin
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// txtImagenUrl control.
+        /// txtURLIMAGEN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImagenUrl;
+        protected global::System.Web.UI.WebControls.TextBox txtURLIMAGEN;
 
         /// <summary>
-        /// imgPokemon control.
+        /// btnAgregarImagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPokemon;
+        protected global::System.Web.UI.WebControls.Button btnAgregarImagen;
+
+        /// <summary>
+        /// rptItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptItems;
+
+        /// <summary>
+        /// btnEliminarImagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminarImagen;
 
         /// <summary>
         /// btnModificar control.

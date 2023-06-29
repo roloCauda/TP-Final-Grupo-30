@@ -55,8 +55,6 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="AgregarProducto.aspx">AGREGAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarProducto.aspx">MODIFICAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarProducto.aspx">ELIMINAR</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -68,8 +66,6 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="AgregarMarca.aspx">AGREGAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarMarca.aspx">MODIFICAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarMarca.aspx">ELIMINAR</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -81,8 +77,6 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="AgregarCategoria.aspx">AGREGAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarCategoria.aspx">MODIFICAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarCategoria.aspx">ELIMINAR</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -94,8 +88,6 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="AgregarCliente.aspx">AGREGAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarCliente.aspx">MODIFICAR</a></li>
-                                <li><a class="dropdown-item" href="AgregarCliente.aspx">ELIMINAR</a></li>
                             </ul>
                         </li>
                         <li><a class="dropdown-item" href="ApagarWeb.aspx">APAGAR WEB</a></li>

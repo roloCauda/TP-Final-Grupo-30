@@ -66,7 +66,7 @@ namespace negocio
 
                         List<Imagen> LImagenes = new List<Imagen>();
                         bool imagenEncontrada = false;
-                        
+
                         while (datos2.Lector.Read())
                         {
                             Imagen auxI;
@@ -166,7 +166,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {
@@ -253,17 +253,25 @@ namespace negocio
 
         public void eliminar(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos datos = new AccesoDatos();
                 datos.setearConsulta("delete from ARTICULOS where id=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                datos.setearConsulta("delete from IMAGENES where IdArticulo=@id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
@@ -301,7 +309,7 @@ namespace negocio
                     if (!(datos.Lector["Categoria"] is DBNull))
                     {
                         aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
-                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];    
+                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
                     }
 
                     if (!(datos.Lector["Precio"] is DBNull))
@@ -329,7 +337,7 @@ namespace negocio
                                 imagenEncontrada = true;
 
                                 LImagenes.Add(auxI);
-                            }   
+                            }
                         }
 
                         if (!imagenEncontrada)
@@ -349,9 +357,9 @@ namespace negocio
                     {
                         datos2.cerrarConexion();
                     }
-                    
+
                 }
-                    return aux;
+                return aux;
             }
             catch (Exception ex)
             {
@@ -361,7 +369,6 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-
         }
 
         public List<Articulo> listarConSP(string filtro)
@@ -470,6 +477,5 @@ namespace negocio
             }
 
         }
-
     }
 }

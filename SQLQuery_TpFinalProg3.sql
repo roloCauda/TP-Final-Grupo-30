@@ -1,3 +1,4 @@
+drop database BD_ecommerce
 create database BD_ecommerce
 go
 use BD_ecommerce
@@ -5,21 +6,16 @@ go
 -- Crear la tabla de Categorias
 CREATE TABLE Categorias (
 Id INT PRIMARY KEY IDENTITY,
-Descripcion VARCHAR(100) NOT NULL
-);
-go
--- Crear la tabla de Imagenes
-CREATE TABLE Imagenes (
-Id INT PRIMARY KEY IDENTITY,
-IdArticulo INT NOT NULL,
+Descripcion VARCHAR(100) NOT NULL,
 ImagenURL VARCHAR(255) NULL
-FOREIGN KEY (Id) REFERENCES Articulos(Id),
 );
 go
+
 -- Crear la tabla de Marcas
 CREATE TABLE Marcas (
 Id INT PRIMARY KEY IDENTITY,
-Descripcion VARCHAR(100) NOT NULL
+Descripcion VARCHAR(100) NOT NULL,
+ImagenURL VARCHAR(255) NULL
 );	
 go
 -- Crear la tabla de FormasDePago
@@ -79,6 +75,14 @@ Cantidad INT NOT NULL DEFAULT(0),
 IdArticulo INT NOT NULL,
 FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
+-- Crear la tabla de Imagenes
+CREATE TABLE Imagenes (
+Id INT PRIMARY KEY IDENTITY,
+IdArticulo INT NOT NULL,
+ImagenURL VARCHAR(255) NULL
+FOREIGN KEY (Id) REFERENCES Articulos(Id),
+);
+go
 
 -- Incersiones a tablas
 INSERT INTO Categorias (Descripcion)
@@ -149,3 +153,20 @@ BEGIN
 END
 
 
+CREATE PROCEDURE storedCategoria
+   @IdCategoria INT
+AS
+BEGIN
+   SELECT Id, Descripcion, ImagenURL
+   FROM Categorias
+   WHERE Id = @IdCategoria
+END
+
+CREATE PROCEDURE storedMarca
+   @IdMarca INT
+AS
+BEGIN
+   SELECT Id, Descripcion, ImagenURL
+   FROM Marcas
+   WHERE Id = @IdMarca
+END
