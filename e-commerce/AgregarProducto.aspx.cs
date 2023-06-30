@@ -138,7 +138,6 @@ namespace e_commerce.Pag_Admin
 
             btnAgregar.Visible = false;
             btnModificar.Visible = true;
-            Session.Remove("ListaImagenes");
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -175,8 +174,6 @@ namespace e_commerce.Pag_Admin
                 //MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
                 return;
             }
-
-            
         }
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)

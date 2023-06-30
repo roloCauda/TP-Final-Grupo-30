@@ -45,9 +45,9 @@ namespace negocio
 
         public void eliminar(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos datos = new AccesoDatos();
                 datos.setearConsulta("delete from CATEGORIAS where id=@id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
@@ -57,13 +57,17 @@ namespace negocio
 
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void agregar(Categoria cat)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos datos = new AccesoDatos();
                 datos.setearConsulta("insert into CATEGORIAS (Descripcion, ImagenURL) VALUES (@descripcion, @imagenURL)");
                 datos.setearParametro("@descripcion", cat.Descripcion);
                 datos.setearParametro("@imagenURL", cat.ImagenURL);
@@ -73,6 +77,32 @@ namespace negocio
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Categoria cat)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update CATEGORIAS set Descripcion = @descripcion, ImagenURL = @imagenURL where Id = @idCategoria");
+                datos.setearParametro("@descripcion", cat.Descripcion);
+                datos.setearParametro("@imagenURL", cat.ImagenURL);
+                datos.setearParametro("@idCategoria", cat.IdCategoria);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 

@@ -23,6 +23,8 @@ namespace e_commerce.Pag_Admin
                 // Primera vez que carga la página.
                 if (!IsPostBack)
                 {
+                    Session.Remove("ListaImagenes");
+
                     btnAgregar.Visible = true;
                     btnModificar.Visible = false;
 
@@ -76,9 +78,6 @@ namespace e_commerce.Pag_Admin
 
             btnAgregar.Visible = false;
             btnModificar.Visible = true;
-            Session.Remove("ListaImagenes");
-
-            Session.Remove("ListaImagenes");
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -89,7 +88,25 @@ namespace e_commerce.Pag_Admin
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            
+            negocio = new CategoriaNegocio();
+            cat = new Categoria();
+
+            if (!string.IsNullOrEmpty(txtDescripcion.Text))
+            {
+                cat.IdCategoria = Convert.ToInt32(Request.QueryString["id"]);
+                cat.Descripcion = txtDescripcion.Text;
+                cat.ImagenURL = ((string)Session["imgCategoria"]) != null ? (string)Session["imgCategoria"] : null;
+
+                negocio.modificar(cat);
+            }
+            else
+            {
+                //MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
+                return;
+            }
+
+            btnAgregar.Visible = false;
+            btnModificar.Visible = true;
 
 
 

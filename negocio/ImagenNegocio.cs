@@ -71,7 +71,7 @@ namespace negocio
             }
         }
 
-        public void modificar(List<Imagen> lista, int iDArticulo)
+        public void modificar(List<Imagen> lista, int ID)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -84,14 +84,15 @@ namespace negocio
                     datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
                     datos.limpiarParametros(datos);
                     datos.setearParametro("@imagenURL", lista[x].ImagenURL);
-                    datos.setearParametro("@idArticulo", iDArticulo);
+                    datos.setearParametro("@idArticulo", ID);
 
                     if (datos.ejecutarEscalar() == 0) //No la encontro, entonces la agregamos
                     {
-                        datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@idArticulo, @imagenURL)");
+                        datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
                         datos.limpiarParametros(datos);
-                        datos.setearParametro("@imagenURL", lista[x].ImagenURL);
-                        datos.setearParametro("@idArticulo", iDArticulo);
+                        datos.setearParametro("@IdArticulo", ID);
+                        datos.setearParametro("@ImagenURL", lista[x].ImagenURL);
+
                         datos.ejecutarAccion();
                     }
                 }

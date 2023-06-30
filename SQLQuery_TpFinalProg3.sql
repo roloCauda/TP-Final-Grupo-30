@@ -75,12 +75,13 @@ Cantidad INT NOT NULL DEFAULT(0),
 IdArticulo INT NOT NULL,
 FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
+go
 -- Crear la tabla de Imagenes
 CREATE TABLE Imagenes (
 Id INT PRIMARY KEY IDENTITY,
 IdArticulo INT NOT NULL,
 ImagenURL VARCHAR(255) NULL
-FOREIGN KEY (Id) REFERENCES Articulos(Id),
+FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id),
 );
 go
 
