@@ -13,5 +13,21 @@ namespace e_commerce.Pag_Cliente
         {
 
         }
+        protected void btnAgregar_click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnQuitar_click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnBorrar_click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnVaciarCarrito_click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

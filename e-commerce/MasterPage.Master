@@ -56,7 +56,7 @@
 
                     <!-- Boton carrito -->
                     <div class="position-relative">
-                        <!-- Si NO es Carrito de compras o Finalizae compra, que muestre el carrito -->
+                        <!-- Si NO es Carrito de compras o Finalizar compra, que muestre el carrito -->
                         <% if (!Request.Url.AbsolutePath.Contains("Carrito") && !Request.Url.AbsolutePath.Contains("FinDeCompra"))
                             { %>
                         <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
