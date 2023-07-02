@@ -198,6 +198,7 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Web\UI\WebControls\ImageGallery.cs" />
     <Compile Include="VerCategorias.aspx.cs">
       <DependentUpon>VerCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

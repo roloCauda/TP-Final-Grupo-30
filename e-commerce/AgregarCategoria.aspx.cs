@@ -13,7 +13,7 @@ namespace e_commerce.Pag_Admin
     {
         CategoriaNegocio negocio = new CategoriaNegocio();
         Categoria cat = new Categoria();
-
+        string imagenVacia = "https://laboratoriodesuenos.com/wp-content/uploads/2020/02/default.jpg";
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
@@ -23,7 +23,7 @@ namespace e_commerce.Pag_Admin
                 // Primera vez que carga la página.
                 if (!IsPostBack)
                 {
-                    Session.Remove("ListaImagenes");
+                    Session.Remove("imgCategoria");
 
                     btnAgregar.Visible = true;
                     btnModificar.Visible = false;
@@ -42,13 +42,22 @@ namespace e_commerce.Pag_Admin
                         cat = negocio.cargarCategoria(idCategoria);
                         txtId.Text = cat.IdCategoria.ToString();
                         txtDescripcion.Text = cat.Descripcion;
+                    }
 
-                        if (cat.ImagenURL != null)
-                        {
-                            imgCategoria.ImageUrl = cat.ImagenURL;
-                            txtURLIMAGEN.Enabled = false;
-                            Session["imgCategoria"] = cat.ImagenURL;
-                        }
+                    if (cat.ImagenURL != null)
+                    {
+                        imgCategoria.ImageUrl = cat.ImagenURL; //imgCtegoria es el ID en el html
+                        txtURLIMAGEN.Enabled = false;
+                        btnAgregarImagen.Visible = false;
+                        btnEliminarImagen.Visible = true;
+                        Session["imgCategoria"] = cat.ImagenURL;
+                    }
+                    else
+                    {
+                        imgCategoria.ImageUrl = imagenVacia;
+                        txtURLIMAGEN.Enabled = true;
+                        btnAgregarImagen.Visible = true;
+                        btnEliminarImagen.Visible= false;
                     }
                 }
             }
@@ -66,13 +75,16 @@ namespace e_commerce.Pag_Admin
             if (!string.IsNullOrEmpty(txtDescripcion.Text))
             {
                 cat.Descripcion = txtDescripcion.Text;
-                cat.ImagenURL = ((string)Session["imgCategoria"]) !=null ? (string)Session["imgCategoria"] : null;
+
+                //SI EL CAMPO txtURLIMAGEN tiene algo, deberia decir un cartel si quiere agregar la imagen, porque no apretarone el boton + para agregar
+                
+                cat.ImagenURL = ((string)Session["imgCategoria"]) != null ? (string)Session["imgCategoria"] : null;
 
                 negocio.agregar(cat);
             }
             else
             {
-                //MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
+                //MessageBox.Show("Completar campos obligatorios: Descripcion");
                 return;
             }
 
@@ -82,7 +94,7 @@ namespace e_commerce.Pag_Admin
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Session.Remove("ListaImagenes");
+            Session.Remove("imgCategoria");
             Response.Redirect("VerCategorias.aspx");
         }
 
@@ -101,29 +113,24 @@ namespace e_commerce.Pag_Admin
             }
             else
             {
-                //MessageBox.Show("Completar campos obligatorios: Código, Nombre y Precio");
+                //MessageBox.Show("Completar campos obligatorios: Descripcion");
                 return;
             }
 
             btnAgregar.Visible = false;
             btnModificar.Visible = true;
-
-
-
-
-
-
         }
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtURLIMAGEN.Text))
             {
-                string imagenURL = txtURLIMAGEN.Text;
-
                 Session["imgCategoria"] = txtURLIMAGEN.Text;
+                imgCategoria.ImageUrl = txtURLIMAGEN.Text;
 
                 txtURLIMAGEN.Enabled = false;
+                btnAgregarImagen.Visible = false;
+                btnEliminarImagen.Visible = true;
                 txtURLIMAGEN.Text = "";
             }
         }
@@ -131,6 +138,16 @@ namespace e_commerce.Pag_Admin
         protected void txtURLIMAGEN_TextChanged(object sender, EventArgs e)
         {
             imgCategoria.ImageUrl = txtURLIMAGEN.Text;
+        }
+
+        protected void btnEliminarImagen_Click(object sender, EventArgs e)
+        {
+            Session.Remove("imgCategoria");
+            imgCategoria.ImageUrl = imagenVacia;
+
+            txtURLIMAGEN.Enabled = true;
+            btnAgregarImagen.Visible = true;
+            btnEliminarImagen.Visible = false;
         }
     }
 }

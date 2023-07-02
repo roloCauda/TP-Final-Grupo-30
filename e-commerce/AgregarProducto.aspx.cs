@@ -37,9 +37,6 @@ namespace e_commerce.Pag_Admin
                     ListaImagenes = new List<Imagen>();
                     Session["ListaImagenes"] = ListaImagenes;
 
-                    btnAgregar.Visible = true;
-                    btnModificar.Visible = false;
-
                     ddlMarca.DataSource = listaMarca;
                     ddlMarca.DataValueField = "IdMarca";
                     ddlMarca.DataTextField = "Descripcion";
@@ -77,6 +74,11 @@ namespace e_commerce.Pag_Admin
 
                         negocioIMG = new ImagenNegocio();
                         ListaImagenes = negocioIMG.listar(idArticulo);
+                    }
+                    else
+                    {
+                        btnAgregar.Visible = true;
+                        btnModificar.Visible = false;
                     }
 
                     /*  Carga las imagenes del articulo seleccionado */
@@ -216,7 +218,7 @@ namespace e_commerce.Pag_Admin
             ListaImagenes.RemoveAll(imagen => imagen.IdImagen == idImagen);
 
             //si la lista no tiene imagenes, creo una imagen, le cargo la imagen de VACIO y se la agrego a la lista
-            if (ListaImagenes.Count == 0)
+            if(ListaImagenes.Count == 0)
             {
                 Imagen imagen = new Imagen { ImagenURL = imagenVacia };
                 ListaImagenes.Add(imagen);

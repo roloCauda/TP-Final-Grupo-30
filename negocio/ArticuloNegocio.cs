@@ -256,13 +256,14 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from ARTICULOS where id=@id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
+                datos.setearConsulta("delete from IMAGENES where IdArticulo=@idArticulo");
+                datos.setearParametro("@idArticulo", id);
+                datos.ejecutarAccion();
 
-                datos.setearConsulta("delete from IMAGENES where IdArticulo=@id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
+                datos.limpiarParametros(datos);
+                datos.setearConsulta("delete from ARTICULOS where id=@idArticulo");
+                datos.setearParametro("@idArticulo", id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

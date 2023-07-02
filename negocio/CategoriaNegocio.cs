@@ -48,9 +48,19 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from CATEGORIAS where id=@id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> listaArt = new List<Articulo>(negocio.listarConSP());
+
+                if(!listaArt.Any(art => art.IdCategoria.IdCategoria == id))
+                {
+                    datos.setearConsulta("delete from CATEGORIAS where id=@id");
+                    datos.setearParametro("@id", id);
+                    datos.ejecutarLectura();
+                }
+                else
+                {
+                    //CARTEL QUE HAY ARTICULOS QUE LE PERTENECEN A ESTA CATEGORIA
+                }
             }
             catch (Exception ex)
             {
@@ -68,10 +78,20 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("insert into CATEGORIAS (Descripcion, ImagenURL) VALUES (@descripcion, @imagenURL)");
-                datos.setearParametro("@descripcion", cat.Descripcion);
-                datos.setearParametro("@imagenURL", cat.ImagenURL);
-                datos.ejecutarLectura();
+                if(cat.ImagenURL != null)
+                {
+                    datos.setearConsulta("insert into CATEGORIAS (Descripcion, ImagenURL) VALUES (@descripcion, @imagenURL)");
+                    datos.setearParametro("@descripcion", cat.Descripcion);
+                    datos.setearParametro("@imagenURL", cat.ImagenURL);
+                    datos.ejecutarLectura();
+                }
+                else
+                {
+                    datos.setearConsulta("insert into CATEGORIAS (Descripcion) VALUES (@descripcion)");
+                    datos.setearParametro("@descripcion", cat.Descripcion);
+                    datos.ejecutarLectura();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -89,11 +109,22 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update CATEGORIAS set Descripcion = @descripcion, ImagenURL = @imagenURL where Id = @idCategoria");
-                datos.setearParametro("@descripcion", cat.Descripcion);
-                datos.setearParametro("@imagenURL", cat.ImagenURL);
-                datos.setearParametro("@idCategoria", cat.IdCategoria);
-                datos.ejecutarLectura();
+                if (cat.ImagenURL != null)
+                {
+                    datos.setearConsulta("update CATEGORIAS set Descripcion = @descripcion, ImagenURL = @imagenURL where Id = @idCategoria");
+                    datos.setearParametro("@descripcion", cat.Descripcion);
+                    datos.setearParametro("@imagenURL", cat.ImagenURL);
+                    datos.setearParametro("@idCategoria", cat.IdCategoria);
+                    datos.ejecutarLectura();
+                }
+                else
+                {
+                    datos.setearConsulta("update CATEGORIAS set Descripcion = @descripcion, ImagenURL = @imagenURL where Id = @idCategoria");
+                    datos.setearParametro("@descripcion", cat.Descripcion);
+                    datos.setearParametro("@imagenURL", DBNull.Value);
+                    datos.setearParametro("@idCategoria", cat.IdCategoria);
+                    datos.ejecutarLectura();
+                }
             }
             catch (Exception ex)
             {

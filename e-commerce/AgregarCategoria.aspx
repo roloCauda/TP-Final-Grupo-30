@@ -34,7 +34,8 @@
                             AutoPostBack="true" OnTextChanged="txtURLIMAGEN_TextChanged"/>
                         <asp:Button ID="btnAgregarImagen" runat="server" Text="+" OnClick="btnAgregarImagen_Click" />
                     </div>
-                    <asp:Image ImageUrl="https://laboratoriodesuenos.com/wp-content/uploads/2020/02/default.jpg" ID="imgCategoria" runat="server" />
+                    <asp:Image ID="imgCategoria" runat="server" />
+                    <asp:LinkButton ID="btnEliminarImagen" runat="server" OnClick="btnEliminarImagen_Click">Eliminar</asp:LinkButton>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
