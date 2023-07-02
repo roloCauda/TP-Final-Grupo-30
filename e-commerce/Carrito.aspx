@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="e_commerce.Pag_Cliente.Carrito" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="e_commerce.Pag_Cliente.Carrito" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -97,10 +97,10 @@
                         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <a href="FinalizarCompra.aspx" class="btn btn-primary btn-block">Finalizar Compra</a>
+                        <a href="FinDeCompra.aspx" class="btn btn-primary btn-block">Finalizar Compra</a>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <a href="Default.aspx" class="btn btn-primary btn-block">Elegir más artículos</a>
+                        <a href="Productos.aspx" class="btn btn-primary btn-block">Elegir más artículos</a>
                     </div>
                 </div>
             </div>
