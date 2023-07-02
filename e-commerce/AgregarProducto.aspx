@@ -44,35 +44,33 @@
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
+
                     <div class="mb-3 d-flex align-items-center">
                         <label for="txtURLIMAGEN" class="form-label">URLImagen: </label>
                         <asp:TextBox runat="server" ID="txtURLIMAGEN" CssClass="form-control" />
-                        <asp:Button ID="btnAgregarImagen" runat="server" Text="+" OnClick="btnAgregarImagen_Click"/>
+                        <asp:Button ID="btnAgregarImagen" runat="server" Text="+" OnClick="btnAgregarImagen_Click" />
                     </div>
-                    <!--Inicio Carousel-->
-                    <div id="carouselExample" class="carousel slide carousel-dark">
-                        <div class="carousel-inner">
-                            <asp:Repeater ID="rptItems" runat="server">
-                                <ItemTemplate>
-                                    <div class="carousel-item<%# Container.ItemIndex == 0 ? " active" : "" %>">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src='<%# Eval("ImagenURL") %>' class="img-fluid" alt="...">
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                    <div>
+                        <asp:GridView ID="dgvImagenes" runat="server" DataKeyNames="IdImagen"
+                            CssClass="table" AutoGenerateColumns="false"
+                            OnRowCommand="dgvImagenes_RowCommand">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <img src='<%# Eval("ImagenURL") %>' class="img-fluid" alt="...">
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnElimarImagen" Text="Eliminar" runat="server" CommandArgument='<%# Container.DataItemIndex %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                            </Columns>
+                        </asp:GridView>
                     </div>
-                    <!--Fin Carousel-->
-                    <asp:Button ID="btnEliminarImagen" runat="server" Text="Eliminar Imagen" OnClick="btnEliminarImagen_Click" />
+
                 </ContentTemplate>
             </asp:UpdatePanel>
 

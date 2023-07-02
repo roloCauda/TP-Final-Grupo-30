@@ -13,9 +13,10 @@ namespace e_commerce.Pag_Admin
     public partial class AgregarProductos : System.Web.UI.Page
     {
         private ArticuloNegocio negocio;
-        private Articulo articulo = null;
         ImagenNegocio negocioIMG = null;
+        private Articulo articulo = null;
         private List<Imagen> ListaImagenes = null;
+        string imagenVacia = "https://laboratoriodesuenos.com/wp-content/uploads/2020/02/default.jpg";
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
@@ -81,24 +82,18 @@ namespace e_commerce.Pag_Admin
                     /*  Carga las imagenes del articulo seleccionado */
                     if (ListaImagenes.Count > 0)
                     {
-
-                        Session["ListaImagenes"] = ListaImagenes;
-
-                        rptItems.DataSource = ListaImagenes;
-                        rptItems.DataBind();
+                        dgvImagenes.DataSource = ListaImagenes;
+                        dgvImagenes.DataBind();
                     }
                     else
                     {
-                        List<Imagen> ListaImagenesAux = new List<Imagen>();
-                        Imagen imagen = new Imagen { ImagenURL = "https://laboratoriodesuenos.com/wp-content/uploads/2020/02/default.jpg" };
-                        ListaImagenesAux.Add(imagen);
+                        Imagen imagen = new Imagen { ImagenURL = imagenVacia };
+                        ListaImagenes.Add(imagen);
 
-                        rptItems.DataSource = ListaImagenesAux;
-                        rptItems.DataBind();
-
-                        rptItems.DataSource = ListaImagenesAux;
-                        rptItems.DataBind();
+                        dgvImagenes.DataSource = ListaImagenes;
+                        dgvImagenes.DataBind();
                     }
+                    Session["ListaImagenes"] = ListaImagenes;
                 }
             }
             catch (Exception ex)
@@ -127,8 +122,9 @@ namespace e_commerce.Pag_Admin
                 int nuevoId = negocio.agregar(articulo);
 
                 List<Imagen> ListaImagenes = (List<Imagen>)Session["ListaImagenes"];
-                if (ListaImagenes.Count > 0)
-                    negocioIMG.agregar(ListaImagenes, nuevoId);
+
+                ListaImagenes.RemoveAll(imagenBorrar => imagenBorrar.ImagenURL == imagenVacia);
+                negocioIMG.agregar(ListaImagenes, nuevoId);
             }
             else
             {
@@ -167,6 +163,7 @@ namespace e_commerce.Pag_Admin
 
                 ImagenNegocio negocioIMG = new ImagenNegocio();
                 ListaImagenes = (List<Imagen>)Session["ListaImagenes"];
+                ListaImagenes.RemoveAll(imagenBorrar => imagenBorrar.ImagenURL == imagenVacia);
                 negocioIMG.modificar(ListaImagenes, articulo.IdArticulo);
             }
             else
@@ -178,25 +175,58 @@ namespace e_commerce.Pag_Admin
 
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
+            //Verifica que txtURLIMAGEN no este vavio
             if (!string.IsNullOrEmpty(txtURLIMAGEN.Text))
             {
-                Imagen imagen = new Imagen { ImagenURL = txtURLIMAGEN.Text };
-
                 List<Imagen> ListaImagenes = (List<Imagen>)Session["ListaImagenes"];
 
-                ListaImagenes.Add(imagen);
+                //Elimina de la lista la imagen de VACIO
+                ListaImagenes.RemoveAll(imagenBorrar => imagenBorrar.ImagenURL == imagenVacia);
 
-                rptItems.DataSource = ListaImagenes;
-                rptItems.DataBind();
+                //Verifica que la URL a ingresar no este en la lista
+                if (!ListaImagenes.Any(imagenAux => imagenAux.ImagenURL == txtURLIMAGEN.Text))
+                {
+                    Imagen imagen = new Imagen { ImagenURL = txtURLIMAGEN.Text };
 
-                txtURLIMAGEN.Text = "";
-                Session["ListaImagenes"] = ListaImagenes;
+                    ListaImagenes.Add(imagen);
+
+                    dgvImagenes.DataSource = ListaImagenes;
+                    dgvImagenes.DataBind();
+
+                    txtURLIMAGEN.Text = "";
+                    Session["ListaImagenes"] = ListaImagenes;
+                }
+                else
+                {
+                    //DEBERIA MOSTRAR UN CARTEL QUE DIGA QUE LA IMAGEN LA EXISTE PARA ESE ARTICULO
+                    txtURLIMAGEN.Text = "";
+                }
             }
         }
 
-        protected void btnEliminarImagen_Click(object sender, EventArgs e)
+        protected void dgvImagenes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            //traigo el ID de imagen de la grilla
+            GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+            int idImagen = int.Parse(dgvImagenes.DataKeys[row.RowIndex].Value.ToString());
 
+            List<Imagen> ListaImagenes = (List<Imagen>)Session["ListaImagenes"];
+
+            //Elimino la imagen de la lista, segun el ID
+            ListaImagenes.RemoveAll(imagen => imagen.IdImagen == idImagen);
+
+            //si la lista no tiene imagenes, creo una imagen, le cargo la imagen de VACIO y se la agrego a la lista
+            if (ListaImagenes.Count == 0)
+            {
+                Imagen imagen = new Imagen { ImagenURL = imagenVacia };
+                ListaImagenes.Add(imagen);
+            }
+
+            // Actualiza la lista en la sesión
+            Session["ListaImagenes"] = ListaImagenes;
+
+            dgvImagenes.DataSource = ListaImagenes;
+            dgvImagenes.DataBind();
         }
     }
 }

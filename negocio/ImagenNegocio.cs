@@ -75,46 +75,41 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
 
+            List<Imagen> listaEnBD = new List<Imagen>();
+            ImagenNegocio negocioIMG = new ImagenNegocio();
+            listaEnBD = negocioIMG.listar(ID);
+
             try
             {
                 int tamLista = lista.Count;
 
                 for (int x = 0; x < tamLista; x++)
                 {
-                    datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
-                    datos.limpiarParametros(datos);
-                    datos.setearParametro("@imagenURL", lista[x].ImagenURL);
-                    datos.setearParametro("@idArticulo", ID);
-
-                    if (datos.ejecutarEscalar() == 0) //No la encontro, entonces la agregamos
+                    //Si no encuentra la imagen de Lista en listaEnBD, la agrega
+                    if (!listaEnBD.Any(img => img.ImagenURL == lista[x].ImagenURL))
                     {
                         datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenURL) values (@IdArticulo, @ImagenURL)");
                         datos.limpiarParametros(datos);
                         datos.setearParametro("@IdArticulo", ID);
                         datos.setearParametro("@ImagenURL", lista[x].ImagenURL);
-
                         datos.ejecutarAccion();
                     }
                 }
 
-                /*int tamListaBorrar = listaBorrar.Count;
+                tamLista = listaEnBD.Count;
 
-                for (int x = 0; x < tamListaBorrar; x++)
+                for (int x = 0; x < tamLista; x++)
                 {
-                    datos.setearConsulta("select count (*) from IMAGENES where ImagenUrl=@imagenURL and IdArticulo=@idArticulo");
-                    datos.limpiarParametros(datos);
-                    datos.setearParametro("@imagenURL", listaBorrar[x].ImagenURL);
-                    datos.setearParametro("@idArticulo", iDArticulo);
-
-                    if (datos.ejecutarEscalar() > 0) //Si lo encontro, lo elimina
+                    //si no encuentra la imagen de listaEnBD en Lista, la borra
+                    if (!lista.Any(img => img.ImagenURL == listaEnBD[x].ImagenURL))
                     {
                         datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo AND ImagenURL=@imagenURL");
                         datos.limpiarParametros(datos);
-                        datos.setearParametro("@imagenURL", listaBorrar[x].ImagenURL);
-                        datos.setearParametro("@idArticulo", iDArticulo);
+                        datos.setearParametro("@imagenURL", listaEnBD[x].ImagenURL);
+                        datos.setearParametro("@idArticulo", ID);
                         datos.ejecutarAccion();
                     }
-                }*/
+                }
             }
             catch (Exception ex)
             {
@@ -123,14 +118,14 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
-        public void eliminar(int idArticulo)
+        public void eliminar(int idImagen)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("Delete FROM IMAGENES WHERE IdArticulo=@idArticulo");
-                datos.setearParametro("@idArticulo", idArticulo);
+                datos.setearConsulta("Delete FROM IMAGENES WHERE Id=@idImagen");
+                datos.setearParametro("@idImagen", idImagen);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
