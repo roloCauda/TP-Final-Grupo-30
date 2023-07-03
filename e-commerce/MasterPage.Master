@@ -56,7 +56,7 @@
 
                     <!-- Boton carrito -->
                     <div class="position-relative">
-                        <!-- Si NO es Carrito de compras o Finalizae compra, que muestre el carrito -->
+                        <!-- Si NO es Carrito de compras o Finalizar compra, que muestre el carrito -->
                         <% if (!Request.Url.AbsolutePath.Contains("Carrito") && !Request.Url.AbsolutePath.Contains("FinDeCompra"))
                             { %>
                         <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <!-- Dividor flecha -->
-            <div class="arrow-down" style="height:0px; position:relative;"></div>
+            <div class="arrow-down" style="height: 0px; position: relative;"></div>
 
             <!--Footer-->
             <footer style="background-color: #1C3166; height: 200px; display: flex; text-align: center; justify-content: center; align-items: end;">
@@ -239,8 +239,7 @@
 
                 <!-- Copyright -->
                 <div>
-                    <h2>
-                        © 2023 Copyright: Grupo30.com
+                    <h2>© 2023 Copyright: Grupo30.com
                     </h2>
                 </div>
 
