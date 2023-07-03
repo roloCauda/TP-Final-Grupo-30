@@ -22,8 +22,8 @@ namespace negocio
         
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=BD_ecommerce; integrated security=true;");
-            conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=BD_ecommerce; integrated security=true;");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=BD_ecommerce; integrated security=true;");
+            //conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=BD_ecommerce; integrated security=true;");
 
             comando = new SqlCommand();
         }

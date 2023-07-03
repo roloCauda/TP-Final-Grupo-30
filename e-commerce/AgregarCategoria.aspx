@@ -28,7 +28,7 @@
         <div class="col-6">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div class="mb-3">
+                    <div class="mb-3 d-flex align-items-center">
                         <label for="txtURLIMAGEN" class="form-label">URLImagen: </label>
                         <asp:TextBox runat="server" ID="txtURLIMAGEN" CssClass="form-control"
                             AutoPostBack="true" OnTextChanged="txtURLIMAGEN_TextChanged"/>

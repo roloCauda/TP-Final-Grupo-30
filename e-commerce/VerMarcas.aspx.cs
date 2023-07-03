@@ -28,24 +28,24 @@ namespace e_commerce
             if (e.CommandName == "Ver" || e.CommandName == "Modificar" || e.CommandName == "Eliminar")
             {
                 GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
-                string idArticulo = dgvMarca.DataKeys[row.RowIndex].Value.ToString();
+                string idMarca = dgvMarca.DataKeys[row.RowIndex].Value.ToString();
 
                 // Acciones según el comando seleccionado
                 if (e.CommandName == "Ver")
                 {
                     // Acción cuando se presiona el botón "Ver"
-                    Response.Redirect("AgregarMarca.aspx?id=" + idArticulo);
+                    Response.Redirect("AgregarMarca.aspx?id=" + idMarca);
                 }
                 else if (e.CommandName == "Modificar")
                 {
                     // Acción cuando se presiona el botón "Modificar"
-                    Response.Redirect("AgregarMarca.aspx?id=" + idArticulo);
+                    Response.Redirect("AgregarMarca.aspx?id=" + idMarca);
                 }
                 else if (e.CommandName == "Eliminar")
                 {
                     // Acción cuando se presiona el botón "Eliminar"
                     MarcaNegocio negocio = new MarcaNegocio();
-                    negocio.eliminar(int.Parse(idArticulo));
+                    negocio.eliminar(int.Parse(idMarca));
                     Response.Redirect("VerMarcas.aspx");
                 }
             }
