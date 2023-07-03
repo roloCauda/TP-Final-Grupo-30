@@ -30,6 +30,11 @@ namespace e_commerce
                 repInfoCarrito.DataSource = carrito.ListaItems;
                 repInfoCarrito.DataBind();
             }
+
+            if (Request.Form["__EVENTTARGET"] == "carritoCerrado")
+            {
+                UpdatePanelBoton.Update();
+            }
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)
@@ -60,6 +65,9 @@ namespace e_commerce
             repInfoCarrito.DataBind();
 
             Session["ListaItems"] = carrito;
+
+            UpdatePanel1.Update(); // Actualizar el contenido del UpdatePanel
+            UpdatePanelPrecioTotal.Update();
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
@@ -101,6 +109,9 @@ namespace e_commerce
             repInfoCarrito.DataBind();
 
             Session["ListaItems"] = carrito;
+
+            UpdatePanel1.Update(); // Actualizar el contenido del UpdatePanel
+            UpdatePanelPrecioTotal.Update();
         }
 
         protected void btnBorrar_click(object sender, EventArgs e)
@@ -128,6 +139,9 @@ namespace e_commerce
 
             repInfoCarrito.DataSource = carrito.ListaItems;
             repInfoCarrito.DataBind();
+
+            UpdatePanel1.Update(); // Actualizar el contenido del UpdatePanel
+            UpdatePanelPrecioTotal.Update();
         }
 
         protected void btnVaciarCarrito_click(object sender, EventArgs e)
@@ -145,6 +159,18 @@ namespace e_commerce
 
             repInfoCarrito.DataSource = carrito.ListaItems;
             repInfoCarrito.DataBind();
+            UpdatePanelVaciar.Update();
+            UpdatePanel1.Update();
+            UpdatePanelPrecioTotal.Update();
+
+        }
+        protected void btnCerrarCarrito_Click(object sender, EventArgs e)
+        {
+            // Generar el evento de cierre del carrito
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "carritoCerrado", "carritoCerrado();", true);
+
+            // Realizar un postback en la página para procesar el evento en el servidor
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "postback", Page.ClientScript.GetPostBackEventReference(this, string.Empty), true);
         }
 
     }
