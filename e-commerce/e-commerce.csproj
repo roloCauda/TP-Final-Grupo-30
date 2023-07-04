@@ -73,6 +73,7 @@
     <Content Include="AgregarMarca.aspx" />
     <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
+    <Content Include="Cuenta_Usuario.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="AgregarCliente.aspx.designer.cs">
       <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cuenta_Usuario.aspx.cs">
+      <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cuenta_Usuario.aspx.designer.cs">
+      <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
