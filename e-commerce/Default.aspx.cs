@@ -29,6 +29,7 @@ namespace e_commerce
                 repRepetidor.DataSource = primerosTresArticulos;
                 repRepetidor.DataBind();
 
+
                 if (Session["TotalCarrito"] == null)
                 {
                     Session["TotalCarrito"] = 0;
