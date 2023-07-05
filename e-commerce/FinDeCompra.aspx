@@ -83,7 +83,7 @@
                         <asp:Button ID="btnComprar" runat="server" Text="Confirmar" OnClick="Comprar_Click" class="btn btn-primary btn-block" />
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <a href="CarritoDeCompras.aspx" class="btn btn-primary btn-block">Modificar Compra</a>
+                        <a href="Carrito.aspx" class="btn btn-primary btn-block">Modificar Compra</a>
                     </div>
                 </div>
             </div>

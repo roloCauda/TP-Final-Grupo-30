@@ -16,12 +16,19 @@ namespace e_commerce
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            carrito = (Carrito)Session["ListaItems"];
-
-            if (!IsPostBack) /* Primera vez que carga la pagina (incluye si viene de otra pagina) */
+            if (!IsPostBack)
             {
-                /* si no hay carrito le asigna 0 */
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                carrito = (Carrito)Session["ListaItems"];
+
+                ListaArticulo = negocio.listarConSP();
+
+                // Limitar la cantidad de elementos a mostrar
+                List<Articulo> primerosTresArticulos = ListaArticulo.Take(3).ToList();
+
+                repRepetidor.DataSource = primerosTresArticulos;
+                repRepetidor.DataBind();
+
                 if (Session["TotalCarrito"] == null)
                 {
                     Session["TotalCarrito"] = 0;
