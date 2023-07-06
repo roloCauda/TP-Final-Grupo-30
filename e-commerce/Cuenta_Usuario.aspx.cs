@@ -11,76 +11,32 @@ namespace e_commerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            pnl_Perfil.Visible = true;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = false;
-
+            if (!IsPostBack)
+            {
+                MostrarPanel("Perfil");
+                //txtEmail.Enabled = false;
+            }
         }
 
-        protected void lnk_Perfil_Click(object sender, EventArgs e)
+        protected void lnk_Opcion_Click(object sender, EventArgs e)
         {
-            pnl_Perfil.Visible = true;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = false;
-
+            LinkButton lnk_Opcion = (LinkButton)sender;
+            string opcion = lnk_Opcion.CommandArgument;
+            MostrarPanel(opcion);
         }
 
-        protected void lnk_Direccion_Click(object sender, EventArgs e)
+        private void MostrarPanel(string opcion)
         {
-            pnl_Perfil.Visible = false;
-            pnl_Direccion.Visible = true;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = false;
-
-        }
-
-        protected void lnk_Contraseña_Click(object sender, EventArgs e)
-        {
-            pnl_Perfil.Visible = false;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = true;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = false;
-
-        }
-
-        protected void lnk_Favoritos_Click(object sender, EventArgs e)
-        {
-            pnl_Perfil.Visible = false;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = true;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = false;
-        }
-
-        protected void lnk_Pedidos_Click(object sender, EventArgs e)
-        {
-            pnl_Perfil.Visible = false;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = true;
-            pnl_Salir.Visible = false;
+            pnl_Perfil.Visible = (opcion == "Perfil");
+            pnl_Direccion.Visible = (opcion == "Direccion");
+            pnl_Contrasena.Visible = (opcion == "Contraseña");
+            pnl_Favoritos.Visible = (opcion == "Favoritos");
+            pnl_Pedidos.Visible = (opcion == "Pedidos");
         }
 
         protected void lnk_Salir_Click(object sender, EventArgs e)
         {
-            pnl_Perfil.Visible = false;
-            pnl_Direccion.Visible = false;
-            pnl_Contrasena.Visible = false;
-            pnl_Favoritos.Visible = false;
-            pnl_Pedidos.Visible = false;
-            pnl_Salir.Visible = true;
+
         }
     }
 }
