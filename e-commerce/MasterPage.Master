@@ -37,6 +37,7 @@
     <%--Google Fonts--%>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
     <!--CSS-->
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
@@ -52,7 +53,7 @@
                         <a class="navbar-brand" href="Default.aspx" style="padding-bottom: 15px; padding-left: 15px;">
                             <img src="../Img/LOGO.png" alt="Logo" width="50">
                         </a>
-                        <h2>GLAFOT</h2>
+                        <h2 style="font-family: 'Montserrat', sans-serif;">GLAFOT</h2>
 
                     </div>
                     <!-- Search -->

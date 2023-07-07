@@ -26,9 +26,8 @@
         </button>
     </div>
 
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <h2>Productos Destacados
-        </h2>
+    <div style="display: flex; justify-content: center; align-items: center; padding-top:50px;">
+        <h2>Productos Destacados</h2>
     </div>
 
     <div class="container-default">

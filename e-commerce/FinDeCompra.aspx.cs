@@ -32,7 +32,7 @@ namespace e_commerce.Pag_Cliente
             dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
 
             // Validar que los campos necesarios esten completos
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtDNI.Text) || string.IsNullOrEmpty(txtCodigoArea.Text) || string.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtDNI.Text) || string.IsNullOrEmpty(txtTelefono.Text))
             {
                 // mensaje de error
                 string errorScript = @"<script>alert('Por favor, completa todos los campos.');</script>";
@@ -68,5 +68,11 @@ namespace e_commerce.Pag_Cliente
             carrito.total = 0;
             Session["ListaItems"] = carrito;
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
