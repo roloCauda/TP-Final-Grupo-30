@@ -74,6 +74,7 @@
     <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
     <Content Include="Cuenta_Usuario.aspx" />
+    <Content Include="Js\formulario.js" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
@@ -83,6 +84,7 @@
     <Content Include="Envio_Pago.aspx" />
     <Content Include="FinDeCompra.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="Styles\EstilosFormularios.css" />
     <Content Include="VerCategorias.aspx" />
     <Content Include="VerClientes.aspx" />
     <Content Include="VerMarcas.aspx" />

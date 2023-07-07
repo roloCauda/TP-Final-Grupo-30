@@ -36,60 +36,111 @@
                 </div>
 
                 <div class="col-md-6">
+
                     <!-- Contenido del perfil -->
                     <asp:Panel ID="pnl_Perfil" runat="server">
+
                         <h3>Perfil</h3>
-                        
-                        <div class="row mb-4">
-                            <!-- Nombres-->
-                            <div class="col">
-                                <div class="form-floating-label-transform">
-                                    <input type="text" id="ip_Nombres" class="form-control" />
-                                    <label class="form-label" for="ip_Nombres">Nombres</label>
+
+
+
+                        <!------------- REVISAR PARA ABAJO -------------->
+
+
+                        <div class="formulario" id="formulario">
+
+                            <!-- Grupo: Usuario -->
+                            <div class="formulario__grupo" id="grupo__usuario">
+                                <label for="usuario" class="formulario__label">Usuario</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                 </div>
+                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
                             </div>
-                            <!-- Apellido-->
-                            <div class="col">
-                                <div class="form-floating-label-transform">
-                                    <input type="text" id="ip_Apellidos" class="form-control" />
-                                    <label class="form-label" for="ip_Apellidos">Apellidos</label>
+
+                            <!-- Grupo: Nombre -->
+                            <div class="formulario__grupo" id="grupo__nombre">
+                                <label for="nombre" class="formulario__label">Nombre</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                 </div>
+                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            </div>
+
+                            <!-- Grupo: Contraseña -->
+                            <div class="formulario__grupo" id="grupo__password">
+                                <label for="password" class="formulario__label">Contraseña</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="password" class="formulario__input" name="password" id="password">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                            </div>
+
+                            <!-- Grupo: Contraseña 2 -->
+                            <div class="formulario__grupo" id="grupo__password2">
+                                <label for="password2" class="formulario__label">Repetir Contraseña</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="password" class="formulario__input" name="password2" id="password2">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                            </div>
+
+                            <!-- Grupo: Correo Electronico -->
+                            <div class="formulario__grupo" id="grupo__correo">
+                                <label for="correo" class="formulario__label">Correo Electrónico</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                            </div>
+
+                            <!-- Grupo: Teléfono -->
+                            <div class="formulario__grupo" id="grupo__telefono">
+                                <label for="telefono" class="formulario__label">Teléfono</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
+                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                </div>
+                                <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+                            </div>
+
+                            <!-- Grupo: Terminos y Condiciones -->
+                            <div class="formulario__grupo" id="grupo__terminos">
+                                <label class="formulario__label">
+                                    <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                                    Acepto los Terminos y Condiciones
+                                </label>
+                            </div>
+
+                            <!-- Grupo: Mensaje -->
+                            <div class="formulario__mensaje" id="formulario__mensaje">
+                                <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                            </div>
+
+                            <!-- Grupo: boton enviar -->
+                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                                <button type="submit" class="formulario__btn"="">Enviar</button>
+                                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                             </div>
                         </div>
-                        <!-- Email-->
-                        <div class="form-floating-label-transform mb-4">
-                            <input type="email" id="ip_email" class="form-control" />
-                            <label class="form-label" for="ip_email">Email address</label>
-                        </div>
-                        <!-- Guardar Cambios-->
-                        <button type="submit" ID="btn_GuardarCambios" class="btn btn-primary btn-block mb-2">Guardar Cambios</button>
-                        
+
                     </asp:Panel>
+
+
+                    <!------------- REVISAR PARA ARRIBA-------------->
+
+
+
 
                     <!-- Contenido de la dirección -->
                     <asp:Panel ID="pnl_Direccion" runat="server">
                         <h3>Dirección</h3>
                         <p>Este es el contenido de la dirección.</p>
-                    </asp:Panel>
-
-                    <!-- Contenido de la contraseña -->
-                    <asp:Panel ID="pnl_Contrasena" runat="server">
-                        <h3>Contraseña</h3>
-                        <!-- Password input -->
-                        <div class="form-floating-label-transform mb-4">
-                            <input type="password" id="in_ContraseñaActual" class="form-control" />
-                            <label class="form-label" for="in_ContraseñaActual">Contraseña Actual</label>
-                        </div>
-                        <div class="form-floating-label-transform mb-4">
-                            <input type="password" id="in_ContraseñaNueva" class="form-control" />
-                            <label class="form-label" for="in_ContraseñaNueva">Nueva contraseña</label>
-                        </div>
-                        <div class="form-floating-label-transform mb-4">
-                            <input type="password" id="in_RepetirContraseñaNueva" class="form-control" />
-                            <label class="form-label" for="in_RepetirContraseñaNueva">Repetir contraseña</label>
-                        </div>
-                        <!-- Guardar Cambios-->
-                        <button type="submit" ID="btn_GuardarCambiosContraseña" class="btn btn-primary btn-block mb-2">Guardar Contraseña</button>
                     </asp:Panel>
 
                     <!-- Contenido de la favoritos -->
@@ -101,7 +152,8 @@
                     <!-- Contenido de la pedidos -->
                     <asp:Panel ID="pnl_Pedidos" runat="server">
                         <h3>Pedidos</h3>
-                        <p>Este es el contenido de la pedidos.</p>
+
+                      
                     </asp:Panel>
                 </div>
             </div>

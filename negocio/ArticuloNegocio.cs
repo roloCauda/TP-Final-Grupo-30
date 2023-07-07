@@ -55,7 +55,6 @@ namespace negocio
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
 
-
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
 

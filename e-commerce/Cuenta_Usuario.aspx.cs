@@ -29,7 +29,6 @@ namespace e_commerce
         {
             pnl_Perfil.Visible = (opcion == "Perfil");
             pnl_Direccion.Visible = (opcion == "Direccion");
-            pnl_Contrasena.Visible = (opcion == "Contraseña");
             pnl_Favoritos.Visible = (opcion == "Favoritos");
             pnl_Pedidos.Visible = (opcion == "Pedidos");
         }
