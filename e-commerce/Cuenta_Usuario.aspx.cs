@@ -49,7 +49,23 @@ namespace e_commerce
 
                 Label lblPrecio = Master.FindControl("lblPrecio") as Label;
                 lblPrecio.Text = "$" + carrito.total.ToString();
-            }
+
+                //Cargar datos en campos
+                Usuario user = (Usuario)Session["usuario"];
+
+                txtNombres.Text = user.Nombres.ToString();
+                txtApellidos.Text = user.Apellidos.ToString();
+                txtEmail.Text = user.Email.ToString();
+                txtPasswordActual.Text = user.Contraseña.ToString();
+                txtTelefono.Text = user.Telefono.ToString();
+                txtCalle.Text = user.direccion.Calle.ToString();
+                txtNumeracion.Text = user.direccion.Numero.ToString();
+                txtPiso.Text = user.direccion.Piso.ToString();
+                txtDepartamento.Text = user.direccion.Departamento.ToString();
+                txtCP.Text = user.direccion.CodPostal.ToString();
+                ddlLocalidad.SelectedValue = user.direccion.Localidad.Id.ToString();
+                ddlProvincia.SelectedValue = user.direccion.Provincia.Id.ToString();
+             }
         }
 
         protected void lnk_Opcion_Click(object sender, EventArgs e)

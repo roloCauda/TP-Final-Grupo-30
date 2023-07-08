@@ -50,6 +50,11 @@
                         <h3>Perfil</h3>
 
                         <div class="formulario" id="formulario">
+                            <!-- Grupo: DNI -->
+                            <div style="position: relative;>
+                                <label class="formulario__label">DNI</label>
+                                <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                            </div>
 
                             <!-- Grupo: Nombres -->
                             <div style="position: relative;">
@@ -77,7 +82,7 @@
 
 
                             <!-- Grupo: Correo Electronico -->
-                            <div style="position: relative; margin-top:50px;">
+                            <div style="position: relative; margin-top: 50px;">
                                 <label class="formulario__label">Correo Electrónico</label>
                                 <asp:TextBox ID="txtEmail" type="email" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*El campo Email es obligatorio" CssClass="text-danger"
@@ -88,7 +93,7 @@
 
 
                             <!-- Grupo: Teléfono -->
-                            <div style="position: relative; margin-top:50px;">
+                            <div style="position: relative; margin-top: 50px;">
                                 <label class="formulario__label">Teléfono</label>
                                 <asp:TextBox ID="txtTelefono" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono"
@@ -97,7 +102,7 @@
                             </div>
 
                             <!-- Grupo: boton Guardar Cambios -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;"">
+                            <div class="formulario__grupo formulario__grupo-btn-enviar">
                                 <asp:Button ID="btn_GuardarCambiosPerfil" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click" />
                             </div>
@@ -111,7 +116,7 @@
 
                         <div class="formulario" id="formularioDireccion">
 
-                           <!-- Calle -->
+                            <!-- Calle -->
                             <div style="position: relative;">
                                 <label class="formulario__label">Calle</label>
                                 <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -171,13 +176,13 @@
                             <!-- Provincia -->
                             <div style="position: relative;">
                                 <label class="formulario__label" class="form-label">Provincia</label>
-                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
                                     ErrorMessage="*El campo Provincia es es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
                             <!-- Grupo: boton Guardar Cambios -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;">
+                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 50px;">
                                 <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDireccion" OnClick="btnGuardarDireccion_Click" />
                             </div>
@@ -199,7 +204,7 @@
                         </div>
 
                         <!-- Grupo: Contraseña Nueva -->
-                        <div style="position: relative; margin-top:50px;">
+                        <div style="position: relative; margin-top: 50px;">
                             <label class="formulario__label">Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva" type="password" runat="server" class="formulario__input"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPasswordNueva" runat="server" ControlToValidate="txtPasswordNueva"
@@ -208,7 +213,7 @@
                         </div>
 
                         <!-- Grupo: Repetir contraseña Nueva -->
-                        <div style="position: relative; margin-top:50px;">
+                        <div style="position: relative; margin-top: 50px;">
                             <label class="formulario__label">Repetir Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva2" type="password" runat="server" class="formulario__input"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPasswordNueva2" runat="server" ControlToValidate="txtPasswordNueva2"
@@ -221,7 +226,7 @@
                         </div>
 
                         <!-- Grupo: boton Guardar Contraseña -->
-                        <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;">
+                        <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 50px;">
                             <asp:Button ID="btn_GuardarContraseña" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                 CausesValidation="true" ValidationGroup="validacionGrupoContraseña" OnClick="btn_GuardarContraseña_Click" />
                         </div>

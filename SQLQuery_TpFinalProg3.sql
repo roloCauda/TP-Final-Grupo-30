@@ -235,3 +235,7 @@ GROUP BY P.Id, A.Descripcion, AP.Cantidad, AP.PrecioUnitario;*/
 
 ALTER TABLE Direcciones
 ALTER COLUMN Departamento VARCHAR(100) NULL;
+ALTER TABLE Usuarios
+ALTER COLUMN Email VARCHAR(100) NOT NULL;
+
+select * from Usuarios

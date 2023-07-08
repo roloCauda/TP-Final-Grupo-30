@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace negocio
 {
@@ -103,7 +104,7 @@ namespace negocio
 
                 datos.ejecutarLectura();
 
-                if(datos.Lector.Read())
+                if (datos.Lector.Read())
                 {
                     return true;
                 }
@@ -121,5 +122,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
     }
 }
+

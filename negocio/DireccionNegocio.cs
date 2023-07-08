@@ -39,5 +39,40 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public Direccion CargarDireccion(Direccion direccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                direccion.Localidad = new Localidad();
+                direccion.Provincia = new Provincia();
+                
+                datos.setearConsulta("Select Calle, Numero, Piso, Departamento, CP, IdLocalidad, IdProvincia FROM DIRECCIONES where ID = @ID");
+                datos.setearParametro("@ID", direccion.IdDireccion);
+
+                datos.ejecutarLectura();
+
+                if(datos.Lector.Read())
+                {
+                    direccion.Calle = (string)datos.Lector["Calle"];
+                    direccion.Numero = (int)datos.Lector["Numero"];
+                    direccion.Piso = (int)datos.Lector["Piso"];
+                    direccion.Departamento = (string)datos.Lector["Departamento"];
+                    direccion.CodPostal = (string)datos.Lector["CP"];
+                    direccion.Localidad.Id = (int)datos.Lector["IdLocalidad"];
+                    direccion.Provincia.Id = (int)datos.Lector["IdProvincia"];
+                }
+                    return direccion;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

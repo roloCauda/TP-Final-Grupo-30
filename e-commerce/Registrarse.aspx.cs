@@ -75,7 +75,7 @@ namespace e_commerce
 
             direccion.Calle = txtCalle.Text;
             direccion.Numero = int.Parse(txtNumeracion.Text);
-            direccion.Piso = txtPiso.Text;
+            direccion.Piso = int.Parse(txtPiso.Text);
             direccion.Departamento = txtDepartamento.Text;
             direccion.CodPostal = txtCP.Text;
             direccion.Provincia.Id = int.Parse(ddlLocalidad.SelectedValue);
@@ -91,6 +91,7 @@ namespace e_commerce
 
             negocioU.AgregarUsuario(user);
 
+            Session.Add("usuario", user);
             Response.Redirect("Default.aspx");
         }
 

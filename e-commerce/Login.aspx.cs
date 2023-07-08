@@ -41,10 +41,11 @@ namespace e_commerce
                 usuario = new Usuario(int.Parse(txtDNI.Text), txtPassword.Text, 0);
                 if (negocio.Loguear(usuario))
                 {
+                    DireccionNegocio negocioD = new DireccionNegocio();
+                    usuario.direccion = negocioD.CargarDireccion(usuario.direccion);
+
                     Session.Add("usuario", usuario);
                     Response.Redirect("Cuenta_Usuario.aspx", false);
-
-                    //deberia traer la Direccion, Favoritos y Pedidos de Usuario
                 }
                 else
                 {
@@ -53,7 +54,6 @@ namespace e_commerce
             }
             catch (Exception ex)
             {
-                //Session.Add("error", ex.ToString());
                 throw ex;
             }
         }
