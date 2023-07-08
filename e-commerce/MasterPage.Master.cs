@@ -175,7 +175,7 @@ namespace e_commerce
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Cuenta_Usuario.aspx");
         } 
         protected void btnRegistrarme_Click(object sender, EventArgs e)
         {

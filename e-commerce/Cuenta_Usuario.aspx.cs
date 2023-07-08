@@ -1,4 +1,5 @@
 ﻿using dominio;
+using e_commerce.Pag_Cliente;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,15 @@ namespace e_commerce
 {
     public partial class Cuenta_Usuario : System.Web.UI.Page
     {
+        public List<Articulo> ListaArticulo { get; set; }
+        public dominio.Carrito carrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                carrito = (dominio.Carrito)Session["ListaItems"];
+
                 MostrarPanel("Perfil");
 
                 LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
@@ -36,6 +42,13 @@ namespace e_commerce
                 //si esta en MI CUENTA no es necesario
                 ddlLocalidad.Items.Insert(0, new ListItem("-- Seleccione --", ""));
                 ddlProvincia.Items.Insert(0, new ListItem("-- Seleccione --", ""));
+
+                /*  Actualiza las Label de la Master */
+                Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+                lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+                Label lblPrecio = Master.FindControl("lblPrecio") as Label;
+                lblPrecio.Text = "$" + carrito.total.ToString();
             }
         }
 
