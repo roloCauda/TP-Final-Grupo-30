@@ -91,8 +91,6 @@
                             <div style="position: relative; margin-top:50px;">
                                 <label class="formulario__label">Teléfono</label>
                                 <asp:TextBox ID="txtTelefono" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*El campo Teléfono es obligatorio" CssClass="text-danger"
-                                    ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono"
                                     ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>

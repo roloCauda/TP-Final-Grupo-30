@@ -11,10 +11,10 @@ namespace dominio
         public int IdDireccion { get; set; }
         public string Calle { get; set; }
         public int Numero { get; set; }
-        public int Piso { get; set; }
+        public string Piso { get; set; }
         public string Departamento { get; set; }
         public string CodPostal { get; set; }
-        public Localidad IdLocalidad { get; set; }
+        public Localidad Localidad { get; set; }
         public Provincia Provincia { get; set; }
         
 

@@ -35,6 +35,8 @@ namespace e_commerce
             {
                 UpdatePanelBoton.Update();
             }
+
+            //SI ESTA LOGUEADO DEBERIA APAGAR EL BOTON DE LOGIN Y REGISTRARSE Y MOSTRAR BOTON "MI CUENTA"
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)

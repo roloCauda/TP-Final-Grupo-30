@@ -8,9 +8,9 @@ namespace dominio
 {
     public enum TipoUsuario
     {
-        CLIENTE = 1,
+        ADMIN = 1,
         EMPLEADO = 2,
-        ADMIN = 3
+        CLIENTE = 3
     }
     public class Usuario
     {
@@ -20,7 +20,7 @@ namespace dominio
         public string Email { get; set; }
         public string Telefono { get; set; }
         public string Contraseña { get; set; }
-        public Direccion IdDireccion { get; set; }
+        public Direccion direccion { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
 
         public Usuario(int dni, string pass, int num)
@@ -30,18 +30,23 @@ namespace dominio
             switch (num)
             {
                 case 1:
-                    TipoUsuario = TipoUsuario.CLIENTE;
+                    TipoUsuario = TipoUsuario.ADMIN;
                     break;
                 case 2:
                     TipoUsuario = TipoUsuario.EMPLEADO;
                     break;
                 case 3:
-                    TipoUsuario = TipoUsuario.ADMIN;
+                    TipoUsuario = TipoUsuario.CLIENTE;
                     break;
                 default:
 
                     break;
             }
+        }
+
+        public Usuario()
+        {
+            direccion = new Direccion();
         }
     }
 }

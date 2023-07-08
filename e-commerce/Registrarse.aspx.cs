@@ -13,10 +13,18 @@ namespace e_commerce
     {
         public List<Articulo> ListaArticulo { get; set; }
         public dominio.Carrito carrito { get; set; }
+        Usuario user;
+        UsuarioNegocio negocioU;
+        Direccion direccion;
+        DireccionNegocio negocioD;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                lblErrorRegistro.Visible = false;
+                pnl_Dni_Email.Visible = true;
+                pnl_Perfil_Direccion.Visible = false;
+
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
 
@@ -53,9 +61,56 @@ namespace e_commerce
             }
         }
 
-        protected void btnGuardarCambios_Click(object sender, EventArgs e)
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
+            user = new Usuario();
+            negocioU = new UsuarioNegocio();
+            direccion = new Direccion();
+            negocioD = new DireccionNegocio();
+            direccion.Provincia = new Provincia();
+            direccion.Localidad = new Localidad();
 
+            user.DNI = int.Parse(txtDNI.Text);
+            user.Contraseña = txtContraseña.Text;
+
+            direccion.Calle = txtCalle.Text;
+            direccion.Numero = int.Parse(txtNumeracion.Text);
+            direccion.Piso = txtPiso.Text;
+            direccion.Departamento = txtDepartamento.Text;
+            direccion.CodPostal = txtCP.Text;
+            direccion.Provincia.Id = int.Parse(ddlLocalidad.SelectedValue);
+            direccion.Localidad.Id = int.Parse(ddlProvincia.SelectedValue);
+
+            int IdDireccion = negocioD.AgregarDireccion(direccion);
+
+            user.Nombres = txtNombres.Text;
+            user.Apellidos = txtApellidos.Text;
+            user.Email = txtEmail.Text;
+            user.Telefono = txtTelefono.Text;
+            user.direccion.IdDireccion = IdDireccion;
+
+            negocioU.AgregarUsuario(user);
+
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void btnSeguir_Click(object sender, EventArgs e)
+        {
+            user = new Usuario();
+            negocioU = new UsuarioNegocio();
+            direccion = new Direccion();
+            negocioD = new DireccionNegocio();
+
+            if (negocioU.SiEstaRegistrado(int.Parse(txtDNI.Text)))
+            {
+                lblErrorRegistro.Visible = true;
+            }
+            else
+            {
+                lblErrorRegistro.Visible = false;
+                pnl_Dni_Email.Visible = false;
+                pnl_Perfil_Direccion.Visible = true;
+            }
         }
     }
 }

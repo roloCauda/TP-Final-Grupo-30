@@ -232,3 +232,6 @@ INNER JOIN Usuarios U ON P.IdCliente = U.DNI
 INNER JOIN ARTICULOSxPEDIDO AP ON P.Id = AP.IdPedido
 INNER JOIN Articulos A ON A.Id = AP.IdArticulo
 GROUP BY P.Id, A.Descripcion, AP.Cantidad, AP.PrecioUnitario;*/
+
+ALTER TABLE Direcciones
+ALTER COLUMN Departamento VARCHAR(100) NULL;
