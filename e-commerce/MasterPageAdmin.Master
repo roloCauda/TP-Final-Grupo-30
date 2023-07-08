@@ -84,10 +84,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="VerClientes.aspx">VER CLIENTES</a></li>
+                                <li><a class="dropdown-item" href="VerEmpleados.aspx">VER EMPLEADOS</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="AgregarCliente.aspx">AGREGAR</a></li>
+                                <li><a class="dropdown-item" href="AgregarEmpleados.aspx">AGREGAR EMPLEADOS</a></li>
                             </ul>
                         </li>
                         <li><a class="dropdown-item" href="ApagarWeb.aspx">APAGAR WEB</a></li>

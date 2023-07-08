@@ -42,6 +42,15 @@ namespace e_commerce.Pag_Admin
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
+        /// rfvDescripcion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescripcion;
+
+        /// <summary>
         /// btnModificar control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace e_commerce.Pag_Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtURLIMAGEN;
+
+        /// <summary>
+        /// revURLIMAGEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revURLIMAGEN;
 
         /// <summary>
         /// btnAgregarImagen control.

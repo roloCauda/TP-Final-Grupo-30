@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +16,26 @@ namespace e_commerce
             if (!IsPostBack)
             {
                 MostrarPanel("Perfil");
-                //txtEmail.Enabled = false;
+
+                LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
+                List<Localidad> listaLocalidad = negocioLocalidad.listar();
+
+                ProvinciaNegocio negocioProvincia = new ProvinciaNegocio();
+                List<Provincia> listaProvincia = negocioProvincia.listar();
+
+                ddlLocalidad.DataSource = listaLocalidad;
+                ddlLocalidad.DataValueField = "Id";
+                ddlLocalidad.DataTextField = "Descripcion";
+                ddlLocalidad.DataBind();
+
+                ddlProvincia.DataSource = listaProvincia;
+                ddlProvincia.DataValueField = "Id";
+                ddlProvincia.DataTextField = "Descripcion";
+                ddlProvincia.DataBind();
+
+                //si esta en MI CUENTA no es necesario
+                ddlLocalidad.Items.Insert(0, new ListItem("-- Seleccione --", ""));
+                ddlProvincia.Items.Insert(0, new ListItem("-- Seleccione --", ""));
             }
         }
 
@@ -29,11 +50,27 @@ namespace e_commerce
         {
             pnl_Perfil.Visible = (opcion == "Perfil");
             pnl_Direccion.Visible = (opcion == "Direccion");
+            pnl_Contraseña.Visible = (opcion == "Contraseña");
             pnl_Favoritos.Visible = (opcion == "Favoritos");
             pnl_Pedidos.Visible = (opcion == "Pedidos");
         }
 
         protected void lnk_Salir_Click(object sender, EventArgs e)
+        {
+            //cerrar SESION
+        }
+
+        protected void btn_GuardarCambiosPerfil_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarDireccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_GuardarContraseña_Click(object sender, EventArgs e)
         {
 
         }

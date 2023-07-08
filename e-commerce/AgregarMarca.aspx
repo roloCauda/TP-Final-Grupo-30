@@ -15,13 +15,15 @@
             <div class="mb-3">
                 <label for="txtDescripcion" class="form-label">Descripción: </label>
                 <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
+                <asp:RequiredFieldValidator ID="rfvDescripcion" runat="server" ControlToValidate="txtDescripcion"
+                    ErrorMessage="*El campo Descripción es obligatorio" CssClass="text-danger" ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
             </div>
 
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar" type="submit" class="btn btn-primary btn-lg" OnClick="btnModificar_Click" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar" type="submit" class="btn btn-primary btn-lg" OnClick="btnModificar_Click" ValidationGroup="validacionGrupo"/>
 
-            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" type="submit" class="btn btn-primary btn-lg" OnClick="btnAgregar_Click" />
+            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" type="submit" class="btn btn-primary btn-lg" OnClick="btnAgregar_Click" ValidationGroup="validacionGrupo"/>
 
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" type="submit" class="btn btn-primary btn-lg" OnClick="btnCancelar_Click" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" type="submit" class="btn btn-primary btn-lg" OnClick="btnCancelar_Click"/>
         </div>
         <div class="col-6">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -30,6 +32,10 @@
                         <label for="txtURLIMAGEN" class="form-label">URLImagen: </label>
                         <asp:TextBox runat="server" ID="txtURLIMAGEN" CssClass="form-control"
                             AutoPostBack="true" OnTextChanged="txtURLIMAGEN_TextChanged"/>
+                        <asp:RegularExpressionValidator ID="revURLIMAGEN" runat="server" ControlToValidate="txtURLIMAGEN"
+                            ValidationExpression="^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?$"
+                            ErrorMessage="*El campo URLIMAGEN no puede contener espacios en blanco" CssClass="text-danger"
+                            ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                         <asp:Button ID="btnAgregarImagen" runat="server" Text="+" OnClick="btnAgregarImagen_Click" />
                     </div>
                     <asp:Image ID="imgMarca" runat="server" />

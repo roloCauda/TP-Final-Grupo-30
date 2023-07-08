@@ -46,7 +46,7 @@ namespace e_commerce.Pag_Admin
 
                     if (marca.ImagenURL != null)
                     {
-                        imgMarca.ImageUrl = marca.ImagenURL; //imgCtegoria es el ID en el html
+                        imgMarca.ImageUrl = marca.ImagenURL;
                         txtURLIMAGEN.Enabled = false;
                         btnAgregarImagen.Visible = false;
                         btnEliminarImagen.Visible = true;
@@ -63,6 +63,7 @@ namespace e_commerce.Pag_Admin
             }
             catch (Exception ex)
             {
+                //DEBERIA SER SESSION ERROR???//
                 throw ex;
             }
         }

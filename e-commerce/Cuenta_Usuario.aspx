@@ -42,118 +42,180 @@
 
                         <h3>Perfil</h3>
 
-
-
-                        <!------------- REVISAR PARA ABAJO -------------->
-
-
                         <div class="formulario" id="formulario">
 
-                            <!-- Grupo: Usuario -->
-                            <div class="formulario__grupo" id="grupo__usuario">
-                                <label for="usuario" class="formulario__label">Usuario</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="john123">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            <!-- Grupo: Nombres -->
+                            <div>
+                                <label class="formulario__label">Nombre</label>
+                                <asp:TextBox ID="txtNombres" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ControlToValidate="txtNombres"
+                                    ErrorMessage="*El campo Nombres es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revNombres" runat="server" ControlToValidate="txtNombres"
+                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Nombres no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 
-                            <!-- Grupo: Nombre -->
-                            <div class="formulario__grupo" id="grupo__nombre">
-                                <label for="nombre" class="formulario__label">Nombre</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                            <!-- Grupo: Apellidos -->
+                            <div>
+                                <label class="formulario__label">Apellidos</label>
+                                <asp:TextBox ID="txtApellidos" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
+                                    ErrorMessage="*El campo Apellidos es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revApellidos" runat="server" ControlToValidate="txtApellidos"
+                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Apellidos no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 
-                            <!-- Grupo: Contraseña -->
-                            <div class="formulario__grupo" id="grupo__password">
-                                <label for="password" class="formulario__label">Contraseña</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="password" class="formulario__input" name="password" id="password">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-                            </div>
-
-                            <!-- Grupo: Contraseña 2 -->
-                            <div class="formulario__grupo" id="grupo__password2">
-                                <label for="password2" class="formulario__label">Repetir Contraseña</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="password" class="formulario__input" name="password2" id="password2">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
-                            </div>
 
                             <!-- Grupo: Correo Electronico -->
-                            <div class="formulario__grupo" id="grupo__correo">
-                                <label for="correo" class="formulario__label">Correo Electrónico</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                            <div>
+                                <label class="formulario__label">Correo Electrónico</label>
+                                <asp:TextBox ID="txtEmail" type="email" runat="server" class="formulario__input"></asp:TextBox>
                             </div>
 
                             <!-- Grupo: Teléfono -->
-                            <div class="formulario__grupo" id="grupo__telefono">
-                                <label for="telefono" class="formulario__label">Teléfono</label>
-                                <div class="formulario__grupo-input">
-                                    <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="4491234567">
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                                </div>
-                                <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+                            <div>
+                                <label class="formulario__label">Teléfono</label>
+                                <asp:TextBox ID="txtTelefono" type="text" runat="server" class="formulario__input"></asp:TextBox>
                             </div>
 
-                            <!-- Grupo: Terminos y Condiciones -->
-                            <div class="formulario__grupo" id="grupo__terminos">
-                                <label class="formulario__label">
-                                    <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-                                    Acepto los Terminos y Condiciones
-                                </label>
-                            </div>
-
-                            <!-- Grupo: Mensaje -->
-                            <div class="formulario__mensaje" id="formulario__mensaje">
-                                <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b> Por favor rellena el formulario correctamente. </p>
-                            </div>
-
-                            <!-- Grupo: boton enviar -->
+                            <!-- Grupo: boton Guardar Cambios -->
                             <div class="formulario__grupo formulario__grupo-btn-enviar">
-                                <button type="submit" class="formulario__btn"="">Enviar</button>
-                                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                <asp:Button ID="btn_GuardarCambiosPerfil" runat="server" Text="Guardar Cambios" class="formulario__btn"
+                                    CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click"/>
                             </div>
                         </div>
 
                     </asp:Panel>
 
-
-                    <!------------- REVISAR PARA ARRIBA-------------->
-
-
-
-
-                    <!-- Contenido de la dirección -->
+                    <!-- Contenido de dirección -->
                     <asp:Panel ID="pnl_Direccion" runat="server">
                         <h3>Dirección</h3>
-                        <p>Este es el contenido de la dirección.</p>
+
+                        <div class="formulario" id="formularioDireccion">
+
+                            <div>
+                                <label class="formulario__label">Calle</label>
+                                <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle"
+                                    ErrorMessage="*El campo Calle es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revCalle" runat="server" ControlToValidate="txtCalle"
+                                    ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <div>
+                                <label class="formulario__label">Número</label>
+                                <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                    ErrorMessage="*El campo Número es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                    ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <div>
+                                <label class="formulario__label">Piso</label>
+                                <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="revPiso" runat="server" ControlToValidate="txtPiso"
+                                    ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <div>
+                                <label class="formulario__label">Departamento</label>
+                                <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="revDepartamento" runat="server" ControlToValidate="txtDepartamento"
+                                    ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <div>
+                                <label class="formulario__label">CP</label>
+                                <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP"
+                                    ErrorMessage="*El campo CP es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP"
+                                    ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <div>
+                                <label for="ddlLocalidad" class="form-label">Localidad</label>
+                                <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
+                                    ErrorMessage="*El campo Localidad es es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                            </div>
+                            <div>
+                                <label for="ddlProvincia" class="form-label">Provincia</label>
+                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
+                                    ErrorMessage="*El campo Provincia es es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                            </div>
+                            <!-- Grupo: boton Guardar Cambios -->
+                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                                <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Cambios" class="formulario__btn"
+                                    CausesValidation="true" ValidationGroup="validacionGrupoDireccion" onclick="btnGuardarDireccion_Click"/>
+                            </div>
+                        </div>
+
                     </asp:Panel>
 
-                    <!-- Contenido de la favoritos -->
+                    <!-- Contenido de Contraseña -->
+                    <asp:Panel ID="pnl_Contraseña" runat="server">
+                        <h3>Contraseña</h3>
+
+                        <!-- Grupo: Contraseña Actual -->
+                        <div>
+                            <label class="formulario__label">Contraseña Actual</label>
+                            <asp:TextBox ID="txtPasswordActual" type="password" runat="server" class="formulario__input"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPasswor" runat="server" ControlToValidate="txtPasswordActual"
+                                ErrorMessage="*El campo Contraseña es obligatorio" CssClass="text-danger"
+                                ValidationGroup="validacionGrupoContraseña"></asp:RequiredFieldValidator>
+                        </div>
+
+                        <!-- Grupo: Contraseña Nueva -->
+                        <div>
+                            <label class="formulario__label">Contraseña Nueva</label>
+                            <asp:TextBox ID="txtPasswordNueva" type="password" runat="server" class="formulario__input"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPasswordNueva" runat="server" ControlToValidate="txtPasswordNueva"
+                                ErrorMessage="*El campo Contraseña Nueva es obligatorio" CssClass="text-danger"
+                                ValidationGroup="validacionGrupoContraseña"></asp:RequiredFieldValidator>
+                        </div>
+
+                        <!-- Grupo: Repetir contraseña Nueva -->
+                        <div>
+                            <label class="formulario__label">Repetir Contraseña Nueva</label>
+                            <asp:TextBox ID="txtPasswordNueva2" type="password" runat="server" class="formulario__input"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPasswordNueva2" runat="server" ControlToValidate="txtPasswordNueva2"
+                                ErrorMessage="*El campo Repetir Contraseña Nueva es obligatorio" CssClass="text-danger"
+                                ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="cvPasswordNueva" runat="server" ControlToCompare="txtPasswordNueva"
+                                ControlToValidate="txtPasswordNueva2" Operator="Equal"
+                                ErrorMessage="*Las contraseñas no coinciden" CssClass="text-danger"
+                                ValidationGroup="validacionGrupoContraseña"></asp:CompareValidator>
+                        </div>
+
+                        <!-- Grupo: boton Guardar Contraseña -->
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <asp:Button ID="btn_GuardarContraseña" runat="server" Text="Guardar Cambios" class="formulario__btn"
+                                CausesValidation="true" ValidationGroup="validacionGrupoContraseña" Onclick="btn_GuardarContraseña_Click"/>
+                        </div>
+
+                    </asp:Panel>
+
+                    <!-- Contenido de favoritos -->
                     <asp:Panel ID="pnl_Favoritos" runat="server">
                         <h3>Favoritos</h3>
-                        <p>Este es el contenido de la favoritos.</p>
+                                        <!-- ACA VA UNA GRIDVIEW con botones de accion para eliminar-->
                     </asp:Panel>
 
-                    <!-- Contenido de la pedidos -->
+                    <!-- Contenido de pedidos -->
                     <asp:Panel ID="pnl_Pedidos" runat="server">
                         <h3>Pedidos</h3>
-
-                      
+                                            <!-- ACA VA UNA GRIDVIEW ------------hace falta otra pag para ver el detalle??-->
                     </asp:Panel>
                 </div>
             </div>

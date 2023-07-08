@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="AdministrarProductos.aspx" />
     <Content Include="AgregarCategoria.aspx" />
-    <Content Include="AgregarCliente.aspx" />
+    <Content Include="AgregarEmpleados.aspx" />
     <Content Include="AgregarMarca.aspx" />
     <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
@@ -87,17 +87,18 @@
     <Content Include="Styles\EstilosFormularios.css" />
     <Content Include="VerCategorias.aspx" />
     <Content Include="VerClientes.aspx" />
+    <Content Include="VerEmpleados.aspx" />
     <Content Include="VerMarcas.aspx" />
     <Content Include="VerProductos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarCliente.aspx.cs">
-      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    <Compile Include="AgregarEmpleados.aspx.cs">
+      <DependentUpon>AgregarEmpleados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarCliente.aspx.designer.cs">
-      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    <Compile Include="AgregarEmpleados.aspx.designer.cs">
+      <DependentUpon>AgregarEmpleados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cuenta_Usuario.aspx.cs">
       <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="VerClientes.aspx.designer.cs">
       <DependentUpon>VerClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerEmpleados.aspx.cs">
+      <DependentUpon>VerEmpleados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerEmpleados.aspx.designer.cs">
+      <DependentUpon>VerEmpleados.aspx</DependentUpon>
     </Compile>
     <Compile Include="VerMarcas.aspx.cs">
       <DependentUpon>VerMarcas.aspx</DependentUpon>
