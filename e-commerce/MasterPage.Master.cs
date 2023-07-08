@@ -175,12 +175,11 @@ namespace e_commerce
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Cuenta_Usuario.aspx");
+            Response.Redirect("Login.aspx");
         } 
         protected void btnRegistrarme_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Registrarse.aspx");
         }
-
     }
 }

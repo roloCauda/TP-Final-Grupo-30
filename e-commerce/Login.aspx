@@ -18,7 +18,7 @@
                 ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
                 CssClass="text-danger" ValidationGroup="validacionGrupoLOGIN"></asp:RegularExpressionValidator>
         </div>
-        <!-- Grupo: Contraseña Actual -->
+        <!-- Grupo: Contraseña -->
         <div>
             <label class="formulario__label">Contraseña</label>
             <asp:TextBox ID="txtPassword" type="password" runat="server" class="formulario__input" OnTextChanged="TextChanged"></asp:TextBox>

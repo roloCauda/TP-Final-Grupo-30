@@ -113,6 +113,7 @@
 
                         <div class="formulario" id="formularioDireccion">
 
+                           <!-- Calle -->
                             <div style="position: relative;">
                                 <label class="formulario__label">Calle</label>
                                 <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -123,6 +124,7 @@
                                     ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
+                            <!-- Numero -->
                             <div style="position: relative;">
                                 <label class="formulario__label">Número</label>
                                 <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -133,6 +135,7 @@
                                     ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
+                            <!-- Piso -->
                             <div style="position: relative;">
                                 <label class="formulario__label">Piso</label>
                                 <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -140,6 +143,7 @@
                                     ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
+                            <!-- Depto -->
                             <div style="position: relative;">
                                 <label class="formulario__label">Departamento</label>
                                 <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -147,6 +151,7 @@
                                     ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
+                            <!-- Codigo Postal -->
                             <div style="position: relative;">
                                 <label class="formulario__label">CP</label>
                                 <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
@@ -157,6 +162,7 @@
                                     ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
+                            <!-- Localidad -->
                             <div style="position: relative;">
                                 <label class="formulario__label" class="form-label">Localidad</label>
                                 <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
@@ -164,6 +170,7 @@
                                     ErrorMessage="*El campo Localidad es es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
+                            <!-- Provincia -->
                             <div style="position: relative;">
                                 <label class="formulario__label" class="form-label">Provincia</label>
                                 <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server" ></asp:DropDownList>
