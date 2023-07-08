@@ -53,25 +53,25 @@
 
                             <!-- Grupo: Nombres -->
                             <div style="position: relative;">
-                                <label class="formulario__label">Nombres</label>
+                                <label class="formulario__label">Nombre</label>
                                 <asp:TextBox ID="txtNombres" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ControlToValidate="txtNombres"
                                     ErrorMessage="*El campo Nombres es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revNombres" runat="server" ControlToValidate="txtNombres"
-                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Nombres no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Nombre no puede tener caracteres especiales" CssClass="text-danger"
                                     ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 
                             <!-- Grupo: Apellidos -->
                             <div style="position: relative;">
-                                <label class="formulario__label">Apellidos</label>
+                                <label class="formulario__label">Apellido</label>
                                 <asp:TextBox ID="txtApellidos" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
                                     ErrorMessage="*El campo Apellidos es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revApellidos" runat="server" ControlToValidate="txtApellidos"
-                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Apellidos no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationExpression="^[a-zA-Z\s\-']+$" ErrorMessage="*El campo Apellido no puede tener caracteres especiales" CssClass="text-danger"
                                     ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 

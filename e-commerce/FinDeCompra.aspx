@@ -3,46 +3,57 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <style>
+        .text-danger {
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+    </style>
+
     <div class="container" style="padding: 25px; justify-content: center;">
         <div class="row" style="display: flex; justify-content: center;">
 
             <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px; padding: 15px;">
                 <h2 style="text-align: left;">Datos Personales</h2>
                 <div class="row" style="margin-top: 15px;">
-                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="lblNombre">Nombre:</label>
-                        <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="*El campo Nombre es obligatorio" CssClass="text-danger"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Nombre no puede contener números" CssClass="text-danger"></asp:RegularExpressionValidator>
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
+                        <label class="formulario__label">Nombre:</label>
+                        <asp:TextBox ID="txtNombre" runat="server" class="formulario__input"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="*El campo Nombre es obligatorio" CssClass="text-danger" style="padding-left:12px;"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Nombre no puede contener números" CssClass="text-danger" style="padding-left:12px;"></asp:RegularExpressionValidator>
                     </div>
-                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="lblApellido">Apellido:</label>
-                        <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="*El campo Apellido es obligatorio" CssClass="text-danger"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Apellido no puede contener números" CssClass="text-danger"></asp:RegularExpressionValidator>
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
+                        <label class="formulario__label">Apellido:</label>
+                        <asp:TextBox ID="txtApellido" runat="server" class="formulario__input"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="*El campo Apellido es obligatorio" CssClass="text-danger" style="padding-left:12px;"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Apellido no puede contener números" CssClass="text-danger" style="padding-left:12px;"></asp:RegularExpressionValidator>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction: column; text-align: left; margin-top: 25px;">
-                    <label for="lblEmail">Email:</label>
-                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                <div style="display: flex; flex-direction: column; text-align: left; margin-top: 25px; position: relative;">
+                    <label class="formulario__label">Email:</label>
+                    <asp:TextBox ID="txtEmail" runat="server" class="formulario__input"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*El campo Email es obligatorio" CssClass="text-danger"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="*Ingrese un email válido" CssClass="text-danger"></asp:RegularExpressionValidator>
                 </div>
                 <div class="row" style="margin-top: 25px;">
-                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="lblDNI">DNI:</label>
-                        <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="*El campo DNI es obligatorio" CssClass="text-danger"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números" CssClass="text-danger"></asp:RegularExpressionValidator>
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
+                        <label class="formulario__label">DNI:</label>
+                        <asp:TextBox ID="txtDNI" runat="server" class="formulario__input"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="*El campo DNI es obligatorio" CssClass="text-danger" style="padding-left:12px;"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números" CssClass="text-danger" style="padding-left:12px;"></asp:RegularExpressionValidator>
                     </div>
-                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="lblTelefono">Teléfono:</label>
-                        <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*El campo Teléfono es obligatorio" CssClass="text-danger"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números" CssClass="text-danger"></asp:RegularExpressionValidator>
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
+                        <label class="formulario__label">Teléfono:</label>
+                        <asp:TextBox ID="txtTelefono" runat="server" class="formulario__input"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*El campo Teléfono es obligatorio" CssClass="text-danger" style="padding-left:12px;"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números" CssClass="text-danger" style="padding-left:12px;"></asp:RegularExpressionValidator>
                     </div>
                 </div>
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
+                <div>
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" style="margin-top:70px;" class="formulario__btn"/>
+                </div>
             </div>
 
 
