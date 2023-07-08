@@ -112,7 +112,7 @@
 
                         <div class="formulario" id="formularioDireccion">
 
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">Calle</label>
                                 <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle"
@@ -122,7 +122,7 @@
                                     ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">Número</label>
                                 <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvNumeracion" runat="server" ControlToValidate="txtNumeracion"
@@ -132,21 +132,21 @@
                                     ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">Piso</label>
                                 <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="revPiso" runat="server" ControlToValidate="txtPiso"
                                     ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">Departamento</label>
                                 <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="revDepartamento" runat="server" ControlToValidate="txtDepartamento"
                                     ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">CP</label>
                                 <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP"
@@ -156,22 +156,22 @@
                                     ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
                             </div>
-                            <div>
-                                <label for="ddlLocalidad" class="form-label">Localidad</label>
+                            <div style="position: relative;">
+                                <label class="formulario__label" class="form-label">Localidad</label>
                                 <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
                                     ErrorMessage="*El campo Localidad es es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
-                            <div>
-                                <label for="ddlProvincia" class="form-label">Provincia</label>
-                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
+                            <div style="position: relative;">
+                                <label class="formulario__label" class="form-label">Provincia</label>
+                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server" ></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
                                     ErrorMessage="*El campo Provincia es es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
                             <!-- Grupo: boton Guardar Cambios -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;">
                                 <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDireccion" OnClick="btnGuardarDireccion_Click" />
                             </div>
@@ -184,7 +184,7 @@
                         <h3>Contraseña</h3>
 
                         <!-- Grupo: Contraseña Actual -->
-                        <div>
+                        <div style="position: relative;">
                             <label class="formulario__label">Contraseña Actual</label>
                             <asp:TextBox ID="txtPasswordActual" type="password" runat="server" class="formulario__input"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPasswor" runat="server" ControlToValidate="txtPasswordActual"
@@ -193,7 +193,7 @@
                         </div>
 
                         <!-- Grupo: Contraseña Nueva -->
-                        <div>
+                        <div style="position: relative; margin-top:50px;">
                             <label class="formulario__label">Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva" type="password" runat="server" class="formulario__input"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPasswordNueva" runat="server" ControlToValidate="txtPasswordNueva"
@@ -202,7 +202,7 @@
                         </div>
 
                         <!-- Grupo: Repetir contraseña Nueva -->
-                        <div>
+                        <div style="position: relative; margin-top:50px;">
                             <label class="formulario__label">Repetir Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva2" type="password" runat="server" class="formulario__input"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPasswordNueva2" runat="server" ControlToValidate="txtPasswordNueva2"
@@ -215,7 +215,7 @@
                         </div>
 
                         <!-- Grupo: boton Guardar Contraseña -->
-                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                        <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;">
                             <asp:Button ID="btn_GuardarContraseña" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                 CausesValidation="true" ValidationGroup="validacionGrupoContraseña" OnClick="btn_GuardarContraseña_Click" />
                         </div>
