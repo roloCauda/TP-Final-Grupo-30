@@ -53,6 +53,7 @@ namespace e_commerce
                 //Cargar datos en campos
                 Usuario user = (Usuario)Session["usuario"];
 
+                txtDNI.Text = user.DNI.ToString();
                 txtNombres.Text = user.Nombres.ToString();
                 txtApellidos.Text = user.Apellidos.ToString();
                 txtEmail.Text = user.Email.ToString();

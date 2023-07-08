@@ -51,7 +51,7 @@
 
                         <div class="formulario" id="formulario">
                             <!-- Grupo: DNI -->
-                            <div style="position: relative;>
+                            <div style="position: relative;">
                                 <label class="formulario__label">DNI</label>
                                 <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
                             </div>
@@ -82,7 +82,7 @@
 
 
                             <!-- Grupo: Correo Electronico -->
-                            <div style="position: relative; margin-top: 50px;">
+                            <div style="position: relative">
                                 <label class="formulario__label">Correo Electrónico</label>
                                 <asp:TextBox ID="txtEmail" type="email" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*El campo Email es obligatorio" CssClass="text-danger"
@@ -93,7 +93,7 @@
 
 
                             <!-- Grupo: Teléfono -->
-                            <div style="position: relative; margin-top: 50px;">
+                            <div style="position: relative">
                                 <label class="formulario__label">Teléfono</label>
                                 <asp:TextBox ID="txtTelefono" type="text" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono"
