@@ -4,6 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <style>
+        .text-danger {
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+    </style>
     <div>
         <label>Hola Pipu!</label>
     </div>
@@ -45,8 +52,8 @@
                         <div class="formulario" id="formulario">
 
                             <!-- Grupo: Nombres -->
-                            <div>
-                                <label class="formulario__label">Nombre</label>
+                            <div style="position: relative;">
+                                <label class="formulario__label">Nombres</label>
                                 <asp:TextBox ID="txtNombres" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ControlToValidate="txtNombres"
                                     ErrorMessage="*El campo Nombres es obligatorio" CssClass="text-danger"
@@ -57,7 +64,7 @@
                             </div>
 
                             <!-- Grupo: Apellidos -->
-                            <div>
+                            <div style="position: relative;">
                                 <label class="formulario__label">Apellidos</label>
                                 <asp:TextBox ID="txtApellidos" runat="server" class="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
@@ -70,21 +77,30 @@
 
 
                             <!-- Grupo: Correo Electronico -->
-                            <div>
+                            <div style="position: relative; margin-top:50px;">
                                 <label class="formulario__label">Correo Electrónico</label>
                                 <asp:TextBox ID="txtEmail" type="email" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*El campo Email es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="*Ingrese un email válido" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 
+
                             <!-- Grupo: Teléfono -->
-                            <div>
+                            <div style="position: relative; margin-top:50px;">
                                 <label class="formulario__label">Teléfono</label>
                                 <asp:TextBox ID="txtTelefono" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*El campo Teléfono es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
                             </div>
 
                             <!-- Grupo: boton Guardar Cambios -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top:50px;"">
                                 <asp:Button ID="btn_GuardarCambiosPerfil" runat="server" Text="Guardar Cambios" class="formulario__btn"
-                                    CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click"/>
+                                    CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click" />
                             </div>
                         </div>
 
@@ -157,7 +173,7 @@
                             <!-- Grupo: boton Guardar Cambios -->
                             <div class="formulario__grupo formulario__grupo-btn-enviar">
                                 <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Cambios" class="formulario__btn"
-                                    CausesValidation="true" ValidationGroup="validacionGrupoDireccion" onclick="btnGuardarDireccion_Click"/>
+                                    CausesValidation="true" ValidationGroup="validacionGrupoDireccion" OnClick="btnGuardarDireccion_Click" />
                             </div>
                         </div>
 
@@ -201,7 +217,7 @@
                         <!-- Grupo: boton Guardar Contraseña -->
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
                             <asp:Button ID="btn_GuardarContraseña" runat="server" Text="Guardar Cambios" class="formulario__btn"
-                                CausesValidation="true" ValidationGroup="validacionGrupoContraseña" Onclick="btn_GuardarContraseña_Click"/>
+                                CausesValidation="true" ValidationGroup="validacionGrupoContraseña" OnClick="btn_GuardarContraseña_Click" />
                         </div>
 
                     </asp:Panel>
@@ -209,13 +225,13 @@
                     <!-- Contenido de favoritos -->
                     <asp:Panel ID="pnl_Favoritos" runat="server">
                         <h3>Favoritos</h3>
-                                        <!-- ACA VA UNA GRIDVIEW con botones de accion para eliminar-->
+                        <!-- ACA VA UNA GRIDVIEW con botones de accion para eliminar-->
                     </asp:Panel>
 
                     <!-- Contenido de pedidos -->
                     <asp:Panel ID="pnl_Pedidos" runat="server">
                         <h3>Pedidos</h3>
-                                            <!-- ACA VA UNA GRIDVIEW ------------hace falta otra pag para ver el detalle??-->
+                        <!-- ACA VA UNA GRIDVIEW ------------hace falta otra pag para ver el detalle??-->
                     </asp:Panel>
                 </div>
             </div>

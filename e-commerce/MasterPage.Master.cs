@@ -173,5 +173,14 @@ namespace e_commerce
             ScriptManager.RegisterStartupScript(this, typeof(Page), "postback", Page.ClientScript.GetPostBackEventReference(this, string.Empty), true);
         }
 
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+
+        } 
+        protected void btnRegistrarme_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -45,7 +45,7 @@
 <body class="p-0 m-0 border-0">
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-custom sticky-top" style="padding-bottom: 0px; height: 90px;">
+            <nav class="navbar navbar-custom sticky-top" style="padding-bottom: 0px; height: 90px; position: relative;">
                 <div class="container-fluid d-flex justify-content-between align-items-center flex-nowrap">
 
                     <!-- Logo -->
@@ -66,17 +66,16 @@
 
                         <!-- Registrarse -->
                         <div>
-                            <button class="btn" style="display: flex; align-items: center; background-color: #3b71ca; color: black;">
-                                <i class="material-icons" style="margin-right: 5px;">input</i>
-                                Ingresar
-                            </button>
+                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height:40px;" OnClick="btnIngresar_Click">
+                                <i class="material-icons" style="margin-right: 5px;">input</i> Ingresar
+                            </asp:LinkButton>
                         </div>
                         <div style="padding-left: 15px; padding-right: 15px;">
-                            <button class="btn" style="display: flex; align-items: center; background-color: #3b71ca; color: black;">
-                                <i class="material-icons" style="margin-right: 5px;">person_add</i>
-                                Registrarme
-                            </button>
+                            <asp:LinkButton ID="btnRegistrarme" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height:40px;" OnClick="btnRegistrarme_Click">
+                                <i class="material-icons" style="margin-right: 5px;">person_add</i> Registrarme
+                            </asp:LinkButton>
                         </div>
+
 
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
@@ -181,7 +180,7 @@
             </nav>
 
             <!--Navegable-->
-            <nav class="navbar navbar-expand-lg shadow-none" style="background-color: white; width: 100%; color: white;">
+            <nav class="navbar navbar-expand-lg shadow-none" style="background-color: white; width: 100%; color: white; position: relative;">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -217,12 +216,8 @@
 
         <!--Contenedor de pagina-->
         <div class="container">
-            <div>
+            <div style="min-height:750px;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
-
-
-
                 </asp:ContentPlaceHolder>
             </div>
         </div>

@@ -25,6 +25,8 @@
     <%--Google Fonts--%>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -32,13 +34,17 @@
 <body class="p-0 m-0 border-0">
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-custom sticky-top">
+            <nav class="navbar navbar-custom sticky-top" style="padding-bottom: 0px; height: 90px; position: relative;">
                 <div class="container-fluid d-flex justify-content-between align-items-center flex-nowrap">
 
                     <!--Logo-->
-                    <a class="navbar-brand" href="Default.aspx">
-                        <img src="https://imgur.com/QXX2qqy.png" alt="Logo" width="50">
-                    </a>
+                    <div style="display: flex; justify-content: center; align-items: center; color: black;">
+                        <a class="navbar-brand" href="Default.aspx" style="padding-bottom: 15px; padding-left: 15px;">
+                            <img src="../Img/LOGO.png" alt="Logo" width="50">
+                        </a>
+                        <h2 style="font-family: 'Montserrat', sans-serif;">GLAFOT</h2>
+
+                    </div>
                 </div>
             </nav>
 
