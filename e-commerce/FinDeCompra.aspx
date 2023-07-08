@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div>
-                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" style="margin-top:70px;" class="formulario__btn"
+                    <asp:Button ID="btnContinuar" runat="server" Text="Continuar" OnClick="btnContinuar_Click" style="margin-top:70px;" class="formulario__btn"
                         CausesValidation="true" ValidationGroup="validacionGrupoDatos"/>
                 </div>
             </div>

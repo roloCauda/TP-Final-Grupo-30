@@ -32,7 +32,7 @@ namespace e_commerce.Pag_Cliente
  
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void btnContinuar_Click(object sender, EventArgs e)
         {
 
         }
