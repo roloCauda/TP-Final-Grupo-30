@@ -26,7 +26,7 @@
         </button>
     </div>
 
-    <div style="display: flex; justify-content: center; align-items: center; padding-top:50px;">
+    <div style="display: flex; justify-content: center; align-items: center; padding-top: 50px;">
         <h2>Productos Destacados</h2>
     </div>
 
@@ -53,18 +53,21 @@
         <a href="Productos.aspx" class="btn" style="display: inline-block; margin: 0 auto; background-color: #1c3166; color: #fff;">Ver Más</a>
     </div>
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 150px;">
-        <h2>MARCAS
-        </h2>
-        <asp:Repeater runat="server" ID="repRepetidorMarca">
-            <ItemTemplate>
-                <div class="col">
-                    <div class="card custom-card" style="align-items: center;">
-                        <img src="<%#Eval("ImagenURL") %>" class="card-img-top" alt="..." style="padding-top: 15px; height: 350px; width: 270px;">
+    <div style="display: flex; flex-direction:column; justify-content:center; align-items: center; height: 150px; margin-top: 150px;">
+        <div>
+            <h2>MARCAS</h2>
+        </div>
+        <div style="display:flex; justify-content:center; align-items: center; d">
+            <asp:Repeater runat="server" ID="repRepetidorMarca">
+                <ItemTemplate>
+                    <div class="col">
+                        <div class="card custom-card" style="align-items: center; height: 200px; padding:15px;">
+                            <img src="<%#Eval("ImagenURL") %>" class="card-img-top" alt="..." style="padding-top: 15px; height: 175px; width: 200px;">
+                        </div>
                     </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 
 

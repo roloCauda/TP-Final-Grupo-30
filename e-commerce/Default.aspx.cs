@@ -13,6 +13,7 @@ namespace e_commerce
     {
         public List<Articulo> ListaArticulo { get; set; }
         public Carrito carrito { get; set; }
+        public List<Marca> ListaMarca { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,13 +22,20 @@ namespace e_commerce
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (Carrito)Session["ListaItems"];
 
+                MarcaNegocio marcaNegocio = new MarcaNegocio();
+
                 ListaArticulo = negocio.listarConSP();
+
+                ListaMarca = marcaNegocio.listar();
 
                 // Limitar la cantidad de elementos a mostrar
                 List<Articulo> primerosTresArticulos = ListaArticulo.Take(3).ToList();
 
                 repRepetidor.DataSource = primerosTresArticulos;
                 repRepetidor.DataBind();
+
+                repRepetidorMarca.DataSource = ListaMarca;
+                repRepetidorMarca.DataBind();
 
 
                 if (Session["TotalCarrito"] == null)

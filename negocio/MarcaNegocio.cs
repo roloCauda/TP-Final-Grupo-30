@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from MARCAS");
+                datos.setearConsulta("select Id, Descripcion, ImagenURL from MARCAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -24,6 +24,16 @@ namespace negocio
                     Marca aux = new Marca();
                     aux.IdMarca = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("ImagenURL")))
+                    {
+                        aux.ImagenURL = (string)datos.Lector["ImagenURL"];
+                    }
+                    else
+                    {
+                        // Asigna la imagen predeterminada aquí
+                        aux.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                    }
 
                     lista.Add(aux);
                 }
@@ -39,6 +49,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public void eliminar(int id)
         {
