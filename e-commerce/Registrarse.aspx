@@ -8,7 +8,7 @@
 
         <h3>Perfil</h3>
         <asp:Panel ID="pnl_Dni_Email" runat="server">
-            <div class="formulario" id="formularioPerfil">
+            <div class="formulario">
                 <!-- Grupo: DNI -->
                 <div>
                     <label class="formulario__label">DNI</label>
@@ -30,7 +30,7 @@
         </asp:Panel>
 
         <asp:Panel ID="pnl_Perfil_Direccion" runat="server">
-            <div class="formulario" id="formularioPerfil">
+            <div class="formulario">
                 <!-- Nombres -->
                 <div style="position: relative;">
                     <label class="formulario__label">Nombre</label>

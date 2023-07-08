@@ -75,7 +75,8 @@ namespace e_commerce
 
             direccion.Calle = txtCalle.Text;
             direccion.Numero = int.Parse(txtNumeracion.Text);
-            direccion.Piso = int.Parse(txtPiso.Text);
+            if (!string.IsNullOrEmpty(txtPiso.Text))
+                direccion.Piso = int.Parse(txtPiso.Text);
             direccion.Departamento = txtDepartamento.Text;
             direccion.CodPostal = txtCP.Text;
             direccion.Provincia.Id = int.Parse(ddlLocalidad.SelectedValue);

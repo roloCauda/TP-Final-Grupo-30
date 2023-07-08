@@ -57,8 +57,14 @@ namespace negocio
                 {
                     direccion.Calle = (string)datos.Lector["Calle"];
                     direccion.Numero = (int)datos.Lector["Numero"];
-                    direccion.Piso = (int)datos.Lector["Piso"];
-                    direccion.Departamento = (string)datos.Lector["Departamento"];
+                    if (!(datos.Lector["Piso"] is DBNull))
+                    {
+                        direccion.Piso = (int)datos.Lector["Piso"];
+                    }
+                    if (!(datos.Lector["Departamente"] is DBNull))
+                    {
+                        direccion.Departamento = (string)datos.Lector["Departamente"];
+                    }                   
                     direccion.CodPostal = (string)datos.Lector["CP"];
                     direccion.Localidad.Id = (int)datos.Lector["IdLocalidad"];
                     direccion.Provincia.Id = (int)datos.Lector["IdProvincia"];

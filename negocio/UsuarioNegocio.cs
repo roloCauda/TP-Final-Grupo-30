@@ -80,7 +80,7 @@ namespace negocio
                 datos.setearParametro("@Contraseña", user.Contraseña);
                 datos.setearParametro("@Telefono", user.Telefono);
                 datos.setearParametro("@IDDomicilio", user.direccion.IdDireccion);
-                datos.setearParametro("@TipoAcceso", 1);
+                datos.setearParametro("@TipoAcceso", 3);
 
                 datos.ejecutarAccion();
             }
