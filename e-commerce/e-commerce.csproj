@@ -75,6 +75,7 @@
     <Content Include="ApagarWeb.aspx" />
     <Content Include="Cuenta_Usuario.aspx" />
     <Content Include="Js\formulario.js" />
+    <Content Include="Login.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="Cuenta_Usuario.aspx.designer.cs">
       <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
