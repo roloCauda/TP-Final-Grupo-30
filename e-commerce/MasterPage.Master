@@ -80,15 +80,15 @@
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
                         <!-- Boton carrito -->
-                        <% if (!Request.Url.AbsolutePath.Contains("Carrito") && !Request.Url.AbsolutePath.Contains("FinDeCompra"))
-                            { %>
+
                         <asp:UpdatePanel ID="UpdatePanelBoton" runat="server">
                             <ContentTemplate>
 
                                 <div class="position-relative">
                                     <!-- Si NO es Carrito de compras o Finalizar compra, que muestre el carrito -->
-                                    <a href="#" id="btnCarrito" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
+    <a href="#" id="btnCarrito" runat="server" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                             <asp:Label ID="lblCantCarrito" runat="server" Text=""></asp:Label>
                                             <span class="visually-hidden">unread messages</span>
@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <% } %>
+
                     </div>
 
                 </div>

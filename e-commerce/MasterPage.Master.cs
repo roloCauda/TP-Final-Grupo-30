@@ -36,6 +36,17 @@ namespace e_commerce
                 UpdatePanelBoton.Update();
             }
 
+            // Oculta el botón carrito en las páginas que quiera
+
+            if (Request.Url.AbsolutePath.Contains("Carrito") || Request.Url.AbsolutePath.Contains("FinDeCompra"))
+            {
+                btnCarrito.Visible = false;
+            }
+            else
+            {
+                btnCarrito.Visible = true;
+            }
+
             //SI ESTA LOGUEADO DEBERIA APAGAR EL BOTON DE LOGIN Y REGISTRARSE Y MOSTRAR BOTON "MI CUENTA"
         }
 
