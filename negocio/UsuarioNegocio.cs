@@ -78,7 +78,7 @@ namespace negocio
                 datos.setearParametro("@Apellidos", user.Apellidos);
                 datos.setearParametro("@Email", user.Email);
                 datos.setearParametro("@Contraseña", user.Contraseña);
-                datos.setearParametro("@Telefono", user.Telefono);
+                datos.setearParametro("@Telefono", string.IsNullOrEmpty(user.Telefono) ? DBNull.Value : (object)user.Telefono);
                 datos.setearParametro("@IDDomicilio", user.direccion.IdDireccion);
                 datos.setearParametro("@TipoAcceso", 3);
 

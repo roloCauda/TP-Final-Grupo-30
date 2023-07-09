@@ -77,17 +77,19 @@ namespace e_commerce
             direccion.Numero = int.Parse(txtNumeracion.Text);
             if (!string.IsNullOrEmpty(txtPiso.Text))
                 direccion.Piso = int.Parse(txtPiso.Text);
-            direccion.Departamento = txtDepartamento.Text;
+            if (!string.IsNullOrEmpty(txtDepartamento.Text))
+                direccion.Departamento = txtDepartamento.Text;
             direccion.CodPostal = txtCP.Text;
-            direccion.Provincia.Id = int.Parse(ddlLocalidad.SelectedValue);
-            direccion.Localidad.Id = int.Parse(ddlProvincia.SelectedValue);
+            direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
+            direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
 
             int IdDireccion = negocioD.AgregarDireccion(direccion);
 
             user.Nombres = txtNombres.Text;
             user.Apellidos = txtApellidos.Text;
             user.Email = txtEmail.Text;
-            user.Telefono = txtTelefono.Text;
+            if (!string.IsNullOrEmpty(txtTelefono.Text))
+                user.Telefono = txtTelefono.Text;
             user.direccion.IdDireccion = IdDireccion;
 
             negocioU.AgregarUsuario(user);

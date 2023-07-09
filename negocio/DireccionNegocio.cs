@@ -20,8 +20,8 @@ namespace negocio
                                     "OUTPUT Inserted.ID values (@Calle, @Numero,@Piso, @Departamento, @CP, @IdLocalidad, @IdProvincia)");
                 datos.setearParametro("@Calle", dire.Calle);
                 datos.setearParametro("@Numero", dire.Numero);
-                datos.setearParametro("@Piso", dire.Piso);
-                datos.setearParametro("@Departamento", dire.Departamento);
+                datos.setearParametro("@Piso", dire.Piso.HasValue ? (object)dire.Piso.Value : DBNull.Value);
+                datos.setearParametro("@Departamento", string.IsNullOrEmpty(dire.Departamento) ? DBNull.Value : (object)dire.Departamento);
                 datos.setearParametro("@CP", dire.CodPostal);
                 datos.setearParametro("@IdLocalidad", dire.Localidad.Id);
                 datos.setearParametro("@IdProvincia", dire.Provincia.Id);
@@ -61,9 +61,9 @@ namespace negocio
                     {
                         direccion.Piso = (int)datos.Lector["Piso"];
                     }
-                    if (!(datos.Lector["Departamente"] is DBNull))
+                    if (!(datos.Lector["Departamento"] is DBNull))
                     {
-                        direccion.Departamento = (string)datos.Lector["Departamente"];
+                        direccion.Departamento = (string)datos.Lector["Departamento"];
                     }                   
                     direccion.CodPostal = (string)datos.Lector["CP"];
                     direccion.Localidad.Id = (int)datos.Lector["IdLocalidad"];

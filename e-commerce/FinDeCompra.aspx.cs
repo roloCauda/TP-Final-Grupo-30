@@ -15,6 +15,8 @@ namespace e_commerce.Pag_Cliente
 
             TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
 
+            MostrarPanel("Datos");
+
             if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
             {
                 Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
@@ -25,17 +27,22 @@ namespace e_commerce.Pag_Cliente
             repFinalizar.DataSource = carrito.ListaItems;
             repFinalizar.DataBind();
         }
-
-
-        protected void Comprar_Click(object sender, EventArgs e)
+        protected void lnk_Opcion_Click(object sender, EventArgs e)
         {
- 
+            LinkButton lnk_Opcion = (LinkButton)sender;
+            string opcion = lnk_Opcion.CommandArgument;
+            MostrarPanel(opcion);
+        }
+        private void MostrarPanel(string opcion)
+        {
+            pnl_Datos.Visible = (opcion == "Datos");
+            pnl_Envio.Visible = (opcion == "Envio");
+            pnl_Pagos.Visible = (opcion == "Pagos");
         }
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
 
         }
-
     }
 }
