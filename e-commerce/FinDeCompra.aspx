@@ -12,9 +12,10 @@
         }
 
         .list-group {
-            border: 1px solid #ccc;
+            border: 3px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
+            border-color: #3b71ca;
         }
     </style>
 
@@ -24,24 +25,24 @@
 
                 <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px; padding: 15px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item">
-                                        <asp:Label ID="lblDatos" runat="server" CssClass="nav-link" Text="1.Datos Personales"></asp:Label>
-                                    </li>
-                                    <li class="nav-item">
-                                        <asp:Label ID="lblEnvio" runat="server" CssClass="nav-link" Text="2.Datos de Envío"></asp:Label>
-                                    </li>
-                                    <li class="nav-item">
-                                        <asp:Label ID="lblPagos" runat="server" CssClass="nav-link" Text="3.Formas de Pago"></asp:Label>
-                                    </li>
-                                </ul>
-                            </div>
 
-                        </div>
                         <!-- Datos Personales -->
                         <asp:Panel ID="pnl_Datos" runat="server">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item">
+                                            <asp:Label ID="lblDatos" runat="server" CssClass="nav-link" Text="1. Datos Personales" Style="background-color: black; color: white;"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="lblEnvio" runat="server" CssClass="nav-link" Text="2. Datos de Envío"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="lblPagos" runat="server" CssClass="nav-link" Text="3. Formas de Pago"></asp:Label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="row" style="margin-top: 15px;">
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Nombre:</label>
@@ -94,6 +95,21 @@
                         </asp:Panel>
                         <!-- Datos de Envio -->
                         <asp:Panel ID="pnl_Envio" runat="server">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label1" runat="server" CssClass="nav-link" Text="1. Datos Personales"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label2" runat="server" CssClass="nav-link" Text="2. Datos de Envío" Style="background-color: black; color: white;"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label3" runat="server" CssClass="nav-link" Text="3. Formas de Pago"></asp:Label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="formulario" id="formularioDireccion">
 
                                 <!-- Calle -->
@@ -175,13 +191,43 @@
 
                         <!-- Formas de Pago -->
                         <asp:Panel ID="pnl_Pagos" runat="server">
-
-                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top:70px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label4" runat="server" CssClass="nav-link" Text="1. Datos Personales"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label5" runat="server" CssClass="nav-link" Text="2. Datos de Envío"></asp:Label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:Label ID="Label6" runat="server" CssClass="nav-link" Text="3. Formas de Pago" Style="background-color: black; color: white;"></asp:Label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" CssClass="list-group">
-                                    <asp:ListItem Text="Transferencia" Value="transferencia" />
-                                    <asp:ListItem Text="Efectivo" Value="efectivo" />
-                                    <asp:ListItem Text="MercadoPago" Value="mercadopago" />
+                                    <asp:ListItem Value="transferencia" CssClass="list-group-item list-group-item-action">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-bank2 me-2" style="padding-left:10px;"></i>
+                                            <span class="fs-5">Transferencia</span>
+                                        </div>
+                                    </asp:ListItem>
+                                    <asp:ListItem Value="efectivo" CssClass="list-group-item list-group-item-action">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-cash me-2" style="padding-left:10px;"></i>
+                                            <span class="fs-5">Efectivo</span>
+                                        </div>
+                                    </asp:ListItem>
+                                    <asp:ListItem Value="mercadopago" CssClass="list-group-item list-group-item-action">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-credit-card me-2" style="padding-left:10px;"></i>
+                                            <span class="fs-5">MercadoPago</span>
+                                        </div>
+                                    </asp:ListItem>
                                 </asp:RadioButtonList>
+
                             </div>
                             <div class="row" style="margin-top: 70px;">
                                 <div class="col-md-6">
