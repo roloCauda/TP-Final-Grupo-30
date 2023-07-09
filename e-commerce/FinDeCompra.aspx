@@ -22,16 +22,17 @@
                             <div class="col-md-12">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <asp:LinkButton ID="lnk_Datos" runat="server" OnClick="lnk_Opcion_Click" CommandArgument="Datos" CssClass="nav-link">1.Datos Personales</asp:LinkButton>
+                                        <asp:Label ID="lblDatos" runat="server" CssClass="nav-link" Text="1.Datos Personales"></asp:Label>
                                     </li>
                                     <li class="nav-item">
-                                        <asp:LinkButton ID="lnk_Envio" runat="server" OnClick="lnk_Opcion_Click" CommandArgument="Envio" CssClass="nav-link">2.Datos de Envío</asp:LinkButton>
+                                        <asp:Label ID="lblEnvio" runat="server" CssClass="nav-link" Text="2.Datos de Envío"></asp:Label>
                                     </li>
                                     <li class="nav-item">
-                                        <asp:LinkButton ID="lnk_Pagos" runat="server" OnClick="lnk_Opcion_Click" CommandArgument="Pagos" CssClass="nav-link">3.Formas de Pago</asp:LinkButton>
+                                        <asp:Label ID="lblPagos" runat="server" CssClass="nav-link" Text="3.Formas de Pago"></asp:Label>
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
                         <!-- Datos Personales -->
                         <asp:Panel ID="pnl_Datos" runat="server">
@@ -80,7 +81,7 @@
                                 </div>
                             </div>
                             <div>
-                                <asp:Button ID="btnContinuar" runat="server" Text="Continuar" OnClick="btnContinuar_Click" Style="margin-top: 70px;" class="formulario__btn"
+                                <asp:Button ID="btnContinuarDatos" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 70px;" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDatos" />
                             </div>
 
@@ -88,11 +89,22 @@
                         <!-- Datos de Envio -->
                         <asp:Panel ID="pnl_Envio" runat="server">
                             <h2>Envios</h2>
+                            <div class="row" style="margin-top: 70px;">
+                                <div class="col-md-6">
+                                    <asp:Button ID="btnVolverEnvio" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Datos" CssClass="formulario__btn" />
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:Button ID="btnContinuarEnvio" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Pagos" CssClass="formulario__btn"/>
+                                </div>
+                            </div>
                         </asp:Panel>
 
                         <!-- Formas de Pago -->
                         <asp:Panel ID="pnl_Pagos" runat="server">
                             <h2>Pagos</h2>
+                            <div>
+                                <asp:Button ID="btnVolverPagos" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 70px;" class="formulario__btn"/>
+                            </div>
                         </asp:Panel>
                     </div>
                     <div class="col-md-4" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; padding-top: 15px;">

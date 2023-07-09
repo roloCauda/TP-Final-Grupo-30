@@ -66,12 +66,12 @@
 
                         <!-- Registrarse -->
                         <div>
-                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height:40px;" OnClick="btnIngresar_Click">
+                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnIngresar_Click">
                                 <i class="material-icons" style="margin-right: 5px;">input</i> Ingresar
                             </asp:LinkButton>
                         </div>
                         <div style="padding-left: 15px; padding-right: 15px;">
-                            <asp:LinkButton ID="btnRegistrarme" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height:40px;" OnClick="btnRegistrarme_Click">
+                            <asp:LinkButton ID="btnRegistrarme" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnRegistrarme_Click">
                                 <i class="material-icons" style="margin-right: 5px;">person_add</i> Registrarme
                             </asp:LinkButton>
                         </div>
@@ -86,9 +86,9 @@
 
                                 <div class="position-relative">
                                     <!-- Si NO es Carrito de compras o Finalizar compra, que muestre el carrito -->
-    <a href="#" id="btnCarrito" runat="server" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                                    <a href="#" id="btnCarrito" runat="server" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
 
-    <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
+                                        <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                             <asp:Label ID="lblCantCarrito" runat="server" Text=""></asp:Label>
                                             <span class="visually-hidden">unread messages</span>
@@ -216,7 +216,7 @@
 
         <!--Contenedor de pagina-->
         <div class="container">
-            <div style="min-height:750px;">
+            <div style="min-height: 750px;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

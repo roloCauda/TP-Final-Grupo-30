@@ -24,31 +24,31 @@ namespace e_commerce.Pag_Cliente
         protected global::System.Web.UI.UpdatePanel UpdatePanelPasos;
 
         /// <summary>
-        /// Control lnk_Datos.
+        /// Control lblDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_Datos;
+        protected global::System.Web.UI.WebControls.Label lblDatos;
 
         /// <summary>
-        /// Control lnk_Envio.
+        /// Control lblEnvio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_Envio;
+        protected global::System.Web.UI.WebControls.Label lblEnvio;
 
         /// <summary>
-        /// Control lnk_Pagos.
+        /// Control lblPagos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_Pagos;
+        protected global::System.Web.UI.WebControls.Label lblPagos;
 
         /// <summary>
         /// Control pnl_Datos.
@@ -195,13 +195,13 @@ namespace e_commerce.Pag_Cliente
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revTelefono;
 
         /// <summary>
-        /// Control btnContinuar.
+        /// Control btnContinuarDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnContinuar;
+        protected global::System.Web.UI.WebControls.Button btnContinuarDatos;
 
         /// <summary>
         /// Control pnl_Envio.
@@ -213,6 +213,24 @@ namespace e_commerce.Pag_Cliente
         protected global::System.Web.UI.WebControls.Panel pnl_Envio;
 
         /// <summary>
+        /// Control btnVolverEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverEnvio;
+
+        /// <summary>
+        /// Control btnContinuarEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnContinuarEnvio;
+
+        /// <summary>
         /// Control pnl_Pagos.
         /// </summary>
         /// <remarks>
@@ -220,6 +238,15 @@ namespace e_commerce.Pag_Cliente
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_Pagos;
+
+        /// <summary>
+        /// Control btnVolverPagos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverPagos;
 
         /// <summary>
         /// Control repFinalizar.

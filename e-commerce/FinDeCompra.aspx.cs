@@ -42,7 +42,10 @@ namespace e_commerce.Pag_Cliente
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
-            MostrarPanel("Envio");
+            Button btn_Opcion = (Button)sender;
+            string opcion = btn_Opcion.CommandArgument;
+            MostrarPanel(opcion);
         }
+
     }
 }
