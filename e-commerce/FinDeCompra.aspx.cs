@@ -60,6 +60,9 @@ namespace e_commerce.Pag_Cliente
             string opcion = btn_Opcion.CommandArgument;
             MostrarPanel(opcion);
         }
+        protected void btnConfirmar(object sender, EventArgs e)
+        {
 
+        }
     }
 }
