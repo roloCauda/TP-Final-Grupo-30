@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,23 @@ namespace e_commerce.Pag_Cliente
 
             MostrarPanel("Datos");
 
+            LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
+            List<Localidad> listaLocalidad = negocioLocalidad.listar();
+
+            ProvinciaNegocio negocioProvincia = new ProvinciaNegocio();
+            List<Provincia> listaProvincia = negocioProvincia.listar();
+
+            ddlLocalidad.DataSource = listaLocalidad;
+            ddlLocalidad.DataValueField = "Id";
+            ddlLocalidad.DataTextField = "Descripcion";
+            ddlLocalidad.DataBind();
+
+            ddlProvincia.DataSource = listaProvincia;
+            ddlProvincia.DataValueField = "Id";
+            ddlProvincia.DataTextField = "Descripcion";
+            ddlProvincia.DataBind();
+
+
             if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
             {
                 Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
@@ -26,12 +45,7 @@ namespace e_commerce.Pag_Cliente
 
             repFinalizar.DataSource = carrito.ListaItems;
             repFinalizar.DataBind();
-        }
-        protected void lnk_Opcion_Click(object sender, EventArgs e)
-        {
-            LinkButton lnk_Opcion = (LinkButton)sender;
-            string opcion = lnk_Opcion.CommandArgument;
-            MostrarPanel(opcion);
+
         }
         private void MostrarPanel(string opcion)
         {

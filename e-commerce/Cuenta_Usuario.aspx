@@ -170,7 +170,7 @@
                                 <label class="formulario__label" class="form-label">Localidad</label>
                                 <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
-                                    ErrorMessage="*El campo Localidad es es obligatorio" CssClass="text-danger"
+                                    ErrorMessage="*El campo Localidad es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
                             <!-- Provincia -->
@@ -178,7 +178,7 @@
                                 <label class="formulario__label" class="form-label">Provincia</label>
                                 <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
-                                    ErrorMessage="*El campo Provincia es es obligatorio" CssClass="text-danger"
+                                    ErrorMessage="*El campo Provincia es obligatorio" CssClass="text-danger"
                                     ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
                             </div>
                             <!-- Grupo: boton Guardar Cambios -->

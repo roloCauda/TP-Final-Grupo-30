@@ -10,6 +10,10 @@
             top: 100%;
             left: 0;
         }
+        .label-black-background {
+        background-color: black;
+        color: white;
+    }
     </style>
 
     <div class="container" style="padding: 25px; justify-content: center;">
@@ -79,7 +83,7 @@
                                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RegularExpressionValidator>
                                 </div>
-                            </div>
+                            </div>                            
                             <div>
                                 <asp:Button ID="btnContinuarDatos" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 70px;" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDatos" />
@@ -88,13 +92,81 @@
                         </asp:Panel>
                         <!-- Datos de Envio -->
                         <asp:Panel ID="pnl_Envio" runat="server">
-                            <h2>Envios</h2>
+                            <div class="formulario" id="formularioDireccion">
+
+                            <!-- Calle -->
+                            <div style="position: relative;">
+                                <label class="formulario__label">Calle</label>
+                                <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle"
+                                    ErrorMessage="*El campo Calle es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revCalle" runat="server" ControlToValidate="txtCalle"
+                                    ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <!-- Numero -->
+                            <div style="position: relative;">
+                                <label class="formulario__label">Número</label>
+                                <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                    ErrorMessage="*El campo Número es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                    ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <!-- Piso -->
+                            <div style="position: relative;">
+                                <label class="formulario__label">Piso</label>
+                                <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="revPiso" runat="server" ControlToValidate="txtPiso"
+                                    ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <!-- Depto -->
+                            <div style="position: relative;">
+                                <label class="formulario__label">Departamento</label>
+                                <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="revDepartamento" runat="server" ControlToValidate="txtDepartamento"
+                                    ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <!-- Codigo Postal -->
+                            <div style="position: relative;">
+                                <label class="formulario__label">CP</label>
+                                <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP"
+                                    ErrorMessage="*El campo CP es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP"
+                                    ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            </div>
+                            <!-- Localidad -->
+                            <div style="position: relative;">
+                                <label class="formulario__label" class="form-label">Localidad</label>
+                                <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
+                                    ErrorMessage="*El campo Localidad es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                            </div>
+                            <!-- Provincia -->
+                            <div style="position: relative;">
+                                <label class="formulario__label" class="form-label">Provincia</label>
+                                <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
+                                    ErrorMessage="*El campo Provincia es obligatorio" CssClass="text-danger"
+                                    ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
                             <div class="row" style="margin-top: 70px;">
                                 <div class="col-md-6">
                                     <asp:Button ID="btnVolverEnvio" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Datos" CssClass="formulario__btn" />
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Button ID="btnContinuarEnvio" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Pagos" CssClass="formulario__btn"/>
+                                    <asp:Button ID="btnContinuarEnvio" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Pagos" CssClass="formulario__btn"
+                                        CausesValidation="true" ValidationGroup="validacionGrupoDireccion"/>
                                 </div>
                             </div>
                         </asp:Panel>
