@@ -58,11 +58,19 @@ namespace e_commerce
                 txtApellidos.Text = user.Apellidos.ToString();
                 txtEmail.Text = user.Email.ToString();
                 txtPasswordActual.Text = user.Contraseña.ToString();
-                txtTelefono.Text = user.Telefono.ToString();
+
+                if(!string.IsNullOrEmpty(user.Telefono))
+                    txtTelefono.Text = user.Telefono.ToString();
+
                 txtCalle.Text = user.direccion.Calle.ToString();
                 txtNumeracion.Text = user.direccion.Numero.ToString();
-                txtPiso.Text = user.direccion.Piso.ToString();
-                txtDepartamento.Text = user.direccion.Departamento.ToString();
+
+                if(!string.IsNullOrEmpty(user.direccion.Piso.ToString()))
+                    txtPiso.Text = user.direccion.Piso.ToString();
+
+                if(!string.IsNullOrEmpty(user.direccion.Departamento))
+                    txtDepartamento.Text = user.direccion.Departamento.ToString();
+
                 txtCP.Text = user.direccion.CodPostal.ToString();
                 ddlLocalidad.SelectedValue = user.direccion.Localidad.Id.ToString();
                 ddlProvincia.SelectedValue = user.direccion.Provincia.Id.ToString();
@@ -87,7 +95,8 @@ namespace e_commerce
 
         protected void lnk_Salir_Click(object sender, EventArgs e)
         {
-            //cerrar SESION
+            Session.Remove("usuario");
+            Response.Redirect("Default.aspx");
         }
 
         protected void btn_GuardarCambiosPerfil_Click(object sender, EventArgs e)
