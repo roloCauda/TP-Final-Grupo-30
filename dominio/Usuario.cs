@@ -21,6 +21,7 @@ namespace dominio
         public string Telefono { get; set; }
         public string Contraseña { get; set; }
         public Direccion direccion { get; set; }
+        public List<Pedido> ListaPedidos { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
 
         public Usuario(int dni, string pass, int num)

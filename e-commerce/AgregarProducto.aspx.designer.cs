@@ -69,15 +69,6 @@ namespace e_commerce.Pag_Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombre;
 
         /// <summary>
-        /// revNombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNombre;
-
-        /// <summary>
         /// txtPrecio control.
         /// </summary>
         /// <remarks>

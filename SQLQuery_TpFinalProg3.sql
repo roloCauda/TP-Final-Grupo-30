@@ -239,3 +239,6 @@ ALTER TABLE Usuarios
 ALTER COLUMN Email VARCHAR(100) NOT NULL;
 
 select * from Usuarios
+select * from Articulos
+select * from Pedidos
+select * from ARTICULOSxPEDIDO

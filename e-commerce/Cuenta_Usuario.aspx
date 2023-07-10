@@ -242,7 +242,43 @@
                     <!-- Contenido de pedidos -->
                     <asp:Panel ID="pnl_Pedidos" runat="server">
                         <h3>Pedidos</h3>
-                        <!-- ACA VA UNA GRIDVIEW ------------hace falta otra pag para ver el detalle??-->
+
+                        <asp:GridView ID="dgvPedidosCliente" runat="server" DataKeyNames="IdPedido"
+                            CssClass="table" AutoGenerateColumns="false"
+                            OnRowCommand="dgvPedidosCliente_RowCommand"
+                            OnPageIndexChanging="dgvPedidosCliente_PageIndexChanging"
+                            AllowPaging="true" PageSize="5">
+                            <Columns>
+                                <asp:BoundField HeaderText="N° de Pedido" DataField="IDPedido"/>
+                                <asp:BoundField HeaderText="Forma de Pago" DataField="FormaDePago.Descripcion"/>
+                                <asp:BoundField HeaderText="Fecha" DataField="Fecha"/>
+                                <asp:TemplateField HeaderText="Acciones">
+                                    <ItemTemplate>
+                                        <asp:LinkButton runat="server" ID="lnkVer" Text="🔍" CommandName="VerPedido" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </asp:Panel>
+                    <asp:Panel ID="pnl_ArtPorPedido" runat="server">
+
+                        <asp:Label ID="lblNroPedido" runat="server"></asp:Label>
+
+                        <asp:GridView ID="dgvArtPorPedido" runat="server"
+                            CssClass="table" AutoGenerateColumns="false"
+                            OnRowCommand="dgvArtPorPedido_RowCommand"
+                            OnPageIndexChanging="dgvArtPorPedido_PageIndexChanging"
+                            AllowPaging="true" PageSize="5">
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombre"/>
+                                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"/>
+                                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad"/>
+                                <asp:BoundField HeaderText="Precio Unit." DataField="PrecioUnitario"/>
+                                <asp:BoundField HeaderText="Precio Total." DataField="PrecioTotal"/>
+                                <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Width="100" ControlStyle-Height="100" />
+                            </Columns>
+                        </asp:GridView>
+                        <asp:Label ID="lblTotal" runat="server"></asp:Label>
                     </asp:Panel>
                 </div>
             </div>

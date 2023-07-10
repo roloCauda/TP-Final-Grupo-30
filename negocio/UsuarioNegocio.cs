@@ -122,7 +122,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
     }
 }
 

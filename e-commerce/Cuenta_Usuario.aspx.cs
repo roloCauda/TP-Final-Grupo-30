@@ -59,22 +59,26 @@ namespace e_commerce
                 txtEmail.Text = user.Email.ToString();
                 txtPasswordActual.Text = user.Contraseña.ToString();
 
-                if(!string.IsNullOrEmpty(user.Telefono))
+                if (!string.IsNullOrEmpty(user.Telefono))
                     txtTelefono.Text = user.Telefono.ToString();
 
                 txtCalle.Text = user.direccion.Calle.ToString();
                 txtNumeracion.Text = user.direccion.Numero.ToString();
 
-                if(!string.IsNullOrEmpty(user.direccion.Piso.ToString()))
+                if (!string.IsNullOrEmpty(user.direccion.Piso.ToString()))
                     txtPiso.Text = user.direccion.Piso.ToString();
 
-                if(!string.IsNullOrEmpty(user.direccion.Departamento))
+                if (!string.IsNullOrEmpty(user.direccion.Departamento))
                     txtDepartamento.Text = user.direccion.Departamento.ToString();
 
                 txtCP.Text = user.direccion.CodPostal.ToString();
                 ddlLocalidad.SelectedValue = user.direccion.Localidad.Id.ToString();
                 ddlProvincia.SelectedValue = user.direccion.Provincia.Id.ToString();
-             }
+
+                PedidoNegocio negocioU = new PedidoNegocio();
+                dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.DNI);
+                dgvPedidosCliente.DataBind();
+            }
         }
 
         protected void lnk_Opcion_Click(object sender, EventArgs e)
@@ -91,6 +95,7 @@ namespace e_commerce
             pnl_Contraseña.Visible = (opcion == "Contraseña");
             pnl_Favoritos.Visible = (opcion == "Favoritos");
             pnl_Pedidos.Visible = (opcion == "Pedidos");
+            pnl_ArtPorPedido.Visible = (opcion == "PedidosXArt");
         }
 
         protected void lnk_Salir_Click(object sender, EventArgs e)
@@ -110,6 +115,39 @@ namespace e_commerce
         }
 
         protected void btn_GuardarContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dgvPedidosCliente_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+            int IdPedido = int.Parse(dgvPedidosCliente.DataKeys[row.RowIndex].Value.ToString());
+
+            lblNroPedido.Text = "#" + IdPedido.ToString();
+
+            ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
+            dgvArtPorPedido.DataSource = negocioAP.listarConSP(IdPedido);
+            dgvArtPorPedido.DataBind();
+
+            PedidoNegocio negocioP = new PedidoNegocio();
+            decimal total = negocioP.totalPedido(IdPedido);
+            lblTotal.Text = "Total: $ " + total.ToString();
+            MostrarPanel("PedidosXArt");
+        }
+
+        protected void dgvPedidosCliente_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvPedidosCliente.PageIndex = e.NewPageIndex;
+            dgvPedidosCliente.DataBind();
+        }
+
+        protected void dgvArtPorPedido_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void dgvArtPorPedido_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
         }

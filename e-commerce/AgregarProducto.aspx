@@ -27,9 +27,6 @@
                 <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
                     ErrorMessage="*El campo Nombre es obligatorio" CssClass="text-danger"
                     ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ValidationExpression="^[a-zA-Z\s\-']+$"
-                    ErrorMessage="El Nombre no debe tener caracteres especiales ni números" CssClass="text-danger"
-                    ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio: </label>
