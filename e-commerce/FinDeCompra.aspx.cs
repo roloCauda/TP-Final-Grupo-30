@@ -13,38 +13,42 @@ namespace e_commerce.Pag_Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
-
-            TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
-
-            MostrarPanel("Datos");
-
-            LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
-            List<Localidad> listaLocalidad = negocioLocalidad.listar();
-
-            ProvinciaNegocio negocioProvincia = new ProvinciaNegocio();
-            List<Provincia> listaProvincia = negocioProvincia.listar();
-
-            ddlLocalidad.DataSource = listaLocalidad;
-            ddlLocalidad.DataValueField = "Id";
-            ddlLocalidad.DataTextField = "Descripcion";
-            ddlLocalidad.DataBind();
-
-            ddlProvincia.DataSource = listaProvincia;
-            ddlProvincia.DataValueField = "Id";
-            ddlProvincia.DataTextField = "Descripcion";
-            ddlProvincia.DataBind();
-
-
-            if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+            if (!IsPostBack)
             {
-                Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
+
+                TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
+
+                MostrarPanel("Datos");
+
+                LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
+                List<Localidad> listaLocalidad = negocioLocalidad.listar();
+
+                ProvinciaNegocio negocioProvincia = new ProvinciaNegocio();
+                List<Provincia> listaProvincia = negocioProvincia.listar();
+
+                ddlLocalidad.DataSource = listaLocalidad;
+                ddlLocalidad.DataValueField = "Id";
+                ddlLocalidad.DataTextField = "Descripcion";
+                ddlLocalidad.DataBind();
+
+                ddlProvincia.DataSource = listaProvincia;
+                ddlProvincia.DataValueField = "Id";
+                ddlProvincia.DataTextField = "Descripcion";
+                ddlProvincia.DataBind();
+
+                if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                }
+
+                lblPrecio.Text = "$" + carrito.total.ToString();
+
+                repFinalizar.DataSource = carrito.ListaItems;
+                repFinalizar.DataBind();
             }
 
-            lblPrecio.Text = "$" + carrito.total.ToString();
 
-            repFinalizar.DataSource = carrito.ListaItems;
-            repFinalizar.DataBind();
 
         }
         private void MostrarPanel(string opcion)

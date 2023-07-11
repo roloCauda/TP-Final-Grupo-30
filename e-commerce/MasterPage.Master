@@ -66,14 +66,25 @@
 
                     <div style="display: flex; justify-content: center; align-items: center; padding: 15px;">
 
-                        <!-- Registrarse -->
+                        <!-- Botones de Config, Perfil, Ingresar y Registrarse -->
+                        <div style="padding-right: 15px;">
+                            <asp:LinkButton ID="btnConfig" runat="server" Visible="false" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnConfig_Click">
+                                <i class="material-icons">settings</i>
+                            </asp:LinkButton>
+                        </div>
+
                         <div>
-                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnIngresar_Click">
+                            <asp:LinkButton ID="btnMiPerfil" runat="server" Visible="false" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px; margin-right:15px;" OnClick="btnMiPerfil_Click">
+                                <i class="material-icons" style="margin-right: 5px;">account_circle</i> Mi Perfil
+                            </asp:LinkButton>
+                        </div>
+                        <div>
+                            <asp:LinkButton ID="btnIngresar" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px; margin-right:15px;" OnClick="btnIngresar_Click">
                                 <i class="material-icons" style="margin-right: 5px;">input</i> Ingresar
                             </asp:LinkButton>
                         </div>
-                        <div style="padding-left: 15px; padding-right: 15px;">
-                            <asp:LinkButton ID="btnRegistrarme" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnRegistrarme_Click">
+                        <div>
+                            <asp:LinkButton ID="btnRegistrarme" runat="server" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px; margin-right:15px;" OnClick="btnRegistrarme_Click">
                                 <i class="material-icons" style="margin-right: 5px;">person_add</i> Registrarme
                             </asp:LinkButton>
                         </div>

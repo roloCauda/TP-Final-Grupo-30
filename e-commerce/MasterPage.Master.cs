@@ -47,7 +47,35 @@ namespace e_commerce
                 btnCarrito.Visible = true;
             }
 
-            //SI ESTA LOGUEADO DEBERIA APAGAR EL BOTON DE LOGIN Y REGISTRARSE Y MOSTRAR BOTON "MI CUENTA"
+            // Lógica para mostrar botones según el tipo de perfil
+
+            if (Session["usuario"] != null)
+            {
+                Usuario user = (Usuario)Session["usuario"];
+                // Caso Admin o Empleado
+                if (user.TipoUsuario == TipoUsuario.ADMIN || user.TipoUsuario == TipoUsuario.EMPLEADO)
+                {
+                    btnConfig.Visible = true;
+                    btnMiPerfil.Visible = true;
+                    btnIngresar.Visible = false;
+                    btnRegistrarme.Visible = false;
+                }
+                else
+                // Caso de Cliente
+                {
+                    btnMiPerfil.Visible = true;
+                    btnIngresar.Visible = false;
+                    btnRegistrarme.Visible = false;
+                    btnConfig.Visible = false;
+                }
+            }
+            else
+            {
+                btnMiPerfil.Visible = false;
+                btnIngresar.Visible = true;
+                btnRegistrarme.Visible = true;
+                btnConfig.Visible = false;
+            }
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)
@@ -185,14 +213,22 @@ namespace e_commerce
             // Realizar un postback en la página para procesar el evento en el servidor
             ScriptManager.RegisterStartupScript(this, typeof(Page), "postback", Page.ClientScript.GetPostBackEventReference(this, string.Empty), true);
         }
-
+        protected void btnMiPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Cuenta_Usuario.aspx");
+        }
+        protected void btnConfig_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministrarProductos.aspx");
+        }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
-        } 
+        }
         protected void btnRegistrarme_Click(object sender, EventArgs e)
         {
             Response.Redirect("Registrarse.aspx");
         }
+
     }
 }
