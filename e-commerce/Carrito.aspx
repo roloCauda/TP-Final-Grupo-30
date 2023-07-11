@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="e_commerce.Pag_Cliente.Carrito" EnableEventValidation="false" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,18 +37,18 @@
                             <div class="col-lg-2 col-md-2">
                                 <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
                             </div>
-                            <div class="col-lg-2 col-md-2">
-                                <div class="row" style="margin: 0px; justify-content: left; align-items: center;">
-                                    <div class="col-lg-3 col-md-3">
-                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 14px; width: 25px;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-6 d-flex align-items-center">
+                                <div class="row justify-content-center">
+                                    <div class="col-4 d-flex justify-content-center align-items-center">
+                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                     </div>
-                                    <div class="col-lg-3 col-md-3" style="margin-right: 5px; margin-left: 5px;">
-                                        <button type="button" style="font-size: 14px; width: 25px">
+                                    <div class="col-4 d-flex justify-content-center align-items-center" style="padding:15px;">
+                                        <button type="button" class="btn btn-primary btn-sm">
                                             <asp:Label ID="lblCantArtEnCarrito" runat="server" Text=""><%#Eval("Cantidad") %></asp:Label>
                                         </button>
                                     </div>
-                                    <div class="col-lg-3 col-md-3">
-                                        <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" Style="font-size: 14px; width: 25px;" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
+                                    <div class="col-4 d-flex justify-content-center align-items-center">
+                                        <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +62,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                <div style="display: flex; margin-top:auto; justify-content: right; text-align: center; align-items: center; padding-bottom: 25px;">
+                <div style="display: flex; margin-top: auto; justify-content: right; text-align: center; align-items: center; padding-bottom: 25px;">
                     <asp:Label ID="lblVaciarCarrito" runat="server" Text="VACIAR CARRITO" Style="margin-right: 10px;"></asp:Label>
                     <asp:LinkButton ID="btnVaciarCarrito" runat="server" OnClick="btnVaciarCarrito_click" CssClass="btn btn-primary btn-sm">
                                         <span class="material-icons">delete</span>
@@ -80,7 +81,7 @@
 
                                 <div class="col-md-6" style="text-align: left; margin-top: 20px;">
                                     <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
-                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" style="color:#3b71ca;" Text="">(<%#Eval("Cantidad") %>)</asp:Label>
+                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" Style="color: #3b71ca;" Text="">(<%#Eval("Cantidad") %>)</asp:Label>
                                 </div>
 
                                 <div class="col-md-6" style="text-align: right; margin-top: 20px;">

@@ -67,6 +67,7 @@
                     <div style="display: flex; justify-content: center; align-items: center; padding: 15px;">
 
                         <!-- Botones de Config, Perfil, Ingresar y Registrarse -->
+
                         <div style="padding-right: 15px;">
                             <asp:LinkButton ID="btnConfig" runat="server" Visible="false" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnConfig_Click">
                                 <i class="material-icons">settings</i>
@@ -124,31 +125,33 @@
                                             <asp:Repeater ID="repInfoCarrito" runat="server">
                                                 <ItemTemplate>
                                                     <div class="row justify-content-center">
-                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 custom-img">
+                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 custom-img d-flex align-items-center">
                                                             <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="..." style="width: 100%; max-height: 100px;">
                                                         </div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 d-flex align-items-center">
                                                             <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
                                                         </div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 d-flex align-items-center">
                                                             <div class="row justify-content-center">
-                                                                <div class="col-3">
-                                                                    <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 1rem;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
+                                                                <div class="col-4 d-flex justify-content-center align-items-center">
+                                                                    <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                                 </div>
-                                                                <div class="col-3">
-                                                                    <button type="button" style="font-size: 1rem;">
+                                                                <div class="col-4 d-flex justify-content-center align-items-center" style="padding: 15px;">
+                                                                    <button type="button" class="btn btn-primary btn-sm">
                                                                         <asp:Label ID="lblCantArtEnCarrito" runat="server" Text=""><%#Eval("Cantidad") %></asp:Label>
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-3">
-                                                                    <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" Style="font-size: 1rem;" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
+                                                                <div class="col-4 d-flex justify-content-center align-items-center">
+                                                                    <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+
+
+                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 d-flex align-items-center">
                                                             <asp:Label ID="lblPrcioArticulo" runat="server" Text="">$<%#Convert.ToDecimal(Eval("Articulo.Precio")) * Convert.ToInt32(Eval("Cantidad"))  %></asp:Label>
                                                         </div>
-                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                                                        <div class="col-lg-2 col-md-2 col-sm-4 col-6 d-flex align-items-center">
                                                             <asp:Button ID="btnBorrar" runat="server" Text="Borrar" type="button" class="btn btn-primary" OnClick="btnBorrar_click" CommandName="Borrar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                         </div>
                                                     </div>
@@ -245,22 +248,22 @@
         <div class="arrow-down" style="height: 0px; position: relative;"></div>
 
         <!--Footer-->
-        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom:35px;">
+        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom: 35px;">
 
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Empresa</h3>
                 <div>
-                    <h4 style="font-size:medium;">Nosotros</h4>
-                    <h4 style="font-size:medium;">Productos</h4>
-                    <h4 style="font-size:medium;">Alquileres</h4>
+                    <h4 style="font-size: medium;">Nosotros</h4>
+                    <h4 style="font-size: medium;">Productos</h4>
+                    <h4 style="font-size: medium;">Alquileres</h4>
                 </div>
             </div>
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Contacto</h3>
                 <div>
-                    <h4 style="font-size:medium;">Dirección</h4>
-                    <h4 style="font-size:medium;">Teléfono</h4>
-                    <h4 style="font-size:medium;">glatot@gmail.com</h4>
+                    <h4 style="font-size: medium;">Dirección</h4>
+                    <h4 style="font-size: medium;">Teléfono</h4>
+                    <h4 style="font-size: medium;">glafot@gmail.com</h4>
                 </div>
             </div>
 
