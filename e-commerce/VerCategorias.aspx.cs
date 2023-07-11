@@ -13,6 +13,13 @@ namespace e_commerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario user = (Usuario)Session["usuario"];
+
+            if (Session["usuario"] == null || user.TipoUsuario == TipoUsuario.CLIENTE)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             CategoriaNegocio negocio = new CategoriaNegocio();
             dgvCategoria.DataSource = negocio.listar();
             dgvCategoria.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/

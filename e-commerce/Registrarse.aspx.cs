@@ -19,6 +19,11 @@ namespace e_commerce
         DireccionNegocio negocioD;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             if (!IsPostBack)
             {
                 lblErrorRegistro.Visible = false;

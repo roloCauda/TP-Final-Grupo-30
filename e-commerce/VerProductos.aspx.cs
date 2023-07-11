@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
 using negocio;
 
 namespace e_commerce
@@ -12,6 +13,13 @@ namespace e_commerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario user = (Usuario)Session["usuario"];
+
+            if (Session["usuario"] == null || user.TipoUsuario == TipoUsuario.CLIENTE)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvArticulo.DataSource = negocio.listarConSP();
             dgvArticulo.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/

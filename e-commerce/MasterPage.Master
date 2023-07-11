@@ -245,13 +245,25 @@
         <div class="arrow-down" style="height: 0px; position: relative;"></div>
 
         <!--Footer-->
-        <footer style="background-color: #1C3166; height: 200px; display: flex; text-align: center; justify-content: center; align-items: end;">
+        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom:35px;">
 
-            <!-- Copyright -->
-            <div>
-                <h2>© 2023 Copyright: Grupo30.com
-                </h2>
+            <div class="footer-list" style="justify-content: center; color: white;">
+                <h3>Empresa</h3>
+                <div>
+                    <h4 style="font-size:medium;">Nosotros</h4>
+                    <h4 style="font-size:medium;">Productos</h4>
+                    <h4 style="font-size:medium;">Alquileres</h4>
+                </div>
             </div>
+            <div class="footer-list" style="justify-content: center; color: white;">
+                <h3>Contacto</h3>
+                <div>
+                    <h4 style="font-size:medium;">Dirección</h4>
+                    <h4 style="font-size:medium;">Teléfono</h4>
+                    <h4 style="font-size:medium;">glatot@gmail.com</h4>
+                </div>
+            </div>
+
 
         </footer>
     </form>

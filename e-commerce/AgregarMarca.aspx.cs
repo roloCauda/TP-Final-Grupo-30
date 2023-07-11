@@ -16,6 +16,13 @@ namespace e_commerce.Pag_Admin
         string imagenVacia = "https://laboratoriodesuenos.com/wp-content/uploads/2020/02/default.jpg";
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario user = (Usuario)Session["usuario"];
+
+            if (Session["usuario"] == null || user.TipoUsuario != TipoUsuario.ADMIN)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             txtId.Enabled = false;
 
             try
