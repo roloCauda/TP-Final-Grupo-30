@@ -80,5 +80,34 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public void actualizarDireccion(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Direcciones SET Calle = @Calle, Numero = @Numero, Piso = @Piso, Departamento = @Departamento, CP = @CP, IdLocalidad = @IdLocalidad, IdProvincia = @IdProvincia " +
+                                    "where Id = @id");
+                datos.setearParametro("@Calle", user.direccion.Calle);
+                datos.setearParametro("@Numero", user.direccion.Numero);
+                datos.setearParametro("@Piso", user.direccion.Piso != null ? (object)user.direccion.Piso : DBNull.Value);
+                datos.setearParametro("@Departamento", user.direccion.Departamento != null ? (object)user.direccion.Departamento : DBNull.Value);
+                datos.setearParametro("@CP", user.direccion.CodPostal);
+                datos.setearParametro("@IdLocalidad", user.direccion.Localidad.Id);
+                datos.setearParametro("@IdProvincia", user.direccion.Provincia.Id);
+                datos.setearParametro("@id", user.direccion.IdDireccion);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

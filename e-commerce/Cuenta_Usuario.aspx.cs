@@ -4,6 +4,7 @@ using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,8 +46,8 @@ namespace e_commerce
                 ddlProvincia.DataBind();
 
                 //si esta en MI CUENTA no es necesario
-                ddlLocalidad.Items.Insert(0, new ListItem("-- Seleccione --", ""));
-                ddlProvincia.Items.Insert(0, new ListItem("-- Seleccione --", ""));
+                /*ddlLocalidad.Items.Insert(0, new ListItem("-- Seleccione --", ""));
+                ddlProvincia.Items.Insert(0, new ListItem("-- Seleccione --", ""));*/
 
                 /*  Actualiza las Label de la Master */
                 Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
@@ -59,10 +60,11 @@ namespace e_commerce
                 Usuario user = (Usuario)Session["usuario"];
 
                 txtDNI.Text = user.DNI.ToString();
+                txtDNI.Enabled = false;
+
                 txtNombres.Text = user.Nombres.ToString();
                 txtApellidos.Text = user.Apellidos.ToString();
                 txtEmail.Text = user.Email.ToString();
-                txtPasswordActual.Text = user.Contraseña.ToString();
 
                 if (!string.IsNullOrEmpty(user.Telefono))
                     txtTelefono.Text = user.Telefono.ToString();
@@ -84,6 +86,11 @@ namespace e_commerce
                 dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.DNI);
                 dgvPedidosCliente.DataBind();
             }
+
+            lblUsuarioGuardadoConExito.Visible = false;
+            lblDireccionGuardadoConExito.Visible = false;
+            lblContraseñaGuardadaConExito.Visible = false;
+            lblErrorContraseñaIncorrecta.Visible = false;
         }
 
         protected void lnk_Opcion_Click(object sender, EventArgs e)
@@ -111,17 +118,83 @@ namespace e_commerce
 
         protected void btn_GuardarCambiosPerfil_Click(object sender, EventArgs e)
         {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario user = (Usuario)Session["usuario"];
 
+            try
+            {
+                user.Nombres = txtNombres.Text;
+                user.Apellidos = txtApellidos.Text;
+                user.Email = txtEmail.Text;
+                user.Telefono = txtTelefono.Text != "" ? txtTelefono.Text : null;
+                
+                negocio.actualizarUsuario(user);
+                MostrarMsj("UsuarioExito");
+                Session["usuario"] = user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void btnGuardarDireccion_Click(object sender, EventArgs e)
         {
+            DireccionNegocio negocio = new DireccionNegocio();
+            Usuario user = (Usuario)Session["usuario"];
 
+            try
+            {
+                user.direccion.Calle = txtCalle.Text;
+                user.direccion.Numero = int.Parse(txtNumeracion.Text);
+                user.direccion.Piso = txtPiso.Text != "" ? int.Parse(txtPiso.Text) : (int?)null; //Piso es int nuleable
+                user.direccion.Departamento = txtDepartamento.Text != "" ? txtDepartamento.Text : null;
+                user.direccion.CodPostal = txtCP.Text;
+                user.direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
+                user.direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
+                negocio.actualizarDireccion(user);
+                MostrarMsj("DireccionExito");
+                Session["usuario"] = user;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected void btn_GuardarContraseña_Click(object sender, EventArgs e)
         {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario user = (Usuario)Session["usuario"];
 
+            try
+            {
+                if(txtPasswordActual.Text == user.Contraseña.ToString())
+                {
+                    user.Contraseña = txtPasswordNueva.Text;
+                    
+                    negocio.actualizarContraseña(user);
+                    MostrarMsj("ContraseñaExito");
+                    Session["usuario"] = user;
+                }
+                else
+                {
+                    MostrarMsj("ErrorContraseña");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        private void MostrarMsj(string opcion)
+        {
+            lblUsuarioGuardadoConExito.Visible = (opcion == "UsuarioExito");
+            lblDireccionGuardadoConExito.Visible = (opcion == "DireccionExito");
+            lblContraseñaGuardadaConExito.Visible = (opcion == "ContraseñaExito");
+            lblErrorContraseñaIncorrecta.Visible = (opcion == "ErrorContraseña");
         }
 
         protected void dgvPedidosCliente_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -204,6 +204,15 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.Button btn_GuardarCambiosPerfil;
 
         /// <summary>
+        /// lblUsuarioGuardadoConExito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuarioGuardadoConExito;
+
+        /// <summary>
         /// pnl_Direccion control.
         /// </summary>
         /// <remarks>
@@ -375,6 +384,15 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.Button btnGuardarDireccion;
 
         /// <summary>
+        /// lblDireccionGuardadoConExito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDireccionGuardadoConExito;
+
+        /// <summary>
         /// pnl_Contraseña control.
         /// </summary>
         /// <remarks>
@@ -393,13 +411,22 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.TextBox txtPasswordActual;
 
         /// <summary>
-        /// rfvPasswor control.
+        /// rfvPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPasswor;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
+
+        /// <summary>
+        /// lblErrorContraseñaIncorrecta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorContraseñaIncorrecta;
 
         /// <summary>
         /// txtPasswordNueva control.
@@ -409,6 +436,15 @@ namespace e_commerce
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPasswordNueva;
+
+        /// <summary>
+        /// rfvContraseñaNueva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraseñaNueva;
 
         /// <summary>
         /// rfvPasswordNueva control.
@@ -429,15 +465,6 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.TextBox txtPasswordNueva2;
 
         /// <summary>
-        /// rfvPasswordNueva2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPasswordNueva2;
-
-        /// <summary>
         /// cvPasswordNueva control.
         /// </summary>
         /// <remarks>
@@ -454,6 +481,15 @@ namespace e_commerce
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_GuardarContraseña;
+
+        /// <summary>
+        /// lblContraseñaGuardadaConExito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContraseñaGuardadaConExito;
 
         /// <summary>
         /// pnl_Favoritos control.

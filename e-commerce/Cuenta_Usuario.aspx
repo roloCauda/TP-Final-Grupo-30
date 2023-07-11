@@ -53,7 +53,7 @@
                             <!-- Grupo: DNI -->
                             <div style="position: relative;">
                                 <label class="formulario__label">DNI</label>
-                                <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:TextBox ID="txtDNI" type="text" runat="server"  class="formulario__input"></asp:TextBox>
                             </div>
 
                             <!-- Grupo: Nombres -->
@@ -105,6 +105,7 @@
                             <div class="formulario__grupo formulario__grupo-btn-enviar">
                                 <asp:Button ID="btn_GuardarCambiosPerfil" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click" />
+                                <asp:Label ID="lblUsuarioGuardadoConExito" runat="server" Text="El usuario fue actualizado con éxito"></asp:Label>
                             </div>
                         </div>
 
@@ -185,6 +186,7 @@
                             <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 50px;">
                                 <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDireccion" OnClick="btnGuardarDireccion_Click" />
+                                <asp:Label ID="lblDireccionGuardadoConExito" runat="server" Text="La dirección fue actualizada con éxito"></asp:Label>
                             </div>
                         </div>
 
@@ -198,15 +200,19 @@
                         <div style="position: relative;">
                             <label class="formulario__label">Contraseña Actual</label>
                             <asp:TextBox ID="txtPasswordActual" type="password" runat="server" class="formulario__input"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvPasswor" runat="server" ControlToValidate="txtPasswordActual"
+                            <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPasswordActual"
                                 ErrorMessage="*El campo Contraseña es obligatorio" CssClass="text-danger"
                                 ValidationGroup="validacionGrupoContraseña"></asp:RequiredFieldValidator>
+                            <asp:Label ID="lblErrorContraseñaIncorrecta" runat="server" Text="La contraseña ingresada no es correcta"></asp:Label>
                         </div>
 
                         <!-- Grupo: Contraseña Nueva -->
                         <div style="position: relative; margin-top: 50px;">
                             <label class="formulario__label">Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva" type="password" runat="server" class="formulario__input"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvContraseñaNueva" runat="server" ControlToValidate="txtPasswordActual"
+                                ErrorMessage="*El campo Contraseña Nueva es obligatorio" CssClass="text-danger"
+                                ValidationGroup="validacionGrupoContraseña"></asp:RequiredFieldValidator>
                             <asp:RequiredFieldValidator ID="rfvPasswordNueva" runat="server" ControlToValidate="txtPasswordNueva"
                                 ErrorMessage="*El campo Contraseña Nueva es obligatorio" CssClass="text-danger"
                                 ValidationGroup="validacionGrupoContraseña"></asp:RequiredFieldValidator>
@@ -216,9 +222,6 @@
                         <div style="position: relative; margin-top: 50px;">
                             <label class="formulario__label">Repetir Contraseña Nueva</label>
                             <asp:TextBox ID="txtPasswordNueva2" type="password" runat="server" class="formulario__input"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvPasswordNueva2" runat="server" ControlToValidate="txtPasswordNueva2"
-                                ErrorMessage="*El campo Repetir Contraseña Nueva es obligatorio" CssClass="text-danger"
-                                ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="cvPasswordNueva" runat="server" ControlToCompare="txtPasswordNueva"
                                 ControlToValidate="txtPasswordNueva2" Operator="Equal"
                                 ErrorMessage="*Las contraseñas no coinciden" CssClass="text-danger"
@@ -229,6 +232,7 @@
                         <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 50px;">
                             <asp:Button ID="btn_GuardarContraseña" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                 CausesValidation="true" ValidationGroup="validacionGrupoContraseña" OnClick="btn_GuardarContraseña_Click" />
+                            <asp:Label ID="lblContraseñaGuardadaConExito" runat="server" Text="La contraseña fue actualizada con éxito"></asp:Label>
                         </div>
 
                     </asp:Panel>

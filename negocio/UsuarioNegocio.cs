@@ -122,6 +122,52 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void actualizarUsuario(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET Nombres = @nombres, Apellidos = @apellidos, Email = @email, Telefono = @telefono " +
+                                    "where DNI = @dni");
+                datos.setearParametro("@nombres", user.Nombres);
+                datos.setearParametro("@apellidos", user.Apellidos);
+                datos.setearParametro("@email", user.Email);
+                datos.setearParametro("@telefono", user.Telefono != null? (object)user.Telefono : DBNull.Value);
+                datos.setearParametro("@dni", user.DNI);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void actualizarContraseña(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET Contraseña = @Contraseña where DNI = @dni");
+                datos.setearParametro("@Contraseña", user.Contraseña);
+                datos.setearParametro("@dni", user.DNI);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
-
