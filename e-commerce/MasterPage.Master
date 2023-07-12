@@ -213,12 +213,14 @@
                                 <a class="nav-link" href="Productos.aspx" style="color: #1c3166">IMPRESORAS</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="Productos.aspx" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #1c3166">CARTUCHOS
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="Productos.aspx" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #1c3166">MARCAS</a>
+                                <asp:DropDownList ID="ddlMarcas" runat="server" class="dropdown-item" AutoPostBack="true" Visible="false"></asp:DropDownList>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="Productos.aspx">HP</a></li>
-                                    <li><a class="dropdown-item" href="Productos.aspx">EPSON</a></li>
-                                    <li><a class="dropdown-item" href="Productos.aspx">LEXMARK</a></li>
+                                    <asp:Repeater ID="repeaterMarcas" runat="server">
+                                        <ItemTemplate>
+                                            <li><a class="dropdown-item" href="Productos.aspx?marca=<%# Eval("IdMarca") %>"><%# Eval("Descripcion") %></a></li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </ul>
                             </li>
                             <li class="nav-item">

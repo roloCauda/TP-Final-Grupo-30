@@ -26,7 +26,7 @@ namespace e_commerce
                 /* Trae el texto del filtro de las otras paginas */
                 string filtro = Request.QueryString["txtFiltro"];
 
-                /* si el filtro viene de default */
+                /* si el filtro viene de Productos */
                 if (filtro != null && !string.IsNullOrEmpty(filtro))
                 {
                     ListaArticulo = negocio.listarConSP(filtro);
@@ -35,9 +35,19 @@ namespace e_commerce
                 }
                 else
                 {
-                    ListaArticulo = negocio.listarConSP();
-                    repRepetidor.DataSource = ListaArticulo;
-                    repRepetidor.DataBind();
+                    if (!string.IsNullOrEmpty(Request.QueryString["marca"]))
+                    {
+                        string idMarca = Request.QueryString["marca"];
+                        ListaArticulo = negocio.listarPorMarca(idMarca);
+                        repRepetidor.DataSource = ListaArticulo;
+                        repRepetidor.DataBind();
+                    }
+                    else
+                    {
+                        ListaArticulo = negocio.listarConSP();
+                        repRepetidor.DataSource = ListaArticulo;
+                        repRepetidor.DataBind();
+                    }
                 }
             }
             else
@@ -50,11 +60,11 @@ namespace e_commerce
                 }
                 else
                 {
-                    ListaArticulo = negocio.listarConSP();
-                    repRepetidor.DataSource = ListaArticulo;
-                    repRepetidor.DataBind();
+                    
                 }
             }
+
+
 
             /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;

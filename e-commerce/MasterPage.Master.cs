@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,17 @@ namespace e_commerce
                     carrito = new Carrito();
                     Session["ListaItems"] = carrito;
                 }
+
+                MarcaNegocio negocioM = new MarcaNegocio();
+                List<Marca> listaMarcas = negocioM.listar();
+
+                repeaterMarcas.DataSource = listaMarcas;
+                repeaterMarcas.DataBind();
+
+                ddlMarcas.DataSource = listaMarcas;
+                ddlMarcas.DataValueField = "IdMarca";
+                ddlMarcas.DataTextField = "Descripcion";
+                ddlMarcas.DataBind();
 
                 repInfoCarrito.DataSource = carrito.ListaItems;
                 repInfoCarrito.DataBind();
@@ -76,6 +88,8 @@ namespace e_commerce
                 btnRegistrarme.Visible = true;
                 btnConfig.Visible = false;
             }
+
+            
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)
