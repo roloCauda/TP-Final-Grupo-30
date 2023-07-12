@@ -22,7 +22,7 @@ namespace e_commerce
 
             if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
             {
-                Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                Response.Redirect("Productos.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
             }
 
             /*  Actualiza las Label de la Master */

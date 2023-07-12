@@ -18,9 +18,43 @@ namespace e_commerce
             ArticuloNegocio negocio = new ArticuloNegocio();
             carrito = (Carrito)Session["ListaItems"];
 
-            ListaArticulo = negocio.listarConSP();
-            repRepetidor.DataSource = ListaArticulo;
-            repRepetidor.DataBind();
+            /* Trae el contenido de la textBox que esta en la Master */
+            TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
+
+            if (!IsPostBack) /* Primera vez que carga la pagina (incluye si viene de otra pagina) */
+            {
+                /* Trae el texto del filtro de las otras paginas */
+                string filtro = Request.QueryString["txtFiltro"];
+
+                /* si el filtro viene de default */
+                if (filtro != null && !string.IsNullOrEmpty(filtro))
+                {
+                    ListaArticulo = negocio.listarConSP(filtro);
+                    repRepetidor.DataSource = ListaArticulo;
+                    repRepetidor.DataBind();
+                }
+                else
+                {
+                    ListaArticulo = negocio.listarConSP();
+                    repRepetidor.DataSource = ListaArticulo;
+                    repRepetidor.DataBind();
+                }
+            }
+            else
+            {
+                if (txtFiltro.Text != null && !string.IsNullOrEmpty(txtFiltro.Text)) /* si el filtro viene de otra pagina */
+                {
+                    ListaArticulo = negocio.listarConSP(txtFiltro.Text);
+                    repRepetidor.DataSource = ListaArticulo;
+                    repRepetidor.DataBind();
+                }
+                else
+                {
+                    ListaArticulo = negocio.listarConSP();
+                    repRepetidor.DataSource = ListaArticulo;
+                    repRepetidor.DataBind();
+                }
+            }
 
             /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;

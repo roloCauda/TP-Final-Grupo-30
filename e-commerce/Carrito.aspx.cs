@@ -16,7 +16,7 @@ namespace e_commerce.Pag_Cliente
 
             if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
             {
-                Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                Response.Redirect("Productos.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
             }
 
             /* Le pasa la lista de items del carrito al DataSource, para que el front pueda acceder a la informacion */

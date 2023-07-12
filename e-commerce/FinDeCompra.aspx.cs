@@ -19,6 +19,11 @@ namespace e_commerce.Pag_Cliente
 
                 TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
 
+                if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    Response.Redirect("Productos.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                }
+
                 MostrarPanel("Datos");
 
                 LocalidadNegocio negocioLocalidad = new LocalidadNegocio();

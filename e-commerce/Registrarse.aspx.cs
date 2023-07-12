@@ -19,6 +19,13 @@ namespace e_commerce
         DireccionNegocio negocioD;
         protected void Page_Load(object sender, EventArgs e)
         {
+            TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
+
+            if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+            {
+                Response.Redirect("Productos.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+            }
+
             if (Session["usuario"] != null)
             {
                 Response.Redirect("Default.aspx");

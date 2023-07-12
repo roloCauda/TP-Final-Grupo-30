@@ -27,6 +27,13 @@ namespace e_commerce
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
 
+                TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
+
+                if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+                {
+                    Response.Redirect("Productos.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+                }
+
                 MostrarPanel("Perfil");
 
                 LocalidadNegocio negocioLocalidad = new LocalidadNegocio();
