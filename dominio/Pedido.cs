@@ -13,10 +13,13 @@ namespace dominio
         public int IdCliente { get; set; }
         public DateTime Fecha { get; set; }
         public FormaDePago formaDePago { get; set; }
-        List<ArticulosXPedido> ListaArtXPedido { get; set; }
+        public FormaDeEnvio formaDeEnvio { get; set; }
+        public List<ArticulosXPedido> ListaArtXPedido { get; set; }
         public Pedido()
         {
             formaDePago = new FormaDePago();
+            formaDeEnvio = new FormaDeEnvio();
+            ListaArtXPedido = new List<ArticulosXPedido>();
         }
     }
 }

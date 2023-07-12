@@ -69,15 +69,6 @@
                                 <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="*Ingrese un email válido"
                                     ValidationGroup="validacionGrupoDatos" CssClass="text-danger"></asp:RegularExpressionValidator>
                             </div>
-                            <div class="row" style="margin-top: 25px;">
-                                <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
-                                    <label class="formulario__label">DNI:</label>
-                                    <asp:TextBox ID="txtDNI" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="*El campo DNI es obligatorio"
-                                        ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
-                                        ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RegularExpressionValidator>
-                                </div>
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Teléfono:</label>
                                     <asp:TextBox ID="txtTelefono" runat="server" class="formulario__input"></asp:TextBox>
@@ -94,6 +85,8 @@
 
                         </asp:Panel>
                         <!-- Datos de Envio -->
+
+
                         <asp:Panel ID="pnl_Envio" runat="server">
                             <div class="row">
                                 <div class="col-md-12">
@@ -110,74 +103,94 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="formulario" id="formularioDireccion">
 
-                                <!-- Calle -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label">Calle</label>
-                                    <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle"
-                                        ErrorMessage="*El campo Calle es obligatorio" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revCalle" runat="server" ControlToValidate="txtCalle"
-                                        ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                            <asp:Panel ID="pnlFormaDeEnvio" runat="server">
+                                <div class="row">
+                                    <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
+                                        <div class="list-group">
+                                            <asp:Repeater ID="rptFormaDeEnvio" runat="server">
+                                                <ItemTemplate>
+                                                    <asp:RadioButton ID="rbtnFormaDeEnvio" runat="server" Text='<%# Eval("Descripcion") %>' Value='<%# Eval("IdFormaDeEnvio") %>'
+                                                        AutoPostBack="True" OnCheckedChanged="rbtnFormaDeEnvio_CheckedChanged" />
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Numero -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label">Número</label>
-                                    <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvNumeracion" runat="server" ControlToValidate="txtNumeracion"
-                                        ErrorMessage="*El campo Número es obligatorio" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revNumeracion" runat="server" ControlToValidate="txtNumeracion"
-                                        ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+
+                            </asp:Panel>
+
+                            <asp:Panel ID="pnlFDatosDeEnvio" runat="server">
+
+                                <div class="formulario" id="formularioDireccion">
+
+                                    <!-- Calle -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label">Calle</label>
+                                        <asp:TextBox ID="txtCalle" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCalle" runat="server" ControlToValidate="txtCalle"
+                                            ErrorMessage="*El campo Calle es obligatorio" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="revCalle" runat="server" ControlToValidate="txtCalle"
+                                            ValidationExpression="^[a-zA-Z0-9\s\-\']{1,100}$" ErrorMessage="*El campo Calle no puede tener caracteres especiales" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                                    </div>
+                                    <!-- Numero -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label">Número</label>
+                                        <asp:TextBox ID="txtNumeracion" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                            ErrorMessage="*El campo Número es obligatorio" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="revNumeracion" runat="server" ControlToValidate="txtNumeracion"
+                                            ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Número solo admite números" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                                    </div>
+                                    <!-- Piso -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label">Piso</label>
+                                        <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="revPiso" runat="server" ControlToValidate="txtPiso"
+                                            ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                                    </div>
+                                    <!-- Depto -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label">Departamento</label>
+                                        <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="revDepartamento" runat="server" ControlToValidate="txtDepartamento"
+                                            ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                                    </div>
+                                    <!-- Codigo Postal -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label">CP</label>
+                                        <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP"
+                                            ErrorMessage="*El campo CP es obligatorio" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP"
+                                            ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
+                                    </div>
+                                    <!-- Localidad -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label" class="form-label">Localidad</label>
+                                        <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
+                                            ErrorMessage="*El campo Localidad es obligatorio" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <!-- Provincia -->
+                                    <div style="position: relative;">
+                                        <label class="formulario__label" class="form-label">Provincia</label>
+                                        <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
+                                            ErrorMessage="*El campo Provincia es obligatorio" CssClass="text-danger"
+                                            ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
+                                    </div>
                                 </div>
-                                <!-- Piso -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label">Piso</label>
-                                    <asp:TextBox ID="txtPiso" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revPiso" runat="server" ControlToValidate="txtPiso"
-                                        ValidationExpression="^[0-9\s]+$" ErrorMessage="*El campo Piso solo admite números" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
-                                </div>
-                                <!-- Depto -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label">Departamento</label>
-                                    <asp:TextBox ID="txtDepartamento" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revDepartamento" runat="server" ControlToValidate="txtDepartamento"
-                                        ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo Departamento solo admite letras y números" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
-                                </div>
-                                <!-- Codigo Postal -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label">CP</label>
-                                    <asp:TextBox ID="txtCP" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvCP" runat="server" ControlToValidate="txtCP"
-                                        ErrorMessage="*El campo CP es obligatorio" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revCP" runat="server" ControlToValidate="txtCP"
-                                        ValidationExpression="^[a-zA-Z0-9\s]+$" ErrorMessage="*El campo CP solo admite letras y números" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RegularExpressionValidator>
-                                </div>
-                                <!-- Localidad -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label" class="form-label">Localidad</label>
-                                    <asp:DropDownList ID="ddlLocalidad" CssClass="form-select" runat="server"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="rfvDdlLocalidad" runat="server" ControlToValidate="ddlLocalidad"
-                                        ErrorMessage="*El campo Localidad es obligatorio" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
-                                </div>
-                                <!-- Provincia -->
-                                <div style="position: relative;">
-                                    <label class="formulario__label" class="form-label">Provincia</label>
-                                    <asp:DropDownList ID="ddlProvincia" CssClass="form-select" runat="server"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddlProvincia"
-                                        ErrorMessage="*El campo Provincia es obligatorio" CssClass="text-danger"
-                                        ValidationGroup="validacionGrupoDireccion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
+                            </asp:Panel>
                             <div class="row" style="margin-top: 70px;">
                                 <div class="col-md-6">
                                     <asp:Button ID="btnVolverEnvio" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Datos" CssClass="formulario__btn" />
@@ -207,28 +220,18 @@
                                 </div>
                             </div>
                             <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
-                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" CssClass="list-group">
-                                    <asp:ListItem Value="transferencia" CssClass="list-group-item list-group-item-action">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-bank2 me-2" style="padding-left:10px;"></i>
-                                            <span class="fs-5">Transferencia</span>
-                                        </div>
-                                    </asp:ListItem>
-                                    <asp:ListItem Value="efectivo" CssClass="list-group-item list-group-item-action">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-cash me-2" style="padding-left:10px;"></i>
-                                            <span class="fs-5">Efectivo</span>
-                                        </div>
-                                    </asp:ListItem>
-                                    <asp:ListItem Value="mercadopago" CssClass="list-group-item list-group-item-action">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-credit-card me-2" style="padding-left:10px;"></i>
-                                            <span class="fs-5">MercadoPago</span>
-                                        </div>
-                                    </asp:ListItem>
-                                </asp:RadioButtonList>
-
+                                <div class="list-group">
+                                    <asp:Repeater ID="rptFormaDePago" runat="server">
+                                        <ItemTemplate>
+                                            <div class="list-group-item list-group-item-action">
+                                                <asp:RadioButton ID="rbtnFormaDePago" runat="server" Text='<%# Eval("Descripcion") %>'
+                                                    Value='<%# Eval("IdFormaDePago") %>' OnCheckedChanged="rbtnFormaDePago_CheckedChanged"/>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
                             </div>
+
                             <div class="row" style="margin-top: 70px;">
                                 <div class="col-md-6">
                                     <asp:Button ID="botonVolverPagos" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Envio" class="formulario__btn" />

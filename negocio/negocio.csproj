@@ -48,6 +48,8 @@
     <Compile Include="ArticulosXPedidoNegocio.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
+    <Compile Include="FormaDeEnvioNegocio.cs" />
+    <Compile Include="FormaDePagoNegocio.cs" />
     <Compile Include="ImagenNegocio.cs" />
     <Compile Include="LocalidadNegocio.cs" />
     <Compile Include="MarcaNegocio.cs" />

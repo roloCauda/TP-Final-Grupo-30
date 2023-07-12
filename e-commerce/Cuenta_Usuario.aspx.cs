@@ -52,10 +52,6 @@ namespace e_commerce
                 ddlProvincia.DataTextField = "Descripcion";
                 ddlProvincia.DataBind();
 
-                //si esta en MI CUENTA no es necesario
-                /*ddlLocalidad.Items.Insert(0, new ListItem("-- Seleccione --", ""));
-                ddlProvincia.Items.Insert(0, new ListItem("-- Seleccione --", ""));*/
-
                 /*  Actualiza las Label de la Master */
                 Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
                 lblCantCarrito.Text = carrito.ListaItems.Count.ToString();

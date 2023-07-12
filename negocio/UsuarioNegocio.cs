@@ -16,13 +16,14 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Select Nombres, Apellidos, Email, Telefono, IDDomicilio, TipoAcceso FROM Usuarios WHERE @dni = DNI and @Contraseña = Contraseña");
+                datos.setearConsulta("Select Id, Nombres, Apellidos, Email, Telefono, IDDomicilio, TipoAcceso FROM Usuarios WHERE @dni = DNI and @Contraseña = Contraseña");
                 datos.setearParametro("@dni", user.DNI);
                 datos.setearParametro("@Contraseña", user.Contraseña);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
+                    user.IdUsuario = (int)datos.Lector["Id"];
                     user.Nombres = (string)datos.Lector["Nombres"];
                     user.Apellidos = (string)datos.Lector["Apellidos"];
                     user.Email = (string)datos.Lector["Email"];
@@ -122,7 +123,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
+        
         public void actualizarUsuario(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -148,6 +149,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        
         public void actualizarContraseña(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -162,6 +164,36 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public int AgregarUsuarioSinLoguear(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearConsulta("INSERT INTO Usuarios (Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso) " +
+                                    "OUTPUT Inserted.ID values (@Nombres, @Apellidos, @Email, @Contraseña, @Telefono, @IDDomicilio, @TipoAcceso)");
+
+                datos.setearParametro("@Nombres", user.Nombres);
+                datos.setearParametro("@Apellidos", user.Apellidos);
+                datos.setearParametro("@Email", user.Email);
+                datos.setearParametro("@Contraseña", user.Contraseña);
+                datos.setearParametro("@Telefono", string.IsNullOrEmpty(user.Telefono) ? (object)DBNull.Value : user.Telefono);
+                datos.setearParametro("@IDDomicilio", string.IsNullOrEmpty(user.direccion.IdDireccion.ToString()) ? (object)DBNull.Value : user.direccion.IdDireccion);
+                datos.setearParametro("@TipoAcceso", 3);
+
+                int nuevoId = (int)datos.ejecutarEscalar();
+
+                return nuevoId;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

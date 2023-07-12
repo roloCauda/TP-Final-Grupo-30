@@ -68,5 +68,27 @@ namespace negocio
                 throw ex;
             }
         }
+
+        public int agregarPedido(Pedido pedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                
+
+                int nuevoId = (int)datos.ejecutarEscalar();
+
+                return nuevoId;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

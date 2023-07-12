@@ -20,8 +20,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("Select A.Nombre, A.Descripcion, AP.Cantidad, AP.PrecioUnitario, AP.PrecioUnitario * AP.Cantidad as 'Precio Total', i.ImagenURL " +
-                    "FROM FormasDePago F " +
-                    "inner join ARTICULOSxPEDIDO AP on AP.IdPedido = AP.IdPedido " +
+                    "FROM ARTICULOSxPEDIDO AP on AP.IdPedido = AP.IdPedido " +
                     "Inner join Articulos A on A.Id = AP.IdArticulo " +
                     "left join Imagenes I ON AP.IdArticulo = i.IdArticulo " +
                     "where AP.IdPedido = @IdPedido " +
@@ -63,6 +62,15 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public void agregarPedido(Pedido pedido)
+        {
+            
+        }
+
+        public void agregarListaApedido(List<ItemCarrito> lista, int Idpedido)
+        {
+
         }
     }
 }

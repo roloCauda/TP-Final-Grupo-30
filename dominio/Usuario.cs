@@ -14,6 +14,7 @@ namespace dominio
     }
     public class Usuario
     {
+        public int IdUsuario { get; set; }
         public int DNI { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

@@ -58,13 +58,7 @@ namespace e_commerce
                     repRepetidor.DataSource = ListaArticulo;
                     repRepetidor.DataBind();
                 }
-                else
-                {
-                    
-                }
             }
-
-
 
             /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;

@@ -15,6 +15,7 @@ namespace e_commerce
         public Carrito carrito { get; set; }
         public List<Marca> ListaMarca { get; set; }
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
@@ -28,6 +29,9 @@ namespace e_commerce
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (Carrito)Session["ListaItems"];
+
+                Pedido pedido = new Pedido();
+                Session["pedido"] = pedido;
 
                 MarcaNegocio marcaNegocio = new MarcaNegocio();
 
