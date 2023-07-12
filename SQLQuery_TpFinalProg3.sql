@@ -2,10 +2,8 @@ drop DATABASE BD_ecommerce
 
 create database BD_ecommerce
 
-use BD_ecommerce
-
 -- Crear la tabla de Categorias
-CREATE TABLE Categorias (
+create TABLE Categorias (
     Id INT PRIMARY KEY IDENTITY,
     Descripcion VARCHAR(100) NOT NULL,
     ImagenURL VARCHAR(255) NULL
@@ -18,6 +16,11 @@ CREATE TABLE Marcas (
 );
 
 CREATE TABLE FormasDePago (
+    Id INT PRIMARY KEY IDENTITY,
+    Descripcion VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE FormasDeEnvio (
     Id INT PRIMARY KEY IDENTITY,
     Descripcion VARCHAR(100) NOT NULL
 );
@@ -57,7 +60,7 @@ CREATE TABLE Direcciones (
     Calle VARCHAR(100) NOT NULL,
     Numero INT NOT NULL,
     Piso INT NULL,
-    Departamento INT NULL,
+    Departamento VARCHAR(100) NULL,
     CP VARCHAR(100) NOT NULL,
     IdLocalidad INT NOT NULL,
     IdProvincia INT NOT NULL,
@@ -66,11 +69,13 @@ CREATE TABLE Direcciones (
 );
 
 CREATE TABLE Usuarios (
-    DNI INT PRIMARY KEY,
+	Id INT PRIMARY KEY IDENTITY,
+    DNI INT UNIQUE NULL,
     Nombres VARCHAR(100) NOT NULL,
     Apellidos VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) UNIQUE NOT NULL,
+    Email VARCHAR(100) NOT NULL,
     Contraseña VARCHAR(100) NOT NULL,
+	RecuperacionContraseña VARCHAR(100) NOT NULL,
     Telefono VARCHAR(100) NULL,
     IDDomicilio INT NULL,
     TipoAcceso INT NOT NULL,
@@ -82,9 +87,11 @@ CREATE TABLE Pedidos (
     Id INT PRIMARY KEY IDENTITY,
     IdFormaPago INT NOT NULL,
     IdCliente INT NOT NULL,
+	IdFormaEnvio INT NOT NULL,
     Fecha DATE NOT NULL,
     FOREIGN KEY (IdFormaPago) REFERENCES FormasDePago(Id),
-    FOREIGN KEY (IdCliente) REFERENCES Usuarios(DNI)
+    FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id),
+	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id)
 );
 
 CREATE TABLE ARTICULOSxPEDIDO (
@@ -119,6 +126,8 @@ CREATE TABLE Favoritos (
 	FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id),
 	FOREIGN KEY (IdCliente) REFERENCES Usuarios(DNI)
 );
+
+select * from Favoritos
 -- Inserciones en las tablas
 
 INSERT INTO Categorias (Descripcion)
@@ -150,14 +159,17 @@ VALUES (1, 'CABA'),
 INSERT INTO Direcciones (Calle, Numero, CP, IdLocalidad, IdProvincia)
 VALUES ('Nazca', 3258, '1419', 1, 1);
 
-INSERT INTO Usuarios (DNI, Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso)
-VALUES (33359541, 'Marta', 'Tripoli', 'MartaT@gmail.com', '123', '43826524', 1, 3),
-       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456', '1543826524', NULL, 2),
-       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123', '45826544', 1, 1);
+INSERT INTO Usuarios (DNI, Nombres, Apellidos, Email, Contraseña, RecuperacionContraseña, Telefono, IDDomicilio, TipoAcceso)
+VALUES (33359541, 'Marta', 'Tripoli', 'MartaT@gmail.com', '123', '123','43826524', 1, 3),
+       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456','123', '1543826524', NULL, 2),
+       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123','123', '45826544', 1, 1);
 
-INSERT INTO Pedidos (Fecha, IdFormaPago, IdCliente)
-VALUES ('2023-06-10', 1, 32359042),
-       ('2023-06-11', 2, 23359521);
+INSERT INTO FormasDeEnvio (Descripcion)
+VALUES ('Retiro'),('Envio a cargo del vendedor');
+
+INSERT INTO Pedidos (Fecha, IdFormaPago, IdFormaEnvio, IdCliente)
+VALUES ('2023-06-10', 1, 1, 1),
+       ('2023-06-11', 2, 2, 2);
 
 INSERT INTO ARTICULOSxPEDIDO (IdPedido, IdArticulo, Cantidad, PrecioUnitario)
 VALUES (1, 1, 2, 1000),
@@ -168,7 +180,7 @@ INSERT INTO Stock (IdArticulo, Cantidad, Precio)
 VALUES (1, 10, 5200),
        (2, 5, 710),
        (3, 8, 950.5);
-GO
+
 -- Procedimientos almacenados
 CREATE procedure storedListar
 as
@@ -177,7 +189,6 @@ begin
 	From ARTICULOS A, CATEGORIAS C, MARCAS M
 	Where C.Id = A.IdCategoria And M.Id = A.IdMarca
 end
-GO
 
 CREATE PROCEDURE storedImg
    @IdArticulo INT
@@ -187,7 +198,6 @@ BEGIN
    FROM IMAGENES
    WHERE IDARTICULO = @IdArticulo;
 END
-GO
 
 CREATE PROCEDURE storedArticulo
    @IdArticulo INT
@@ -199,7 +209,6 @@ BEGIN
 	left join CATEGORIAS C on A.IdCategoria = C.Id
 	where A.Id = @IdArticulo
 END
-GO
 
 CREATE PROCEDURE storedCategoria
    @IdCategoria INT
@@ -209,7 +218,6 @@ BEGIN
    FROM Categorias
    WHERE Id = @IdCategoria
 END
-GO
 
 CREATE PROCEDURE storedMarca
    @IdMarca INT
@@ -219,26 +227,14 @@ BEGIN
    FROM Marcas
    WHERE Id = @IdMarca
 END
-GO
 
-/*CREATE VIEW vw_PEDIDOSxCLIENTE AS
-SELECT P.Id AS 'NUMERO DE PEDIDO',
-	A.Descripcion AS 'DESCRIPCION',
-	AP.Cantidad AS 'CANTIDAD',
-	AP.PrecioUnitario AS 'PRECIO UNITARIO',
-	SUM(AP.PrecioUnitario * AP.Cantidad) AS 'SUBTOTAL'
-FROM Pedidos P
-INNER JOIN Usuarios U ON P.IdCliente = U.DNI
-INNER JOIN ARTICULOSxPEDIDO AP ON P.Id = AP.IdPedido
-INNER JOIN Articulos A ON A.Id = AP.IdArticulo
-GROUP BY P.Id, A.Descripcion, AP.Cantidad, AP.PrecioUnitario;*/
-
-ALTER TABLE Direcciones
-ALTER COLUMN Departamento VARCHAR(100) NULL;
-ALTER TABLE Usuarios
-ALTER COLUMN Email VARCHAR(100) NOT NULL;
-
-select * from Usuarios
-select * from Articulos
-select * from Pedidos
-select * from ARTICULOSxPEDIDO
+CREATE PROCEDURE storedFiltro
+   @filtro varchar(100)
+AS
+BEGIN
+   SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, Precio, A.IdMarca, A.IdCategoria
+   FROM ARTICULOS A, CATEGORIAS C, MARCAS M
+   WHERE C.Id = A.IdCategoria AND M.Id = A.IdMarca
+   GROUP BY A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion, C.Descripcion, Precio, A.IdMarca, A.IdCategoria
+   HAVING Codigo LIKE '%' + @filtro + '%' OR Nombre LIKE '%' + @filtro + '%' OR A.Descripcion LIKE '%' + @filtro + '%' OR M.Descripcion LIKE '%' + @filtro + '%' OR C.Descripcion LIKE '%' + @filtro + '%'
+END
