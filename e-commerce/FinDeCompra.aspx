@@ -69,6 +69,15 @@
                                 <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="*Ingrese un email válido"
                                     ValidationGroup="validacionGrupoDatos" CssClass="text-danger"></asp:RegularExpressionValidator>
                             </div>
+                            <div class="row" style="margin-top: 25px;">
+                                <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
+                                    <label class="formulario__label">DNI:</label>
+                                    <asp:TextBox ID="txtDNI" runat="server" class="formulario__input"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="*El campo DNI es obligatorio"
+                                        ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
+                                        ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RegularExpressionValidator>
+                                </div>
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Teléfono:</label>
                                     <asp:TextBox ID="txtTelefono" runat="server" class="formulario__input"></asp:TextBox>
@@ -82,10 +91,8 @@
                                 <asp:Button ID="btnContinuarDatos" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 70px;" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDatos" />
                             </div>
-
                         </asp:Panel>
                         <!-- Datos de Envio -->
-
 
                         <asp:Panel ID="pnl_Envio" runat="server">
                             <div class="row">
@@ -110,8 +117,9 @@
                                         <div class="list-group">
                                             <asp:Repeater ID="rptFormaDeEnvio" runat="server">
                                                 <ItemTemplate>
-                                                    <asp:RadioButton ID="rbtnFormaDeEnvio" runat="server" Text='<%# Eval("Descripcion") %>' Value='<%# Eval("IdFormaDeEnvio") %>'
-                                                        AutoPostBack="True" OnCheckedChanged="rbtnFormaDeEnvio_CheckedChanged" />
+                                                    <div>
+                                                        <asp:RadioButton ID="rbtnFormaDeEnvio" runat="server" Text='<%# Eval("Descripcion") %>' Value='<%# Eval("IdFormaDeEnvio") %>' GroupName="grupoOpciones" AutoPostBack="true" OnCheckedChanged="rbtnFormaDeEnvio_CheckedChanged" />
+                                                    </div>
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                         </div>
@@ -120,7 +128,7 @@
 
                             </asp:Panel>
 
-                            <asp:Panel ID="pnlFDatosDeEnvio" runat="server">
+                            <asp:Panel ID="pnlDatosDeEnvio" runat="server">
 
                                 <div class="formulario" id="formularioDireccion">
 
@@ -220,12 +228,11 @@
                                 </div>
                             </div>
                             <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
-                                <div class="list-group">
+                                <div>
                                     <asp:Repeater ID="rptFormaDePago" runat="server">
                                         <ItemTemplate>
-                                            <div class="list-group-item list-group-item-action">
-                                                <asp:RadioButton ID="rbtnFormaDePago" runat="server" Text='<%# Eval("Descripcion") %>'
-                                                    Value='<%# Eval("IdFormaDePago") %>' OnCheckedChanged="rbtnFormaDePago_CheckedChanged"/>
+                                            <div class="list-group">
+                                                <asp:RadioButton ID="rbtnFormaDePago" runat="server" Text='<%# Eval("Descripcion") %>' Value='<%# Eval("IdFormaDePago") %>' GroupName="grupoOpciones" AutoPostBack="true" OnCheckedChanged="rbtnFormaDePago_CheckedChanged" />
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>

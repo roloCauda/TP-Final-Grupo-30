@@ -67,7 +67,7 @@ namespace e_commerce.Pag_Cliente
             pnl_Datos.Visible = (opcion == "Datos");
             pnl_Envio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
             pnlFormaDeEnvio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
-            pnlFDatosDeEnvio.Visible = (opcion == "DatosEnvio");
+            pnlDatosDeEnvio.Visible = (opcion == "DatosEnvio");
             pnl_Pagos.Visible = (opcion == "Pagos");
         }
 
@@ -86,6 +86,18 @@ namespace e_commerce.Pag_Cliente
 
             int idFormaDeEnvio = int.Parse(radioButton.Attributes["value"]);
 
+            // Deseleccionar los demás RadioButtons
+            foreach (RepeaterItem item in rptFormaDeEnvio.Items)
+            {
+                if (item.FindControl("rbtnFormaDeEnvio") is RadioButton rbtn)
+                {
+                    if (rbtn != radioButton)
+                    {
+                        rbtn.Checked = false;
+                    }
+                }
+            }
+
             if (descripcion == "Envio a cargo del vendedor")
             {
                 MostrarPanel("DatosEnvio");
@@ -103,6 +115,18 @@ namespace e_commerce.Pag_Cliente
         {
             RadioButton radioButton = (RadioButton)sender;
             Pedido pedido = (Pedido)Session["pedido"];
+
+            // Deseleccionar los demás RadioButtons
+            foreach (RepeaterItem item in rptFormaDePago.Items)
+            {
+                if (item.FindControl("rbtnFormaDePago") is RadioButton rbtn)
+                {
+                    if (rbtn != radioButton)
+                    {
+                        rbtn.Checked = false;
+                    }
+                }
+            }
 
             int idFormaDeEnvio = int.Parse(radioButton.Attributes["value"]);
 
@@ -138,6 +162,7 @@ namespace e_commerce.Pag_Cliente
             negocioAP.agregarListaApedido(carrito.ListaItems, pedido.IdPedido);
 
             negocioAP.agregarPedido(pedido);
+
         }
     }
 }
