@@ -60,10 +60,26 @@ namespace e_commerce.Pag_Cliente
 
                 repFinalizar.DataSource = carrito.ListaItems;
                 repFinalizar.DataBind();
+
+                // Seleccionam automáticamente el primer radiobutton de Envíos 
+                if (rptFormaDeEnvio.Items.Count > 0)
+                {
+                    var firstItem = rptFormaDeEnvio.Items[0];
+                    var rbtnFormaDeEnvio = (RadioButton)firstItem.FindControl("rbtnFormaDeEnvio");
+                    rbtnFormaDeEnvio.Checked = true;
+                }
+                // Selecciona automáticamente el primer radiobutton de Pagos
+                if (rptFormaDePago.Items.Count > 0)
+                {
+                    var firstItem = rptFormaDePago.Items[0];
+                    var rbtnFormaDePago = (RadioButton)firstItem.FindControl("rbtnFormaDePago");
+                    rbtnFormaDePago.Checked = true;
+                }
             }
         }
         private void MostrarPanel(string opcion)
         {
+            
             pnl_Datos.Visible = (opcion == "Datos");
             pnl_Envio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
             pnlFormaDeEnvio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
@@ -73,9 +89,22 @@ namespace e_commerce.Pag_Cliente
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
+            
             Button btn_Opcion = (Button)sender;
             string opcion = btn_Opcion.CommandArgument;
-            MostrarPanel(opcion);
+            Pedido pedido = (Pedido)Session["pedido"];
+
+            int IDEnvio = pedido.formaDeEnvio.IdFormaDeEnvio;
+
+            if (IDEnvio == 2 && opcion== "Envio")
+            {
+                MostrarPanel("DatosEnvio");
+            }
+            else
+            {
+                MostrarPanel(opcion);              
+            }
+
         }
 
         protected void rbtnFormaDeEnvio_CheckedChanged(object sender, EventArgs e)
@@ -128,9 +157,9 @@ namespace e_commerce.Pag_Cliente
                 }
             }
 
-            int idFormaDeEnvio = int.Parse(radioButton.Attributes["value"]);
+            int idFormaDePago = int.Parse(radioButton.Attributes["value"]);
 
-            pedido.formaDeEnvio.IdFormaDeEnvio = idFormaDeEnvio;
+            pedido.formaDePago.IdFormaDePago = idFormaDePago;
             Session["pedido"] = pedido;
         }
         protected void btnConfirmar(object sender, EventArgs e)
