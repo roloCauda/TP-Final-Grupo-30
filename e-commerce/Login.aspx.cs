@@ -30,6 +30,7 @@ namespace e_commerce
             if (!IsPostBack)
             {
                 lblErrorLogin.Visible = false;
+                lblCuenta.Visible = false;
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
@@ -78,6 +79,15 @@ namespace e_commerce
         protected void TextChanged(object sender, EventArgs e)
         {
             lblErrorLogin.Visible = false;
+        }
+
+
+        protected void btn_CrearCuenta_Click(object sender, EventArgs e)
+        {
+            // ARMAR LÓGICA
+
+            Response.Redirect("Registrarse.aspx", false);
+
         }
     }
 }

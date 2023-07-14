@@ -3,33 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <style>
+        .text-danger {
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+    </style>
     <div class="col-md-6">
 
         <h3>Perfil</h3>
-        <asp:Panel ID="pnl_Dni_Email" runat="server">
-            <div class="formulario">
-                <!-- Grupo: DNI -->
-                <div>
-                    <label class="formulario__label">DNI</label>
-                    <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI"
-                        ErrorMessage="*El campo DNI es obligatorio" CssClass="text-danger"
-                        ValidationGroup="validacionSeguir"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI"
-                        ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
-                        CssClass="text-danger" ValidationGroup="validacionSeguir"></asp:RegularExpressionValidator>
-                </div>
-                <!-- Grupo: Seguir -->
-                <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 50px;">
-                    <asp:Button ID="btnSeguir" runat="server" Text="SEGUIR ->" class="formulario__btn"
-                        CausesValidation="true" ValidationGroup="validacionSeguir" OnClick="btnSeguir_Click" />
-                    <asp:Label ID="lblErrorRegistro" runat="server" Text="*DNI ya se encuentra registrado" CssClass="text-danger"></asp:Label>
-                </div>
-            </div>
-        </asp:Panel>
-
-        <asp:Panel ID="pnl_Perfil_Direccion" runat="server">
             <div class="formulario">
                 <!-- Nombres -->
                 <div style="position: relative;">
@@ -149,8 +132,6 @@
                 <asp:Button ID="btnRegistrarse" runat="server" Text="Guardar Cambios" class="formulario__btn"
                     CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btnRegistrarse_Click" />
             </div>
-
-        </asp:Panel>
     </div>
 
 </asp:Content>

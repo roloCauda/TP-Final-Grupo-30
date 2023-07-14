@@ -32,10 +32,8 @@ namespace e_commerce
             }
 
             if (!IsPostBack)
+
             {
-                lblErrorRegistro.Visible = false;
-                pnl_Dni_Email.Visible = true;
-                pnl_Perfil_Direccion.Visible = false;
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
@@ -82,7 +80,7 @@ namespace e_commerce
             direccion.Provincia = new Provincia();
             direccion.Localidad = new Localidad();
 
-            user.DNI = int.Parse(txtDNI.Text);
+            user.DNI = 44; // PRUEBA
             user.Contraseña = txtContraseña.Text;
 
             direccion.Calle = txtCalle.Text;
@@ -110,23 +108,5 @@ namespace e_commerce
             Response.Redirect("Default.aspx");
         }
 
-        protected void btnSeguir_Click(object sender, EventArgs e)
-        {
-            user = new Usuario();
-            negocioU = new UsuarioNegocio();
-            direccion = new Direccion();
-            negocioD = new DireccionNegocio();
-
-            if (negocioU.SiEstaRegistrado(int.Parse(txtDNI.Text)))
-            {
-                lblErrorRegistro.Visible = true;
-            }
-            else
-            {
-                lblErrorRegistro.Visible = false;
-                pnl_Dni_Email.Visible = false;
-                pnl_Perfil_Direccion.Visible = true;
-            }
-        }
     }
 }

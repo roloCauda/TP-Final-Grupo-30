@@ -113,7 +113,7 @@
 
                             <asp:Panel ID="pnlFormaDeEnvio" runat="server">
                                 <div class="row">
-                                    <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
+                                    <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center;">
                                         <div class="list-group">
                                             <asp:Repeater ID="rptFormaDeEnvio" runat="server">
                                                 <ItemTemplate>
@@ -226,7 +226,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; margin-top: 70px;">
+                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center;">
                                 <div>
                                     <asp:Repeater ID="rptFormaDePago" runat="server">
                                         <ItemTemplate>
