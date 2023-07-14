@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,21 @@ namespace e_commerce
             {
                 Response.Redirect("Default.aspx");
             }
+
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            dgvEmpleados.DataSource = negocio.listarSegunAcceso(2);
+            dgvEmpleados.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+        }
+
+        protected void dgvEmpleados_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvEmpleados.PageIndex = e.NewPageIndex;
+            dgvEmpleados.DataBind();
+        }
+
+        protected void dgvEmpleados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }
