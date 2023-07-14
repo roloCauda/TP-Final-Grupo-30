@@ -243,6 +243,9 @@ namespace e_commerce
         {
             Response.Redirect("Registrarse.aspx");
         }
-
+        protected void btnAdministracion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PrincipalAdmin.aspx");
+        }
     }
 }

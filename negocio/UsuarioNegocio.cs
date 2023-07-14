@@ -201,5 +201,44 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Usuario> listarSegunAcceso(int idAcceso)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+
+            try
+            {
+                Usuario aux = new Usuario();
+
+                datos.setearConsulta("SELECT DNI, Nombres, Apellidos, Telefono, TipoAcceso FROM Usuarios WHERE TipoAcceso = @acceso");
+                datos.setearParametro("@acceso", idAcceso);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.DNI = (int)datos.Lector["DNI"];
+                    usuario.Nombres = (string)datos.Lector["Nombres"];
+                    usuario.Apellidos = (string)datos.Lector["Apellidos"];
+                    usuario.Telefono = datos.Lector["Telefono"] != DBNull.Value ? (string)datos.Lector["Telefono"] : null;
+                    usuario.TipoUsuario = (TipoUsuario)(int)datos.Lector["TipoAcceso"];
+
+                    lista.Add(usuario);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
