@@ -80,7 +80,7 @@ namespace e_commerce
             direccion.Provincia = new Provincia();
             direccion.Localidad = new Localidad();
 
-            user.DNI = 44; // PRUEBA
+            user.DNI = (int)Session["dni"];
             user.Contraseña = txtContraseña.Text;
 
             direccion.Calle = txtCalle.Text;

@@ -56,12 +56,12 @@
                 <!-- Grupo: DNI -->
                 <div>
                     <label class="formulario__label">DNI</label>
-                    <asp:TextBox ID="TextBox1" type="text" runat="server" class="formulario__input" OnTextChanged="TextChanged"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1"
+                    <asp:TextBox ID="txtDNICrearCuenta" type="text" runat="server" class="formulario__input" OnTextChanged="TextChanged"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDNICrearCuenta"
                         ErrorMessage="*El campo DNI es obligatorio" CssClass="text-danger"
                         Style="position: absolute;"
                         ValidationGroup="validacionGrupoCrearCuenta"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtDNICrearCuenta"
                         ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
                         CssClass="text-danger" ValidationGroup="validacionGrupoCrearCuenta"></asp:RegularExpressionValidator>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 20px;">
                     <asp:Button ID="Button1" runat="server" Text="CREAR CUENTA" class="formulario__btn"
                         CausesValidation="true" ValidationGroup="validacionGrupoCrearCuenta" OnClick="btn_CrearCuenta_Click" />
-                    <asp:Label ID="lblCuenta" runat="server" Text="*DNI/Contraseña incorrectos" CssClass="text-danger"></asp:Label>
+                    <asp:Label ID="lblErrorRegistrarse" runat="server" Text="*El DNI ya se encuentra registrado" CssClass="text-danger"></asp:Label>
                 </div>
             </div>
         </div>

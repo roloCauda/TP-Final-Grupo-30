@@ -69,15 +69,6 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.LinkButton btnIngresar;
 
         /// <summary>
-        /// Control btnRegistrarme.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnRegistrarme;
-
-        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>

@@ -70,14 +70,12 @@ namespace e_commerce
                     btnConfig.Visible = true;
                     btnMiPerfil.Visible = true;
                     btnIngresar.Visible = false;
-                    btnRegistrarme.Visible = false;
                 }
                 else
                 // Caso de Cliente
                 {
                     btnMiPerfil.Visible = true;
                     btnIngresar.Visible = false;
-                    btnRegistrarme.Visible = false;
                     btnConfig.Visible = false;
                 }
             }
@@ -85,7 +83,6 @@ namespace e_commerce
             {
                 btnMiPerfil.Visible = false;
                 btnIngresar.Visible = true;
-                btnRegistrarme.Visible = true;
                 btnConfig.Visible = false;
             }
 

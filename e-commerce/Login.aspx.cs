@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace e_commerce
 {
@@ -30,7 +31,7 @@ namespace e_commerce
             if (!IsPostBack)
             {
                 lblErrorLogin.Visible = false;
-                lblCuenta.Visible = false;
+                lblErrorRegistrarse.Visible = false;
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
@@ -84,9 +85,27 @@ namespace e_commerce
 
         protected void btn_CrearCuenta_Click(object sender, EventArgs e)
         {
-            // ARMAR LÓGICA
+            UsuarioNegocio negocio = new UsuarioNegocio();
 
-            Response.Redirect("Registrarse.aspx", false);
+            try
+            {
+                if (!(negocio.SiEstaRegistrado(int.Parse(txtDNICrearCuenta.Text))))
+                {
+                    Session["dni"] = int.Parse(txtDNICrearCuenta.Text);
+
+                    Response.Redirect("Registrarse.aspx", false);
+                }
+                else
+                {
+                    lblErrorRegistrarse.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
     }

@@ -96,13 +96,13 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDNIRecuperarContraseña;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtDNICrearCuenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtDNICrearCuenta;
 
         /// <summary>
         /// Control RequiredFieldValidator1.
@@ -132,12 +132,12 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control lblCuenta.
+        /// Control lblErrorRegistrarse.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCuenta;
+        protected global::System.Web.UI.WebControls.Label lblErrorRegistrarse;
     }
 }
