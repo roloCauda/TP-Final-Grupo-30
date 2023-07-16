@@ -42,7 +42,7 @@
                                     <div class="col-4 d-flex justify-content-center align-items-center">
                                         <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                     </div>
-                                    <div class="col-4 d-flex justify-content-center align-items-center" style="padding:15px;">
+                                    <div class="col-4 d-flex justify-content-center align-items-center" style="padding: 15px;">
                                         <button type="button" class="btn btn-primary btn-sm">
                                             <asp:Label ID="lblCantArtEnCarrito" runat="server" Text=""><%#Eval("Cantidad") %></asp:Label>
                                         </button>
@@ -98,7 +98,7 @@
                         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <a href="FinDeCompra.aspx" class="btn btn-primary btn-block">Finalizar Compra</a>
+                        <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-primary btn-block" OnClick="btnFinalizarCompra_Click" />
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
                         <a href="Productos.aspx" class="btn btn-primary btn-block">Elegir más artículos</a>

@@ -13,8 +13,13 @@ namespace e_commerce.Pag_Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Se verifica que haya un usuario en session
+            if (Session["usuario"] == null)
+                Response.Redirect("Default.aspx");
+
             if (!IsPostBack)
             {
+                
                 dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
 
                 TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
@@ -78,8 +83,7 @@ namespace e_commerce.Pag_Cliente
             }
         }
         private void MostrarPanel(string opcion)
-        {
-            
+        {            
             pnl_Datos.Visible = (opcion == "Datos");
             pnl_Envio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
             pnlFormaDeEnvio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");

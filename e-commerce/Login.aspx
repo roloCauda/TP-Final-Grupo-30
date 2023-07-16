@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="row" style="padding-top: 10px;">
-        <div class="col-md-6" style="padding-right: 70px; padding-left: 70px; background-color: #F8F5F4; color: black; border-radius: 50px;">
+        <div class="col-md-6" style="padding-right: 70px; padding-left: 70px; background-color: #F8F5F4; color: black; border-radius: 50px; border: 30px solid white;">
             <div id="Login" style="padding: 35px;">
                 <!-- Grupo: DNI -->
                 <div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="padding-right: 70px; padding-left: 70px; background-color: #F8F5F4; color: black; border-radius: 50px;">
+        <div class="col-md-6" style="padding-right: 70px; padding-left: 70px; background-color: #F8F5F4; color: black; border-radius: 50px; border: 30px solid white;">
             <div id="Registrarse" style="padding: 35px;">
                 <div>
                     <h2 style="text-align: center;" class="formulario__label">Registrarse
@@ -64,14 +64,6 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
                         ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
                         CssClass="text-danger" ValidationGroup="validacionGrupoCrearCuenta"></asp:RegularExpressionValidator>
-                </div>
-                <!-- Grupo: Contraseña -->
-                <div>
-                    <label class="formulario__label">Contraseña</label>
-                    <asp:TextBox ID="TextBox2" type="password" runat="server" class="formulario__input" OnTextChanged="TextChanged"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2"
-                        ErrorMessage="*El campo Contraseña es obligatorio" CssClass="text-danger"
-                        ValidationGroup="validacionGrupoCrearCuenta"></asp:RequiredFieldValidator>
                 </div>
                 <!-- Grupo: Crear Cuenta -->
                 <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 20px;">

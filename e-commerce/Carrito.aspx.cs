@@ -147,6 +147,18 @@ namespace e_commerce.Pag_Cliente
             repCarrito.DataBind();
 
             Response.Redirect("Carrito.aspx");
+        }    
+        protected void btnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("FinDeCompra.aspx");
+            }
+            else
+            {
+                Response.Redirect("Registrarse.aspx");
+            }
         }
+
     }
 }
