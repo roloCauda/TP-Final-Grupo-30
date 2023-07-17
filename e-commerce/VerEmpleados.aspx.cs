@@ -33,7 +33,18 @@ namespace e_commerce
 
         protected void dgvEmpleados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "Ver" || e.CommandName == "Eliminar")
+            {
+                GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+                string idUsuario = dgvEmpleados.DataKeys[row.RowIndex].Value.ToString();
 
+                // Acciones según el comando seleccionado
+                if (e.CommandName == "Ver")
+                {
+                    // Acción cuando se presiona el botón "Ver"
+                    Response.Redirect("DetalleCliente.aspx?id=" + idUsuario);
+                }
+            }
         }
     }
 }

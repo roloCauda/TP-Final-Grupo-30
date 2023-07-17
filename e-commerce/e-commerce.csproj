@@ -74,6 +74,7 @@
     <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
     <Content Include="Cuenta_Usuario.aspx" />
+    <Content Include="DetalleCliente.aspx" />
     <Content Include="Js\formulario.js" />
     <Content Include="Login.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
@@ -108,6 +109,13 @@
     </Compile>
     <Compile Include="Cuenta_Usuario.aspx.designer.cs">
       <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleCliente.aspx.cs">
+      <DependentUpon>DetalleCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleCliente.aspx.designer.cs">
+      <DependentUpon>DetalleCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

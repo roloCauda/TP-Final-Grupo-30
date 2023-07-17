@@ -124,7 +124,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        
+
         public void actualizarUsuario(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -136,7 +136,7 @@ namespace negocio
                 datos.setearParametro("@nombres", user.Nombres);
                 datos.setearParametro("@apellidos", user.Apellidos);
                 datos.setearParametro("@email", user.Email);
-                datos.setearParametro("@telefono", user.Telefono != null? (object)user.Telefono : DBNull.Value);
+                datos.setearParametro("@telefono", user.Telefono != null ? (object)user.Telefono : DBNull.Value);
                 datos.setearParametro("@dni", user.DNI);
                 datos.ejecutarAccion();
             }
@@ -150,7 +150,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        
+
         public void actualizarContraseña(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -172,10 +172,11 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
         public int AgregarUsuarioSinLoguear(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
-            
+
             try
             {
                 datos.setearConsulta("INSERT INTO Usuarios (Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso) " +
@@ -210,9 +211,7 @@ namespace negocio
 
             try
             {
-                
-
-                datos.setearConsulta("SELECT DNI, Nombres, Apellidos, Email, Telefono, TipoAcceso FROM Usuarios WHERE TipoAcceso = @acceso");
+                datos.setearConsulta("SELECT Id, DNI, Nombres, Apellidos, Email, Telefono, TipoAcceso FROM Usuarios WHERE TipoAcceso = @acceso");
                 datos.setearParametro("@acceso", idAcceso);
                 datos.ejecutarLectura();
 
@@ -220,6 +219,7 @@ namespace negocio
                 {
                     Usuario aux = new Usuario();
 
+                    aux.IdUsuario = (int)datos.Lector["Id"];
                     aux.DNI = (int)datos.Lector["DNI"];
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
@@ -251,6 +251,83 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void cambiarAcceso(int IdUsuario, int acceso)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET TipoAcceso = @acceso FROM Usuarios WHERE Id = @id");
+                datos.setearParametro("@id", IdUsuario);
+                datos.setearParametro("@acceso", acceso);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Usuario CargarUsuario(int IdUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario user = new Usuario();
+            try
+            {
+                datos.setearConsulta("Select Id, DNI, Nombres, Apellidos, Email, Telefono, IDDomicilio, TipoAcceso FROM Usuarios WHERE @id = Id");
+                datos.setearParametro("@id", IdUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    user.IdUsuario = (int)datos.Lector["Id"];
+                    user.DNI = (int)datos.Lector["DNI"];
+                    user.Nombres = (string)datos.Lector["Nombres"];
+                    user.Apellidos = (string)datos.Lector["Apellidos"];
+                    user.Email = (string)datos.Lector["Email"];
+
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                    {
+                        user.Telefono = (string)datos.Lector["Telefono"];
+                    }
+
+                    user.direccion = new Direccion();
+                    if (!(datos.Lector["IDDomicilio"] is DBNull))
+                    {
+                        user.direccion.IdDireccion = (int)datos.Lector["IDDomicilio"];
+                    }
+
+                    switch ((int)datos.Lector["TipoAcceso"])
+                    {
+                        case 1:
+                            user.TipoUsuario = TipoUsuario.ADMIN;
+                            break;
+                        case 2:
+                            user.TipoUsuario = TipoUsuario.EMPLEADO;
+                            break;
+                        case 3:
+                            user.TipoUsuario = TipoUsuario.CLIENTE;
+                            break;
+                    }
+                }
+
+                return user;
+
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

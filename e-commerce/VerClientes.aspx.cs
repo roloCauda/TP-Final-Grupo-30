@@ -2,6 +2,7 @@
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -33,7 +34,19 @@ namespace e_commerce
 
         protected void dgvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "Ver" || e.CommandName == "Eliminar")
+            {
+                GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+                string idUsuario = dgvClientes.DataKeys[row.RowIndex].Value.ToString();
 
+                // Acciones según el comando seleccionado
+                if (e.CommandName == "Ver")
+                {
+                    // Acción cuando se presiona el botón "Ver"
+                    Response.Redirect("DetalleCliente.aspx?id=" + idUsuario);
+                }
+            }
         }
     }
+
 }

@@ -39,5 +39,34 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public Provincia cargarProvincia(Provincia provincia)
+        {
+            List<Localidad> lista = new List<Localidad>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select Id, Descripcion from PROVINCIAS where Id = @id");
+                datos.setearParametro("@id", provincia.Id);
+                datos.ejecutarLectura();
+
+                Provincia aux = new Provincia();
+                while (datos.Lector.Read())
+                {
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

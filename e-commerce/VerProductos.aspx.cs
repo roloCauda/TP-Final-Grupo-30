@@ -20,10 +20,15 @@ namespace e_commerce
                 Response.Redirect("Default.aspx");
             }
 
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            dgvArticulo.DataSource = negocio.listarConSP();
-            dgvArticulo.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+            if (!IsPostBack)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                dgvArticulo.DataSource = negocio.listarConSP();
+                dgvArticulo.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+            }
+
         }
+
 
         protected void dgvArticulo_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -55,6 +60,22 @@ namespace e_commerce
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     negocio.eliminar(int.Parse(idArticulo));
                     Response.Redirect("VerProductos.aspx");
+                }
+            }
+        }
+        protected void dgvArticulo_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Usuario user = (Usuario)Session["usuario"];
+
+                // Aquí se verifica si el tipo de usuario no es ADMIN para ocultar los enlaces "lnkModificar" y "lnkEliminar"
+                if (user.TipoUsuario != TipoUsuario.ADMIN)
+                {
+                    LinkButton lnkModificar = (LinkButton)e.Row.FindControl("lnkModificar");
+                    LinkButton lnkEliminar = (LinkButton)e.Row.FindControl("lnkEliminar");
+                    lnkModificar.Visible = false;
+                    lnkEliminar.Visible = false;
                 }
             }
         }

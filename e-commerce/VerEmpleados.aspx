@@ -19,8 +19,8 @@
             <asp:BoundField HeaderText="Tipo de Acceso" DataField="TipoUsuario" />
             <asp:TemplateField HeaderText="Acciones">
                 <ItemTemplate>
-                    <asp:LinkButton runat="server" ID="lnkEliminar" Text="❌" CommandName="Eliminar" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="lnkCmbiarAcceso" Text="✏️" CommandName="ModificarAcceso" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="lnkVer" Text="🔍" CommandName="Ver" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                   
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
