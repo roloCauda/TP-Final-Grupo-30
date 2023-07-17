@@ -20,9 +20,26 @@ namespace e_commerce
                 Response.Redirect("Default.aspx");
             }
 
-            MarcaNegocio negocio = new MarcaNegocio();
-            dgvMarca.DataSource = negocio.listar();
-            dgvMarca.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+            if (!IsPostBack)
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                dgvMarca.DataSource = negocio.listar();
+                dgvMarca.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+
+                foreach (GridViewRow row in dgvMarca.Rows)
+                {
+                    LinkButton lnkModificar = (LinkButton)row.FindControl("lnkModificar");
+                    LinkButton lnkEliminar = (LinkButton)row.FindControl("lnkEliminar");
+
+                    if (user.TipoUsuario != TipoUsuario.ADMIN)
+                    {
+                        lnkModificar.Visible = false;
+                        lnkEliminar.Visible = false;
+                    }
+                }
+            }
+
+            
         }
 
         protected void dgvMarca_PageIndexChanging(object sender, GridViewPageEventArgs e)

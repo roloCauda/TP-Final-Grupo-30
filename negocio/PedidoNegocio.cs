@@ -42,6 +42,40 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Pedido> listarPedidos()
+        {
+            List<Pedido> lista = new List<Pedido>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select P.Id, P.Fecha, F.Descripcion from PEDIDOS P " +
+                    "INNER JOIN FormasDePago F ON F.Id = P.Id " +
+                    "INNER JOIN USUARIOS U ON P.IdCliente = U.Id");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido aux = new Pedido();
+
+                    aux.IdPedido = (int)datos.Lector["Id"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public decimal totalPedido(int idPedido)
         {

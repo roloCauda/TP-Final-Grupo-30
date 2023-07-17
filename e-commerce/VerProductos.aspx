@@ -8,7 +8,6 @@
     <asp:GridView ID="dgvArticulo" runat="server" DataKeyNames="IdArticulo"
         CssClass="table" AutoGenerateColumns="false"
         OnRowCommand="dgvArticulo_RowCommand"
-        RowDataBound="dgvArticulo_RowDataBound"
         OnPageIndexChanging="dgvArticulo_PageIndexChanging"
         AllowPaging="true" PageSize="5">
         <Columns>

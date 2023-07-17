@@ -75,6 +75,7 @@
     <Content Include="ApagarWeb.aspx" />
     <Content Include="Cuenta_Usuario.aspx" />
     <Content Include="DetalleCliente.aspx" />
+    <Content Include="DetallePedido.aspx" />
     <Content Include="Js\formulario.js" />
     <Content Include="Login.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
@@ -92,6 +93,7 @@
     <Content Include="VerClientes.aspx" />
     <Content Include="VerEmpleados.aspx" />
     <Content Include="VerMarcas.aspx" />
+    <Content Include="VerPedidos.aspx" />
     <Content Include="VerProductos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -116,6 +118,13 @@
     </Compile>
     <Compile Include="DetalleCliente.aspx.designer.cs">
       <DependentUpon>DetalleCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -261,6 +270,13 @@
     </Compile>
     <Compile Include="VerMarcas.aspx.designer.cs">
       <DependentUpon>VerMarcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerPedidos.aspx.cs">
+      <DependentUpon>VerPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerPedidos.aspx.designer.cs">
+      <DependentUpon>VerPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="VerProductos.aspx.cs">
       <DependentUpon>VerProductos.aspx</DependentUpon>

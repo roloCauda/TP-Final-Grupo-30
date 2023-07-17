@@ -21,11 +21,11 @@ namespace e_commerce.Pag_Admin
         {
             Usuario user = (Usuario)Session["usuario"];
 
-            if (Session["usuario"] == null || user.TipoUsuario != TipoUsuario.ADMIN)
+            if (Session["usuario"] == null || user.TipoUsuario == TipoUsuario.CLIENTE)
             {
                 Response.Redirect("Default.aspx");
             }
-
+            
             txtId.Enabled = false;
 
             try
@@ -33,6 +33,7 @@ namespace e_commerce.Pag_Admin
                 // Primera vez que carga la página.
                 if (!IsPostBack)
                 {
+                    
                     Session.Remove("ListaImagenes");
 
                     MarcaNegocio negocioMarca = new MarcaNegocio();
@@ -103,7 +104,23 @@ namespace e_commerce.Pag_Admin
                         dgvImagenes.DataBind();
                     }
                     Session["ListaImagenes"] = ListaImagenes;
+
+                    if (user.TipoUsuario != TipoUsuario.ADMIN)
+                    {
+                        btnCancelar.Text = "Volver";
+                        btnCancelar.Visible = true;
+                        btnModificar.Visible = false;
+                        btnAgregarImagen.Visible = false;
+                        btnAgregar.Enabled = false;
+                        foreach (GridViewRow row in dgvImagenes.Rows)
+                        {
+                            LinkButton btnEliminarImagen = (LinkButton)row.FindControl("btnElimarImagen");
+
+                            btnEliminarImagen.Visible = false;
+                        }
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -225,7 +242,7 @@ namespace e_commerce.Pag_Admin
             ListaImagenes.RemoveAll(imagen => imagen.IdImagen == idImagen);
 
             //si la lista no tiene imagenes, creo una imagen, le cargo la imagen de VACIO y se la agrego a la lista
-            if(ListaImagenes.Count == 0)
+            if (ListaImagenes.Count == 0)
             {
                 Imagen imagen = new Imagen { ImagenURL = imagenVacia };
                 ListaImagenes.Add(imagen);

@@ -18,7 +18,7 @@ namespace e_commerce.Pag_Admin
         {
             Usuario user = (Usuario)Session["usuario"];
 
-            if (Session["usuario"] == null || user.TipoUsuario != TipoUsuario.ADMIN)
+            if (Session["usuario"] == null || user.TipoUsuario == TipoUsuario.CLIENTE)
             {
                 Response.Redirect("Default.aspx");
             }
@@ -65,6 +65,15 @@ namespace e_commerce.Pag_Admin
                         txtURLIMAGEN.Enabled = true;
                         btnAgregarImagen.Visible = true;
                         btnEliminarImagen.Visible= false;
+                    }
+
+                    if (user.TipoUsuario != TipoUsuario.ADMIN)
+                    {
+                        btnCancelar.Text = "Volver";
+                        btnCancelar.Visible = true;
+                        btnModificar.Visible = false;
+                        btnAgregarImagen.Visible = false;
+                        btnAgregar.Enabled = false;
                     }
                 }
             }

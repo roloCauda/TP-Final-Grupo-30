@@ -20,9 +20,24 @@ namespace e_commerce
                 Response.Redirect("Default.aspx");
             }
 
-            CategoriaNegocio negocio = new CategoriaNegocio();
-            dgvCategoria.DataSource = negocio.listar();
-            dgvCategoria.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+            if (!IsPostBack)
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                dgvCategoria.DataSource = negocio.listar();
+                dgvCategoria.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+
+                foreach (GridViewRow row in dgvCategoria.Rows)
+                {
+                    LinkButton lnkModificar = (LinkButton)row.FindControl("lnkModificar");
+                    LinkButton lnkEliminar = (LinkButton)row.FindControl("lnkEliminar");
+
+                    if (user.TipoUsuario != TipoUsuario.ADMIN)
+                    {
+                        lnkModificar.Visible = false;
+                        lnkEliminar.Visible = false;
+                    }
+                }
+            }
         }
 
         protected void dgvCategoria_PageIndexChanging(object sender, GridViewPageEventArgs e)

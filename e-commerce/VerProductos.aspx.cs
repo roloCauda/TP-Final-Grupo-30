@@ -25,6 +25,18 @@ namespace e_commerce
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 dgvArticulo.DataSource = negocio.listarConSP();
                 dgvArticulo.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+
+                foreach (GridViewRow row in dgvArticulo.Rows)
+                {
+                    LinkButton lnkModificar = (LinkButton)row.FindControl("lnkModificar");
+                    LinkButton lnkEliminar = (LinkButton)row.FindControl("lnkEliminar");
+
+                    if (user.TipoUsuario != TipoUsuario.ADMIN)
+                    {
+                        lnkModificar.Visible = false;
+                        lnkEliminar.Visible = false;
+                    }
+                }
             }
 
         }
@@ -63,21 +75,6 @@ namespace e_commerce
                 }
             }
         }
-        protected void dgvArticulo_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Usuario user = (Usuario)Session["usuario"];
-
-                // Aquí se verifica si el tipo de usuario no es ADMIN para ocultar los enlaces "lnkModificar" y "lnkEliminar"
-                if (user.TipoUsuario != TipoUsuario.ADMIN)
-                {
-                    LinkButton lnkModificar = (LinkButton)e.Row.FindControl("lnkModificar");
-                    LinkButton lnkEliminar = (LinkButton)e.Row.FindControl("lnkEliminar");
-                    lnkModificar.Visible = false;
-                    lnkEliminar.Visible = false;
-                }
-            }
-        }
+       
     }
 }
