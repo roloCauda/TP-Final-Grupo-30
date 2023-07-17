@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1>CATEGORIAS</h1>
     
     <asp:GridView ID="dgvCategoria" runat="server" DataKeyNames="IdCategoria"
         CssClass="table" AutoGenerateColumns="false"

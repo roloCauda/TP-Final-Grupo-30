@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1>CLIENTES</h1>
+
     <asp:GridView ID="dgvClientes" runat="server" DataKeyNames="IdUsuario"
         CssClass="table" AutoGenerateColumns="false"
         OnRowCommand="dgvClientes_RowCommand"

@@ -210,7 +210,7 @@ namespace negocio
 
             try
             {
-                Usuario aux = new Usuario();
+                
 
                 datos.setearConsulta("SELECT DNI, Nombres, Apellidos, Email, Telefono, TipoAcceso FROM Usuarios WHERE TipoAcceso = @acceso");
                 datos.setearParametro("@acceso", idAcceso);
@@ -218,6 +218,8 @@ namespace negocio
 
                 while (datos.Lector.Read())
                 {
+                    Usuario aux = new Usuario();
+
                     aux.DNI = (int)datos.Lector["DNI"];
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
