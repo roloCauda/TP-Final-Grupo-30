@@ -77,23 +77,21 @@ namespace e_commerce
             negocioU = new UsuarioNegocio();
             direccion = new Direccion();
             negocioD = new DireccionNegocio();
-            direccion.Provincia = new Provincia();
-            direccion.Localidad = new Localidad();
 
             user.DNI = (int)Session["dni"];
             user.Contraseña = txtContraseña.Text;
 
-            direccion.Calle = txtCalle.Text;
-            direccion.Numero = int.Parse(txtNumeracion.Text);
+            user.direccion.Calle = txtCalle.Text;
+            user.direccion.Numero = int.Parse(txtNumeracion.Text);
             if (!string.IsNullOrEmpty(txtPiso.Text))
-                direccion.Piso = int.Parse(txtPiso.Text);
+                user.direccion.Piso = int.Parse(txtPiso.Text);
             if (!string.IsNullOrEmpty(txtDepartamento.Text))
-                direccion.Departamento = txtDepartamento.Text;
-            direccion.CodPostal = txtCP.Text;
-            direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
-            direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
+                user.direccion.Departamento = txtDepartamento.Text;
+            user.direccion.CodPostal = txtCP.Text;
+            user.direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
+            user.direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
 
-            int IdDireccion = negocioD.AgregarDireccion(direccion);
+            int IdDireccion = negocioD.AgregarDireccion(user);
 
             user.Nombres = txtNombres.Text;
             user.Apellidos = txtApellidos.Text;
@@ -107,6 +105,5 @@ namespace e_commerce
             Session.Add("usuario", user);
             Response.Redirect("Default.aspx");
         }
-
     }
 }

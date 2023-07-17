@@ -178,9 +178,11 @@ namespace e_commerce.Pag_Cliente
 
             if (usuario == null) //si no esta logueado
             {
-                if(!string.IsNullOrEmpty(usuario.direccion.Calle))
+                //SI ELIGIO ENVIO
+                if(!string.IsNullOrEmpty(usuario.direccion.Calle)) 
                 {
-                    usuario.direccion.IdDireccion = negocioD.AgregarDireccion(usuario.direccion);
+                    //OJOOOOOO ----- NO ESTA GUARDANDO LO QUE TIENE DIRECCIONH EN USUARIO TODAVIA
+                    usuario.direccion.IdDireccion = negocioD.AgregarDireccion(usuario);
                 }
 
                 pedido.IdCliente = negocioU.AgregarUsuarioSinLoguear(usuario);
@@ -194,7 +196,7 @@ namespace e_commerce.Pag_Cliente
 
             negocioAP.agregarListaApedido(carrito.ListaItems, pedido.IdPedido);
 
-            negocioAP.agregarPedido(pedido);
+            negocioAP.cargarEnBDlistaArticulos(pedido);
 
         }
     }

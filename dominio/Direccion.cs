@@ -16,7 +16,11 @@ namespace dominio
         public string CodPostal { get; set; }
         public Localidad Localidad { get; set; }
         public Provincia Provincia { get; set; }
-        
 
+        public Direccion()
+        {
+            Localidad = new Localidad();
+            Provincia = new Provincia();
+        }
     }
 }

@@ -86,7 +86,7 @@ namespace e_commerce
                 ddlProvincia.SelectedValue = user.direccion.Provincia.Id.ToString();
 
                 PedidoNegocio negocioU = new PedidoNegocio();
-                dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.DNI);
+                dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.IdUsuario);
                 dgvPedidosCliente.DataBind();
             }
 

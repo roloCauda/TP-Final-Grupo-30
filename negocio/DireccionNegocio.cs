@@ -9,7 +9,7 @@ namespace negocio
 {
     public class DireccionNegocio
     {
-        public int AgregarDireccion(Direccion dire)
+        public int AgregarDireccion(Usuario direUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int nuevoId = 0;
@@ -18,13 +18,13 @@ namespace negocio
             {
                 datos.setearConsulta("Insert into DIRECCIONES (Calle, Numero, Piso, Departamento, CP, IdLocalidad, IdProvincia)" +
                                     "OUTPUT Inserted.ID values (@Calle, @Numero,@Piso, @Departamento, @CP, @IdLocalidad, @IdProvincia)");
-                datos.setearParametro("@Calle", dire.Calle);
-                datos.setearParametro("@Numero", dire.Numero);
-                datos.setearParametro("@Piso", dire.Piso.HasValue ? (object)dire.Piso.Value : DBNull.Value);
-                datos.setearParametro("@Departamento", string.IsNullOrEmpty(dire.Departamento) ? DBNull.Value : (object)dire.Departamento);
-                datos.setearParametro("@CP", dire.CodPostal);
-                datos.setearParametro("@IdLocalidad", dire.Localidad.Id);
-                datos.setearParametro("@IdProvincia", dire.Provincia.Id);
+                datos.setearParametro("@Calle", direUsuario.direccion.Calle);
+                datos.setearParametro("@Numero", direUsuario.direccion.Numero);
+                datos.setearParametro("@Piso", direUsuario.direccion.Piso.HasValue ? (object)direUsuario.direccion.Piso.Value : DBNull.Value);
+                datos.setearParametro("@Departamento", string.IsNullOrEmpty(direUsuario.direccion.Departamento) ? DBNull.Value : (object)direUsuario.direccion.Departamento);
+                datos.setearParametro("@CP", direUsuario.direccion.CodPostal);
+                datos.setearParametro("@IdLocalidad", direUsuario.direccion.Localidad.Id);
+                datos.setearParametro("@IdProvincia", direUsuario.direccion.Provincia.Id);
 
                 nuevoId = (int)datos.ejecutarEscalar();
 
