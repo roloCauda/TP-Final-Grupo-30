@@ -8,7 +8,6 @@
 
     <asp:GridView ID="dgvArtPorPedido" runat="server"
         CssClass="table" AutoGenerateColumns="false"
-        OnRowCommand="dgvArtPorPedido_RowCommand"
         OnPageIndexChanging="dgvArtPorPedido_PageIndexChanging"
         AllowPaging="true" PageSize="5">
         <Columns>
@@ -20,5 +19,30 @@
             <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Width="100" ControlStyle-Height="100" />
         </Columns>
     </asp:GridView>
-     <asp:Label ID="lblTotal" runat="server"></asp:Label>
+    <asp:Label ID="lblTotal" runat="server"></asp:Label>
+    <div>
+        <div>
+            <label>Forma de Envio:</label>
+            <asp:DropDownList ID="ddlFormaDeEnvio" runat="server"></asp:DropDownList>
+        </div>
+        <div>
+            <label>Código de seguimiento</label>
+            <asp:TextBox ID="txtCodSeguimientio" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <label>Forma de Pago</label>
+            <asp:DropDownList ID="ddlFormaDePago" runat="server"></asp:DropDownList>
+            <asp:TextBox ID="CódigoDeTrnasacción" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <asp:CheckBoxList ID="ckblEstadoPedido" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ckblEstadoPedido_SelectedIndexChanged"></asp:CheckBoxList>
+        </div>
+        <div>
+            <label>Observaciones</label>
+            <asp:TextBox runat="server" TextMode="MultiLine" ID="TextBox2" CssClass="form-control" />
+        </div>
+        <div>
+            <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" type="submit" class="btn btn-primary btn-lg" OnClick="btnGuardarCambios_Click" ValidationGroup="validacionGrupo"/>
+        </div>
+    </div>
 </asp:Content>

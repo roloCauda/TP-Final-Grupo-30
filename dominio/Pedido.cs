@@ -15,6 +15,11 @@ namespace dominio
         public FormaDePago formaDePago { get; set; }
         public FormaDeEnvio formaDeEnvio { get; set; }
         public List<ArticulosXPedido> ListaArtXPedido { get; set; }
+
+        public string CodTransaccion { get; set; }
+        public string CodSeguimiento { get; set; }
+        public string Observaciones { get; set; }
+        public string EstadoPedido { get; set; }
         public Pedido()
         {
             formaDePago = new FormaDePago();
