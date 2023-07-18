@@ -68,7 +68,7 @@
 
                         <!-- Botones de Config, Perfil e Ingresar-->
 
-                        <div style="padding-right: 15px;">
+                        <div style="padding-right: 15px; align-items: center;">
                             <asp:LinkButton ID="btnConfig" runat="server" Visible="false" CssClass="btn" Style="display: flex; align-items: center; background-color: #3b71ca; color: black; height: 40px;" OnClick="btnConfig_Click">
                                 <i class="material-icons">settings</i>
                             </asp:LinkButton>

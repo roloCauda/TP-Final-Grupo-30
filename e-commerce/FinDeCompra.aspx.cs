@@ -168,36 +168,47 @@ namespace e_commerce.Pag_Cliente
         }
         protected void btnConfirmar(object sender, EventArgs e)
         {
-            dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
-            Usuario usuario = (Usuario)Session["usuario"];
-            Pedido pedido = new Pedido();
-            UsuarioNegocio negocioU = new UsuarioNegocio();
-            DireccionNegocio negocioD = new DireccionNegocio();
-            PedidoNegocio negocioP = new PedidoNegocio();
-            ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
+            //dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
+            //Usuario usuario = (Usuario)Session["usuario"];
+            //Pedido pedido = new Pedido();
+            //UsuarioNegocio negocioU = new UsuarioNegocio();
+            //DireccionNegocio negocioD = new DireccionNegocio();
+            //PedidoNegocio negocioP = new PedidoNegocio();
+            //ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
 
-            if (usuario == null) //si no esta logueado
+            //if (usuario == null) //si no esta logueado
+            //{
+            //    //SI ELIGIO ENVIO
+            //    if(!string.IsNullOrEmpty(usuario.direccion.Calle)) 
+            //    {
+            //        //OJOOOOOO ----- NO ESTA GUARDANDO LO QUE TIENE DIRECCIONH EN USUARIO TODAVIA
+            //        usuario.direccion.IdDireccion = negocioD.AgregarDireccion(usuario);
+            //    }
+
+            //    pedido.IdCliente = negocioU.AgregarUsuarioSinLoguear(usuario);
+            //}
+            //else //si esta logueado
+            //{
+            //    pedido.IdCliente = usuario.IdUsuario;
+            //}
+
+            //pedido.IdPedido = negocioP.agregarPedido(pedido);
+
+            //negocioAP.agregarListaApedido(carrito.ListaItems, pedido.IdPedido);
+
+            //negocioAP.cargarEnBDlistaArticulos(pedido);
+
+            EmailService emailService = new EmailService();
+            emailService.armarCorreo("rolycauda@gmail.com", "Asunto del correo", "Este es el contenido del correo electrónico.");
+
+            try
             {
-                //SI ELIGIO ENVIO
-                if(!string.IsNullOrEmpty(usuario.direccion.Calle)) 
-                {
-                    //OJOOOOOO ----- NO ESTA GUARDANDO LO QUE TIENE DIRECCIONH EN USUARIO TODAVIA
-                    usuario.direccion.IdDireccion = negocioD.AgregarDireccion(usuario);
-                }
-
-                pedido.IdCliente = negocioU.AgregarUsuarioSinLoguear(usuario);
+                emailService.enviarCorreo();
             }
-            else //si esta logueado
+            catch (Exception ex)
             {
-                pedido.IdCliente = usuario.IdUsuario;
+                Session.Add("error", ex);
             }
-            
-            pedido.IdPedido = negocioP.agregarPedido(pedido);
-
-            negocioAP.agregarListaApedido(carrito.ListaItems, pedido.IdPedido);
-
-            negocioAP.cargarEnBDlistaArticulos(pedido);
-
         }
     }
 }

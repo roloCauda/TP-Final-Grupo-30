@@ -156,7 +156,7 @@ namespace e_commerce.Pag_Cliente
             }
             else
             {
-                Response.Redirect("Registrarse.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
 

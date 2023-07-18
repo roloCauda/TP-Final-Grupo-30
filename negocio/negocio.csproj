@@ -48,6 +48,7 @@
     <Compile Include="ArticulosXPedidoNegocio.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="FormaDeEnvioNegocio.cs" />
     <Compile Include="FormaDePagoNegocio.cs" />
     <Compile Include="ImagenNegocio.cs" />

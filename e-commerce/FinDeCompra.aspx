@@ -24,7 +24,7 @@
             <ContentTemplate>
 
                 <div class="row" style="display: flex; justify-content: center;">
-                    <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px; padding: 15px;">
+                    <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; min-height: 100vh; text-align: center; margin-right: 15px; padding: 15px;">
 
                         <!-- Datos Personales -->
                         <asp:Panel ID="pnl_Datos" runat="server">
@@ -113,7 +113,7 @@
 
                             <asp:Panel ID="pnlFormaDeEnvio" runat="server">
                                 <div class="row">
-                                    <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center;">
+                                    <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center;padding-top: 35px;">
                                         <div class="list-group">
                                             <asp:Repeater ID="rptFormaDeEnvio" runat="server">
                                                 <ItemTemplate>
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                             </asp:Panel>
-                            <div class="row" style="margin-top: 70px;">
+                            <div class="row" style="margin-top: 70px; padding-bottom:35px;">
                                 <div class="col-md-6">
                                     <asp:Button ID="btnVolverEnvio" runat="server" Text="Volver" OnClick="btnContinuar_Click" CommandArgument="Datos" CssClass="formulario__btn" />
                                 </div>
@@ -226,7 +226,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center;">
+                            <div class="radio-button-list-container" style="display: flex; justify-content: center; align-items: center; padding-top: 35px;">
                                 <div>
                                     <asp:Repeater ID="rptFormaDePago" runat="server">
                                         <ItemTemplate>
