@@ -22,6 +22,8 @@ namespace e_commerce
 
             if (!IsPostBack)
             {
+                rblOpciones.SelectedValue = "1";
+
                 PedidoNegocio negocioU = new PedidoNegocio();
                 dgvPedidos.DataSource = negocioU.listarPedidos();
                 dgvPedidos.DataBind();
@@ -46,6 +48,23 @@ namespace e_commerce
         {
             dgvPedidos.PageIndex = e.NewPageIndex;
             dgvPedidos.DataBind();
+        }
+
+        protected void rblOpciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string filtro = rblOpciones.SelectedItem.Text;
+            PedidoNegocio negocioU = new PedidoNegocio();
+
+            if(filtro == "Todos")
+            {
+                dgvPedidos.DataSource = negocioU.listarPedidos();
+                dgvPedidos.DataBind();
+            }
+            else
+            {
+                dgvPedidos.DataSource = negocioU.listarPedidos(filtro);
+                dgvPedidos.DataBind();
+            }
         }
     }
 }

@@ -112,6 +112,57 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Pedido> listarPedidos(string filtroEstado)
+        {
+            List<Pedido> lista = new List<Pedido>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select P.Id, P.Fecha, F.Descripcion, P.IdFormaPago, P.IdFormaEnvio, P.CodigoDeTransaccion, " +
+                                    "P.CodigoSeguimiento, P.Observaciones, P.EstadoPedido FROM PEDIDOS P " +
+                                    "INNER JOIN FormasDePago F ON F.Id = P.IdFormaPago " +
+                                    "INNER JOIN FormasDeEnvio E ON E.Id = P.IdFormaEnvio " +
+                                    "where EstadoPedido like @filtro");
+                datos.setearParametro("@filtro", "%" + filtroEstado + "%");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido aux = new Pedido();
+
+                    aux.IdPedido = (int)datos.Lector["Id"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.formaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
+                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.formaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
+                    if (!(datos.Lector["CodigoDeTransaccion"] is DBNull))
+                        aux.CodTransaccion = (string)datos.Lector["CodigoDeTransaccion"];
+
+                    if (!(datos.Lector["CodigoSeguimiento"] is DBNull))
+                        aux.CodSeguimiento = (string)datos.Lector["CodigoSeguimiento"];
+
+                    if (!(datos.Lector["Observaciones"] is DBNull))
+                        aux.Observaciones = (string)datos.Lector["Observaciones"];
+
+                    if (!(datos.Lector["EstadoPedido"] is DBNull))
+                        aux.EstadoPedido = (string)datos.Lector["EstadoPedido"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public decimal totalPedido(int idPedido)
         {
