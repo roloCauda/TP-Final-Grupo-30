@@ -21,9 +21,14 @@ namespace e_commerce
                 Response.Redirect("Default.aspx");
             }
 
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            dgvClientes.DataSource = negocio.listarSegunAcceso(3);
-            dgvClientes.DataBind(); /*para que enlace los datos, que los escriba en la grilla*/
+            if (!IsPostBack)
+            {
+                rblOpciones.SelectedValue = "1";
+
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                dgvClientes.DataSource = negocio.listarSegunAcceso(3, -1);
+                dgvClientes.DataBind();
+            }
         }
 
         protected void dgvClientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -34,10 +39,11 @@ namespace e_commerce
 
         protected void dgvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Ver" || e.CommandName == "Eliminar")
+            if (e.CommandName == "Ver" || e.CommandName == "Baja" || e.CommandName == "Alta")
             {
                 GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
                 string idUsuario = dgvClientes.DataKeys[row.RowIndex].Value.ToString();
+                UsuarioNegocio negocio;
 
                 // Acciones según el comando seleccionado
                 if (e.CommandName == "Ver")
@@ -45,8 +51,69 @@ namespace e_commerce
                     // Acción cuando se presiona el botón "Ver"
                     Response.Redirect("DetalleCliente.aspx?id=" + idUsuario);
                 }
+                else if(e.CommandName == "Baja")
+                {
+                    negocio = new UsuarioNegocio();
+                    negocio.CambiarEstadoActivo(idUsuario, 0);
+                }
+                else
+                {
+                    negocio = new UsuarioNegocio();
+                    negocio.CambiarEstadoActivo(idUsuario, 1);
+                }
+            }
+        }
+
+        protected void rblOpciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string filtro = rblOpciones.SelectedItem.Text;
+            UsuarioNegocio negocioU = new UsuarioNegocio();
+
+            if (filtro == "Todos")
+            {
+                dgvClientes.DataSource = negocioU.listarSegunAcceso(3,-1);
+            }
+            else if(filtro == "Activos")
+            {
+                dgvClientes.DataSource = negocioU.listarSegunAcceso(3,1);
+            }
+            else
+            {
+                dgvClientes.DataSource = negocioU.listarSegunAcceso(3, 0);
+            }
+                dgvClientes.DataBind();
+        }
+
+        protected void dgvClientes_RowDataBound(object sender, GridViewRowEventArgs e)
+        { //Este evento se dispara para cada fila generada en el control GridView
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Usuario user = (Usuario)Session["usuario"];
+                Usuario usuario = (Usuario)e.Row.DataItem;
+
+                // Buscar los controles LinkButton en la fila
+                LinkButton lnkBaja = (LinkButton)e.Row.FindControl("lnkBaja");
+                LinkButton lnkAlta = (LinkButton)e.Row.FindControl("lnkAlta");
+
+                if(user.TipoUsuario != TipoUsuario.ADMIN)
+                {
+                    lnkAlta.Visible = false;
+                    lnkBaja.Visible = false;
+                }
+                else
+                {
+                    if (usuario.Activo)
+                    {
+                        // Si el usuario está activo, ocultar el botón lnkAlta
+                        lnkAlta.Visible = false;
+                    }
+                    else
+                    {
+                        // Si el usuario está inactivo, ocultar el botón lnkBaja
+                        lnkBaja.Visible = false;
+                    }
+                }
             }
         }
     }
-
 }

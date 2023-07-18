@@ -24,6 +24,7 @@ namespace dominio
         public Direccion direccion { get; set; }
         public List<Pedido> ListaPedidos { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public bool Activo { get; set; }
 
         public Usuario(int dni, string pass, int num)
         {

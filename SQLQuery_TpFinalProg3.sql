@@ -238,3 +238,23 @@ BEGIN
    GROUP BY A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion, C.Descripcion, Precio, A.IdMarca, A.IdCategoria
    HAVING Codigo LIKE '%' + @filtro + '%' OR Nombre LIKE '%' + @filtro + '%' OR A.Descripcion LIKE '%' + @filtro + '%' OR M.Descripcion LIKE '%' + @filtro + '%' OR C.Descripcion LIKE '%' + @filtro + '%'
 END
+
+select * from Usuarios
+select * from direcciones
+select * from Pedidos
+select * from FormasDeEnvio
+select * from FormasDePago
+update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
+
+alter table Pedidos
+ADD CodigoDeTransaccion VARCHAR(100) null,
+CodigoSeguimiento VARCHAR(100) null,
+Observaciones VARCHAR(300) null,
+Entregado bit not null default 0,
+Cancelado bit not null default 0,
+EstadoPedido VARCHAR(100) null default 'Pendiente';
+
+/*borrar Entregado y Cancelado*/ 
+
+SELECT IdFormaEnvio from PEDIDOS WHERE Id = 1
+

@@ -67,17 +67,5 @@ namespace e_commerce
             }
         }
 
-        protected void repRepetidor_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                CheckBox ckbFavorito = (CheckBox)e.Item.FindControl("ckbFavorito");
-
-                if (Session["usuario"] != null)
-                {
-                    ckbFavorito.Visible = true;
-                }
-            }
-        }
     }
 }

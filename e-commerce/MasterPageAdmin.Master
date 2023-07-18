@@ -27,7 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -95,6 +94,10 @@
                         </li>
                         <li><a class="dropdown-item" href="VerPedidos.aspx">VER PEDIDOS</a></li>
                         <li><a class="dropdown-item" href="ApagarWeb.aspx">APAGAR WEB</a></li>
+                        <li>
+                            <asp:LinkButton ID="lnkSalir" runat="server" OnClick="lnkSalir_Click">SALIR</asp:LinkButton>
+
+                        </li>
                     </ul>
                 </div>
                 <div class="column2">

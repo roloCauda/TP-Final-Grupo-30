@@ -59,7 +59,7 @@ namespace e_commerce
                     usuario.direccion = negocioD.CargarDireccion(usuario.direccion);
 
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Cuenta_Usuario.aspx", false);
+                    Response.Redirect("Default.aspx", false);
                 }
                 else
                 {

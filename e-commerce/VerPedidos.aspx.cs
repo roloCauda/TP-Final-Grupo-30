@@ -40,8 +40,6 @@ namespace e_commerce
             {
                 Response.Redirect("DetallePedido.aspx?id=" + IdPedido);
             }
-
-
         }
 
         protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -53,16 +51,16 @@ namespace e_commerce
         protected void rblOpciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             string filtro = rblOpciones.SelectedItem.Text;
-            PedidoNegocio negocioU = new PedidoNegocio();
+            PedidoNegocio negocioP = new PedidoNegocio();
 
             if(filtro == "Todos")
             {
-                dgvPedidos.DataSource = negocioU.listarPedidos();
+                dgvPedidos.DataSource = negocioP.listarPedidos();
                 dgvPedidos.DataBind();
             }
             else
             {
-                dgvPedidos.DataSource = negocioU.listarPedidos(filtro);
+                dgvPedidos.DataSource = negocioP.listarPedidos(filtro);
                 dgvPedidos.DataBind();
             }
         }

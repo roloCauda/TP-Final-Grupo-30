@@ -204,14 +204,22 @@ namespace negocio
             }
         }
 
-        public List<Usuario> listarSegunAcceso(int idAcceso)
+        public List<Usuario> listarSegunAcceso(int idAcceso, int estadoActivo)
         {
             AccesoDatos datos = new AccesoDatos();
             List<Usuario> lista = new List<Usuario>();
 
             try
             {
-                datos.setearConsulta("SELECT Id, DNI, Nombres, Apellidos, Email, Telefono, TipoAcceso FROM Usuarios WHERE TipoAcceso = @acceso");
+                string consulta = "SELECT Id, DNI, Nombres, Apellidos, Email, Telefono, TipoAcceso, Activo FROM Usuarios WHERE TipoAcceso = @acceso";
+
+                if (estadoActivo == 0 || estadoActivo == 1)
+                {
+                    consulta += " AND Activo = @estadoActivo";
+                    datos.setearParametro("@estadoActivo", estadoActivo);
+                }
+
+                datos.setearConsulta(consulta);
                 datos.setearParametro("@acceso", idAcceso);
                 datos.ejecutarLectura();
 
@@ -224,6 +232,7 @@ namespace negocio
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Email = (string)datos.Lector["Email"];
+
                     if (!(datos.Lector["Telefono"] is DBNull))
                     {
                         aux.Telefono = (string)datos.Lector["Telefono"];
@@ -242,15 +251,15 @@ namespace negocio
                             break;
                     }
 
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
                     lista.Add(aux);
                 }
 
                 return lista;
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -325,6 +334,27 @@ namespace negocio
 
                 return user;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void CambiarEstadoActivo(string idUsuario, int Activo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario user = new Usuario();
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET Activo = @Activo WHERE @id = Id");
+                datos.setearParametro("@id", idUsuario);
+                datos.setearParametro("@Activo", Activo);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
