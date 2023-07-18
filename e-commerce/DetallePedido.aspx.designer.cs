@@ -69,13 +69,13 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.DropDownList ddlFormaDePago;
 
         /// <summary>
-        /// CódigoDeTrnasacción control.
+        /// txtCódigoDeTransacción control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CódigoDeTrnasacción;
+        protected global::System.Web.UI.WebControls.TextBox txtCódigoDeTransacción;
 
         /// <summary>
         /// ckblEstadoPedido control.
@@ -87,13 +87,13 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.CheckBoxList ckblEstadoPedido;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtObservaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
 
         /// <summary>
         /// btnGuardarCambios control.
@@ -103,5 +103,23 @@ namespace e_commerce
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarCambios;
+
+        /// <summary>
+        /// btnVolver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolver;
+
+        /// <summary>
+        /// lblContraseñaGuardadaConExito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContraseñaGuardadaConExito;
     }
 }

@@ -32,17 +32,22 @@
         <div>
             <label>Forma de Pago</label>
             <asp:DropDownList ID="ddlFormaDePago" runat="server"></asp:DropDownList>
-            <asp:TextBox ID="CódigoDeTrnasacción" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtCódigoDeTransacción" runat="server"></asp:TextBox>
         </div>
         <div>
+            <label>Estado del Pedido</label>
             <asp:CheckBoxList ID="ckblEstadoPedido" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ckblEstadoPedido_SelectedIndexChanged"></asp:CheckBoxList>
         </div>
         <div>
             <label>Observaciones</label>
-            <asp:TextBox runat="server" TextMode="MultiLine" ID="TextBox2" CssClass="form-control" />
+            <asp:TextBox runat="server" TextMode="MultiLine" ID="txtObservaciones" CssClass="form-control" />
         </div>
         <div>
             <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" type="submit" class="btn btn-primary btn-lg" OnClick="btnGuardarCambios_Click" ValidationGroup="validacionGrupo"/>
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" type="submit" class="btn btn-primary btn-lg" OnClick="btnVolver_Click"/>
+        </div>
+        <div>
+            <asp:Label ID="lblContraseñaGuardadaConExito" runat="server" Text="Cambios guardados con éxito" Visible="false" ></asp:Label>
         </div>
     </div>
 </asp:Content>

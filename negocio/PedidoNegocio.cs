@@ -223,9 +223,10 @@ namespace negocio
             }
         }
 
-        public void actualizarPedido(Pedido pedido)
+        public bool actualizarPedido(Pedido pedido)
         {
             AccesoDatos datos = new AccesoDatos();
+            bool exito = false;
 
             try
             {
@@ -238,13 +239,13 @@ namespace negocio
                 datos.setearParametro("@IdPedido", pedido.IdPedido);
                 datos.setearParametro("@idFormaDePago", pedido.formaDePago.IdFormaDePago);
                 datos.setearParametro("@idFormaDeEnvio", pedido.formaDeEnvio.IdFormaDeEnvio);
-                datos.setearParametro("@CodTrans", pedido.CodTransaccion);
-                datos.setearParametro("@CodSegui", pedido.CodSeguimiento);
-                datos.setearParametro("@observaciones", pedido.Observaciones);
+                datos.setearParametro("@CodTrans", pedido.CodTransaccion != null ? (object)pedido.CodTransaccion : DBNull.Value);
+                datos.setearParametro("@CodSegui", pedido.CodSeguimiento != null ? (object)pedido.CodSeguimiento : DBNull.Value);
+                datos.setearParametro("@observaciones", pedido.Observaciones != null ? (object)pedido.Observaciones : DBNull.Value);
                 datos.setearParametro("@estadoPedido", pedido.EstadoPedido);
 
                 datos.ejecutarAccion();
-
+                exito = true; // Si llega aquí sin lanzar excepciones, la actualización fue exitosa
             }
             catch (Exception ex)
             {
@@ -254,7 +255,10 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+
+            return exito;
         }
+
         public Pedido cargarPedido(int Idpedido)
         {
             List<Pedido> lista = new List<Pedido>();
