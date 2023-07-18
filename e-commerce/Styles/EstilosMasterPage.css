@@ -78,3 +78,26 @@ body {
         color: #ffffff;
         font-size: 24px;
     }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilo para el icono de corazón */
+.heart-checkbox {
+    display: inline-block;
+    cursor: pointer;
+}
+
+    /* Estilo para el corazón no seleccionado */
+    .heart-checkbox .far.fa-heart:before {
+        content: "\f004";
+        /* Código Unicode del corazón no seleccionado en Font Awesome */
+    }
+
+    /* Estilo para el corazón seleccionado */
+    .heart-checkbox input:checked + label .far.fa-heart:before {
+        content: "\f004";
+        /* Código Unicode del corazón seleccionado en Font Awesome */
+        color: red; /* Cambia el color del corazón seleccionado, si lo deseas */
+    }

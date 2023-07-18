@@ -41,6 +41,7 @@
                 <div>
                     <h2 style="margin-bottom: 20px;">
                         <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
+                        <asp:CheckBox ID="ckbFavorito" Visible="false" runat="server" />
                     </h2>
                     <h3 style="font-size: 20px;">Descripción: 
                             <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label>
@@ -55,6 +56,7 @@
                             <asp:Label ID="lblPrecioArt" runat="server" Text=""></asp:Label>
                     </h3>
                 </div>
+                
 
 
                 <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 25px;">

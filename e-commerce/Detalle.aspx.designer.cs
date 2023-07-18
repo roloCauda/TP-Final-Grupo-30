@@ -33,6 +33,15 @@ namespace e_commerce
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
+        /// ckbFavorito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckbFavorito;
+
+        /// <summary>
         /// lblDescripcion control.
         /// </summary>
         /// <remarks>

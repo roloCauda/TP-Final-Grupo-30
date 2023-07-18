@@ -59,6 +59,11 @@ namespace e_commerce
             /*  Carga las imagenes del articulo seleccionado */
             rptItems.DataSource = art.ListaImagenes;
             rptItems.DataBind();
+            
+            if (Session["usuario"] != null)
+            {
+                ckbFavorito.Visible = true;
+            }
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)

@@ -67,5 +67,18 @@ namespace e_commerce
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
         }
+
+        protected void repRepetidor_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                CheckBox ckbFavorito = (CheckBox)e.Item.FindControl("ckbFavorito");
+
+                if (Session["usuario"] != null)
+                {
+                    ckbFavorito.Visible = true;
+                }
+            }
+        }
     }
 }
