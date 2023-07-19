@@ -52,6 +52,41 @@ namespace negocio
                             break;
                     }
 
+                    //cargar imagenes en la lista de Articulo
+                    AccesoDatos datos2 = new AccesoDatos();
+
+                    try
+                    {
+                        datos2.setearConsulta("Select IdArticulo FROM Favoritos WHERE IdCliente = @IdCliente");
+                        datos2.setearParametro("@IdCliente", user.IdUsuario);
+                        datos2.ejecutarLectura();
+
+                        List<Favoritos> LFavoritos = new List<Favoritos>();
+
+                        while (datos2.Lector.Read())
+                        {
+                            Favoritos auxF;
+
+                            if (!(datos2.Lector["IdArticulo"] is DBNull))
+                            {
+                                auxF = new Favoritos();
+                                auxF.IdArticulo = (int)datos2.Lector["IdArticulo"];
+
+                                LFavoritos.Add(auxF);
+                            }
+                        }
+
+                        user.ListaFavoritos = LFavoritos;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        datos2.cerrarConexion();
+                    }
+
                     return true;
                 }
                 return false;

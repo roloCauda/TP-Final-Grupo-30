@@ -124,7 +124,7 @@ CREATE TABLE Favoritos (
 	IdArticulo INT NOT NULL,
 	PRIMARY KEY(IdCliente, IdArticulo),
 	FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id),
-	FOREIGN KEY (IdCliente) REFERENCES Usuarios(DNI)
+	FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id)
 );
 
 select * from Favoritos
@@ -244,17 +244,30 @@ select * from direcciones
 select * from Pedidos
 select * from FormasDeEnvio
 select * from FormasDePago
+select * from Favoritos
+
 update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
+update Usuarios set  IDDomicilio = 1 where Id = 2
+
+insert into Favoritos (IdCliente, IdArticulo) values (1,2)
 
 alter table Pedidos
 ADD CodigoDeTransaccion VARCHAR(100) null,
 CodigoSeguimiento VARCHAR(100) null,
 Observaciones VARCHAR(300) null,
-Entregado bit not null default 0,
-Cancelado bit not null default 0,
 EstadoPedido VARCHAR(100) null default 'Pendiente';
+
+alter table Usuarios
+ADD Activo bit not null default 1;
 
 /*borrar Entregado y Cancelado*/ 
 
 SELECT IdFormaEnvio from PEDIDOS WHERE Id = 1
 
+ALTER TABLE Favoritos
+
+/*para saber las restricciones de una tabla*/
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_SCHEMA = 'dbo'
+AND TABLE_NAME = 'Favoritos';
