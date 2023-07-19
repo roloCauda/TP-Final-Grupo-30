@@ -182,12 +182,12 @@ VALUES (1, 10, 5200),
        (3, 8, 950.5);
 
 -- Procedimientos almacenados
-CREATE procedure storedListar
+ALTER procedure storedListar
 as
 begin
-	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria
-	From ARTICULOS A, CATEGORIAS C, MARCAS M
-	Where C.Id = A.IdCategoria And M.Id = A.IdMarca
+	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad as Stock
+	From ARTICULOS A, CATEGORIAS C, MARCAS M, Stock S
+	Where C.Id = A.IdCategoria And M.Id = A.IdMarca And A.Id = S.IdArticulo
 end
 
 CREATE PROCEDURE storedImg
@@ -245,11 +245,10 @@ select * from Pedidos
 select * from FormasDeEnvio
 select * from FormasDePago
 select * from Favoritos
+select * from Articulos
 
 update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
 update Usuarios set  IDDomicilio = 1 where Id = 2
-
-insert into Favoritos (IdCliente, IdArticulo) values (1,2)
 
 alter table Pedidos
 ADD CodigoDeTransaccion VARCHAR(100) null,

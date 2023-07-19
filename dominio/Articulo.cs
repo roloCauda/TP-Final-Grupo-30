@@ -22,6 +22,7 @@ namespace dominio
         public Categoria IdCategoria { get; set; }
 
         public decimal Precio { get; set; }
+        public int stock { get; set; }
 
         public override string ToString()
         {
