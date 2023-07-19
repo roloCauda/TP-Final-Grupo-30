@@ -34,9 +34,9 @@
             <asp:DropDownList ID="ddlFormaDePago" runat="server"></asp:DropDownList>
             <asp:TextBox ID="txtCódigoDeTransacción" runat="server"></asp:TextBox>
         </div>
-        <div>
+        <div class="checkbox-list-container">
             <label>Estado del Pedido</label>
-            <asp:CheckBoxList ID="ckblEstadoPedido" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ckblEstadoPedido_SelectedIndexChanged"></asp:CheckBoxList>
+            <asp:CheckBoxList ID="ckblEstadoPedido" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ckblEstadoPedido_SelectedIndexChanged" ></asp:CheckBoxList>
         </div>
         <div>
             <label>Observaciones</label>
@@ -47,7 +47,7 @@
             <asp:Button ID="btnVolver" runat="server" Text="Volver" type="submit" class="btn btn-primary btn-lg" OnClick="btnVolver_Click"/>
         </div>
         <div>
-            <asp:Label ID="lblContraseñaGuardadaConExito" runat="server" Text="Cambios guardados con éxito" Visible="false" ></asp:Label>
+            <asp:Label ID="lblGuardarCambiosConExito" runat="server" Text="Cambios guardados con éxito" Visible="false" ></asp:Label>
         </div>
     </div>
 </asp:Content>

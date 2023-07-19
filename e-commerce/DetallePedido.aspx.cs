@@ -145,7 +145,7 @@ namespace e_commerce
             pedido.EstadoPedido = ObtenerUltimoEstadoSeleccionado();
 
             if (negocioP.actualizarPedido(pedido))
-                lblContraseñaGuardadaConExito.Visible = true;
+                lblGuardarCambiosConExito.Visible = true;
         }
 
         private string ObtenerUltimoEstadoSeleccionado()

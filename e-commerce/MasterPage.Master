@@ -200,11 +200,16 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Default.aspx" style="color: #1c3166">INICIO</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="Productos.aspx" style="color: #1c3166">PRODUCTOS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Productos.aspx" style="color: #1c3166">IMPRESORAS</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="Productos.aspx" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #1c3166">CATEGORIAS</a>
+                                <asp:DropDownList ID="ddlCategorias" runat="server" class="dropdown-item" AutoPostBack="true" Visible="false"></asp:DropDownList>
+                                <ul class="dropdown-menu">
+                                    <asp:Repeater ID="rptCategorias" runat="server">
+                                        <ItemTemplate>
+                                            <li><a class="dropdown-item" href="Productos.aspx?categoria=<%# Eval("IdCategoria") %>"><%# Eval("Descripcion") %></a></li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="Productos.aspx" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #1c3166">MARCAS</a>

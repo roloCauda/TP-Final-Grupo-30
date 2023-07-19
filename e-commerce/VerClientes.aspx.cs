@@ -43,7 +43,7 @@ namespace e_commerce
             {
                 GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
                 string idUsuario = dgvClientes.DataKeys[row.RowIndex].Value.ToString();
-                UsuarioNegocio negocio;
+                UsuarioNegocio negocio = new UsuarioNegocio();
 
                 // Acciones según el comando seleccionado
                 if (e.CommandName == "Ver")
@@ -53,14 +53,16 @@ namespace e_commerce
                 }
                 else if(e.CommandName == "Baja")
                 {
-                    negocio = new UsuarioNegocio();
                     negocio.CambiarEstadoActivo(idUsuario, 0);
                 }
                 else
                 {
-                    negocio = new UsuarioNegocio();
                     negocio.CambiarEstadoActivo(idUsuario, 1);
                 }
+
+                rblOpciones.SelectedValue = "1";
+                dgvClientes.DataSource = negocio.listarSegunAcceso(3, -1);
+                dgvClientes.DataBind();
             }
         }
 

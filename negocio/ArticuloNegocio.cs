@@ -587,5 +587,113 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Articulo> listarPorCategoria(string idCategoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            List<Articulo> lista = new List<Articulo>();
+
+            try
+            {
+                datos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria " +
+                                    "From ARTICULOS A " +
+                                    "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria " +
+                                    "INNER JOIN MARCAS M ON M.Id = A.IdMarca " +
+                                    "Where A.IdCategoria = @IdCategoria");
+                datos.setearParametro("@IdCategoria", idCategoria);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+
+                    if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.IdMarca = new Marca();
+                    if (!(datos.Lector["marca"] is DBNull))
+                    {
+                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
+                    }
+
+                    aux.IdCategoria = new Categoria();
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                    {
+                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
+                    }
+
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    //cargar imagenes en la lista de Articulo
+                    AccesoDatos datos2 = new AccesoDatos();
+
+                    try
+                    {
+                        datos2.setearSPconParametro("storedImg", aux.IdArticulo);
+                        datos2.ejecutarLectura();
+
+                        List<Imagen> LImagenes = new List<Imagen>();
+                        bool imagenEncontrada = false;
+
+                        while (datos2.Lector.Read())
+                        {
+                            Imagen auxI;
+
+                            if (!(datos2.Lector["ImagenUrl"] is DBNull))
+                            {
+                                auxI = new Imagen();
+                                auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
+                                imagenEncontrada = true;
+
+                                LImagenes.Add(auxI);
+                            }
+
+                        }
+
+                        if (!imagenEncontrada)
+                        {
+                            Imagen auxI = new Imagen();
+                            auxI.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                            LImagenes.Add(auxI);
+                        }
+
+                        aux.ListaImagenes = LImagenes;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        datos2.cerrarConexion();
+                    }
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

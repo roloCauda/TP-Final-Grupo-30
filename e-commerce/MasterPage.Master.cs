@@ -39,6 +39,17 @@ namespace e_commerce
                 ddlMarcas.DataTextField = "Descripcion";
                 ddlMarcas.DataBind();
 
+                CategoriaNegocio negocioC = new CategoriaNegocio();
+                List<Categoria> listaCategorias = negocioC.listar();
+
+                rptCategorias.DataSource = listaCategorias; // Corregir el nombre del repeater aquí
+                rptCategorias.DataBind();
+
+                ddlCategorias.DataSource = listaCategorias;
+                ddlCategorias.DataValueField = "IdCategoria";
+                ddlCategorias.DataTextField = "Descripcion";
+                ddlCategorias.DataBind();
+
                 repInfoCarrito.DataSource = carrito.ListaItems;
                 repInfoCarrito.DataBind();
             }

@@ -42,6 +42,13 @@ namespace e_commerce
                         repRepetidor.DataSource = ListaArticulo;
                         repRepetidor.DataBind();
                     }
+                    else if(!string.IsNullOrEmpty(Request.QueryString["categoria"]))
+                    {
+                        string idCategoria = Request.QueryString["categoria"];
+                        ListaArticulo = negocio.listarPorCategoria(idCategoria);
+                        repRepetidor.DataSource = ListaArticulo;
+                        repRepetidor.DataBind();
+                    }
                     else
                     {
                         ListaArticulo = negocio.listarConSP();
