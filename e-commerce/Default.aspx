@@ -6,7 +6,7 @@
 
 
 
-    <!--Carrouel-->
+    <!--Carrousel-->
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -30,7 +30,7 @@
     </div>
 
     <div style="display: flex; justify-content: center; align-items: center; padding-top: 50px;">
-        <h2>Productos Destacados</h2>
+        <h2>PRODUCTOS DESTACADOS</h2>
     </div>
 
     <div class="container-default">
@@ -59,6 +59,23 @@
 
     <div style="display: flex; justify-content: center; align-items: center; height: 150px;">
         <a href="Productos.aspx" class="btn" style="display: inline-block; margin: 0 auto; background-color: #1c3166; color: #fff;">Ver Más</a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 150px; margin-top: 50px;">
+        <div style="padding-bottom:20px;">
+            <h2>ENCONTRANOS</h2>
+        </div>
+
+        <div style="background-color:#1c3166; text-align:center; color:white;">
+            <img src="https://i.imgur.com/SuthGue.png" alt="mapa" style="padding-bottom:20px;"/>
+            <p>
+                Estamos en Parque Chacabuco, Capital Federal
+            </p>
+            <p>
+                José María Moreno 1354
+            </p>
+
+        </div>
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 150px; margin-top: 150px;">
