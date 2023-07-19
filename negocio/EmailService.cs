@@ -125,7 +125,7 @@ namespace negocio
             <p>Total del pedido: <strong>${TotalCompra}</strong></p>
         </div>
         <div class=""footer"">
-            <p>Si tienes alguna pregunta sobre tu pedido, por favor contáctanos en glafot@gmail.com</p>
+            <p>Si tienes alguna pregunta sobre tu pedido, por favor contactanos en glafot@gmail.com</p>
         </div>
     </div>
 </body>
@@ -143,6 +143,71 @@ namespace negocio
                 detallesProductos += $"<li>{articuloXPedido.Nombre} - ${articuloXPedido.PrecioTotal}</li>";
             }
             emailBody = emailBody.Replace("{DetallesProductos}", detallesProductos);
+
+            return emailBody;
+        }
+        public string obtenerCuerpoMailConNuevaContraseña(string nuevaPass)
+        {
+            // Plantilla HTML del correo electrónico
+            string emailBody = @"
+             <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset=""UTF-8"">
+                    <title>Recuperación de Contraseña</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            background-color: #f9f9f9;
+                        }
+                        .logo {
+                            text-align: center;
+                        }
+                        .logo img {
+                            max-width: 150px;
+                        }
+                        .message {
+                            text-align: center;
+                            margin-top: 20px;
+                        }
+                        .thank-you {
+                            text-align: center;
+                            font-size: 20px;
+                            color: #007bff;
+                        }
+                        .footer {
+                            margin-top: 30px;
+                            text-align: center;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class=""container"">
+                        <div class=""logo"">
+                            <img src=""https://i.imgur.com/Rqj3HHN.png"" alt=""Logo de la tienda"">
+                        </div>
+                        <div class=""message"">
+                            <p class=""thank-you"">Aquí tienes tu nueva contraseña: <strong>{Contraseña}</strong></p>
+                            <p>Hemos generado una nueva contraseña para que puedas ingresar.</p>
+                            <p>Una vez hayas iniciado sesión vas a poder modificarla en tu perfil.</p>
+                        </div>
+                        <div class=""footer"">
+                            <p>Si tienes alguna duda, por favor contactanos en glafot@gmail.com</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            ";
+
+            emailBody = emailBody.Replace("{Contraseña}", nuevaPass);
 
             return emailBody;
         }

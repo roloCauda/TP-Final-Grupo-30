@@ -28,10 +28,12 @@ namespace e_commerce
                 Response.Redirect("Default.aspx");
             }
 
-            if (!IsPostBack)
-            {
                 lblErrorLogin.Visible = false;
                 lblErrorRegistrarse.Visible = false;
+                lblErrorRegistrado.Visible = false;
+
+            if (!IsPostBack)
+            {
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];
@@ -77,22 +79,42 @@ namespace e_commerce
             Usuario usuario = new Usuario();
             UsuarioNegocio uNegocio = new UsuarioNegocio();
 
-            usuario = uNegocio.CargarUsuarioxDNI(int.Parse(txtDNI.Text));
-            string nuevaPass = RandomStringGenerator.GenerateRandomString(8);
-
-            uNegocio.cambiarContraseña(usuario, nuevaPass);
-        
-            EmailService emailService = new EmailService();
-            emailService.armarCorreo(usuario.Email, "Recuperación de Cuenta", "Su nueva contraseña es: " + nuevaPass);
-
             try
             {
-                emailService.enviarCorreo();
+                if (uNegocio.SiEstaRegistrado(int.Parse(txtDNI.Text)))
+                {
+                    usuario = uNegocio.CargarUsuarioxDNI(int.Parse(txtDNI.Text));
+                    string nuevaPass = RandomStringGenerator.GenerateRandomString(8);
+
+                    uNegocio.cambiarContraseña(usuario, nuevaPass);
+
+                    EmailService emailService = new EmailService();
+                    string cuerpoMail = emailService.obtenerCuerpoMailConNuevaContraseña(nuevaPass);
+                    emailService.armarCorreo(usuario.Email, "Recuperación de Contraseña", cuerpoMail);
+
+                    try
+                    {
+                        emailService.enviarCorreo();
+                        Response.Redirect("RecuperarPass.aspx");
+                    }
+                    catch (Exception ex)
+                    {
+                        Session.Add("error", ex);
+                    }
+                }
+                else
+                {
+                    lblErrorRegistrado.Visible = true;
+                }
+
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+
+                throw ex;
             }
+
+            
 
         }
 

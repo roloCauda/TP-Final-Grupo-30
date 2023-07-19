@@ -82,6 +82,7 @@
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="RecuperarPass.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="Styles\EstilosMasterPage.css" />
     <Content Include="Global.asax" />
@@ -243,6 +244,13 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecuperarPass.aspx.cs">
+      <DependentUpon>RecuperarPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarPass.aspx.designer.cs">
+      <DependentUpon>RecuperarPass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registrarse.aspx.cs">
       <DependentUpon>Registrarse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

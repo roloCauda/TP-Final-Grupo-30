@@ -33,17 +33,18 @@
                 </div>
                 <!-- Grupo: boton Ingresar -->
                 <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 20px;">
-                    <asp:Button ID="btn_Ingresar" runat="server" Text="INGRESAR" class="formulario__btn"
+                    <asp:Button ID="btn_Ingresar" runat="server" Text="INGRESAR" class="formulario__btn" style="width:200px;"
                         CausesValidation="true" ValidationGroup="validacionGrupoLOGIN" OnClick="btn_Ingresar_Click" />
                     <asp:Label ID="lblErrorLogin" runat="server" Text="*DNI/Contraseña incorrectos" CssClass="text-danger"></asp:Label>
                 </div>
                 <!-- Grupo: boton Recuperar Contraseña -->
                 <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 40px;">
-                    <asp:Button ID="btnRecuperarContraseña" runat="server" Text="Recuperar Contraseña" class="formulario__btn"
+                    <asp:Button ID="btnRecuperarContraseña" runat="server" Text="Recuperar Contraseña" class="formulario__btn" style="width:200px;"
                         CausesValidation="true" ValidationGroup="validacionGrupoRecuperarContraseña" OnClick="btnRecuperarContraseña_Click" />
                     <asp:RequiredFieldValidator ID="rfvDNIRecuperarContraseña" runat="server" ControlToValidate="txtDNI"
                         ErrorMessage="*El campo DNI es obligatorio" CssClass="text-danger"
                         ValidationGroup="validacionGrupoRecuperarContraseña"></asp:RequiredFieldValidator>
+                    <asp:Label ID="lblErrorRegistrado" runat="server" Text="*el DNI no se encuentra registrado" CssClass="text-danger"></asp:Label>
                 </div>
             </div>
         </div>
@@ -67,7 +68,7 @@
                 </div>
                 <!-- Grupo: Crear Cuenta -->
                 <div class="formulario__grupo formulario__grupo-btn-enviar" style="margin-top: 20px;">
-                    <asp:Button ID="Button1" runat="server" Text="CREAR CUENTA" class="formulario__btn"
+                    <asp:Button ID="Button1" runat="server" Text="CREAR CUENTA" class="formulario__btn" style="width:200px;"
                         CausesValidation="true" ValidationGroup="validacionGrupoCrearCuenta" OnClick="btn_CrearCuenta_Click" />
                     <asp:Label ID="lblErrorRegistrarse" runat="server" Text="*El DNI ya se encuentra registrado" CssClass="text-danger"></asp:Label>
                 </div>
