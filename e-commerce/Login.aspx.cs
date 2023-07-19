@@ -74,6 +74,25 @@ namespace e_commerce
 
         protected void btnRecuperarContraseña_Click(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio uNegocio = new UsuarioNegocio();
+
+            usuario = uNegocio.CargarUsuarioxDNI(int.Parse(txtDNI.Text));
+            string nuevaPass = RandomStringGenerator.GenerateRandomString(8);
+
+            uNegocio.cambiarContraseña(usuario, nuevaPass);
+        
+            EmailService emailService = new EmailService();
+            emailService.armarCorreo(usuario.Email, "Recuperación de Cuenta", "Su nueva contraseña es: " + nuevaPass);
+
+            try
+            {
+                emailService.enviarCorreo();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
 
         }
 

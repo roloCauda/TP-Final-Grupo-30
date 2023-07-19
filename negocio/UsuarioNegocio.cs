@@ -207,6 +207,27 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public void cambiarContraseña(Usuario user, string pass)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET Contraseña = @Contraseña where DNI = @dni");
+                datos.setearParametro("@Contraseña", pass);
+                datos.setearParametro("@dni", user.DNI);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public int AgregarUsuarioSinLoguear(Usuario user)
         {
@@ -332,6 +353,61 @@ namespace negocio
             {
                 datos.setearConsulta("Select Id, DNI, Nombres, Apellidos, Email, Telefono, IDDomicilio, TipoAcceso FROM Usuarios WHERE @id = Id");
                 datos.setearParametro("@id", IdUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    user.IdUsuario = (int)datos.Lector["Id"];
+                    user.DNI = (int)datos.Lector["DNI"];
+                    user.Nombres = (string)datos.Lector["Nombres"];
+                    user.Apellidos = (string)datos.Lector["Apellidos"];
+                    user.Email = (string)datos.Lector["Email"];
+
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                    {
+                        user.Telefono = (string)datos.Lector["Telefono"];
+                    }
+
+                    user.direccion = new Direccion();
+                    if (!(datos.Lector["IDDomicilio"] is DBNull))
+                    {
+                        user.direccion.IdDireccion = (int)datos.Lector["IDDomicilio"];
+                    }
+
+                    switch ((int)datos.Lector["TipoAcceso"])
+                    {
+                        case 1:
+                            user.TipoUsuario = TipoUsuario.ADMIN;
+                            break;
+                        case 2:
+                            user.TipoUsuario = TipoUsuario.EMPLEADO;
+                            break;
+                        case 3:
+                            user.TipoUsuario = TipoUsuario.CLIENTE;
+                            break;
+                    }
+                }
+
+                return user;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Usuario CargarUsuarioxDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario user = new Usuario();
+            try
+            {
+                datos.setearConsulta("Select Id, DNI, Nombres, Apellidos, Email, Telefono, IDDomicilio, TipoAcceso FROM Usuarios WHERE @dni = DNI");
+                datos.setearParametro("@DNI", dni);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
