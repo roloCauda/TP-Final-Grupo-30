@@ -150,13 +150,15 @@ namespace e_commerce.Pag_Cliente
         }    
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            if (Session["usuario"] != null)
+            dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
+
+            if (Session["usuario"] != null && carrito.ListaItems.Count != 0)
             {
                 Response.Redirect("FinDeCompra.aspx");
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Productos.aspx");
             }
         }
 

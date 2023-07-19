@@ -249,7 +249,7 @@
         <div class="arrow-down" style="height: 0px; position: relative;"></div>
 
         <!--Footer-->
-        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom: 35px;">
+        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom: 20px;">
 
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Empresa</h3>
@@ -257,13 +257,15 @@
                     <h4 style="font-size: medium;">Nosotros</h4>
                     <h4 style="font-size: medium;">Productos</h4>
                     <h4 style="font-size: medium;">Alquileres</h4>
+                    <h4 style="font-size: medium;">FAQs</h4>
                 </div>
             </div>
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Contacto</h3>
                 <div>
-                    <h4 style="font-size: medium;">Dirección</h4>
-                    <h4 style="font-size: medium;">Teléfono</h4>
+                    <h4 style="font-size: medium;">José María Moreno 1354</h4>
+                    <h4 style="font-size: medium;">Buenos Aires, Capital Federal</h4>
+                    <h4 style="font-size: medium;">+54 9 1121818448</h4>
                     <h4 style="font-size: medium;">glafot@gmail.com</h4>
                 </div>
             </div>
