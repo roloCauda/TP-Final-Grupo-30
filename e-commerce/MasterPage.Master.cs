@@ -61,7 +61,7 @@ namespace e_commerce
 
             // Oculta el botón carrito en las páginas que quiera
 
-            if (Request.Url.AbsolutePath.Contains("Carrito") || Request.Url.AbsolutePath.Contains("FinDeCompra"))
+            if (Request.Url.AbsolutePath.Contains("Carrito") || Request.Url.AbsolutePath.Contains("FinDeCompra") || Request.Url.AbsolutePath.Contains("CompraRealizada"))
             {
                 btnCarrito.Visible = false;
             }

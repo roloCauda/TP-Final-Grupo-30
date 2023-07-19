@@ -19,7 +19,7 @@ namespace e_commerce.Pag_Cliente
 
             if (!IsPostBack)
             {
-                
+
                 dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
 
                 TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
@@ -83,7 +83,7 @@ namespace e_commerce.Pag_Cliente
             }
         }
         private void MostrarPanel(string opcion)
-        {            
+        {
             pnl_Datos.Visible = (opcion == "Datos");
             pnl_Envio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
             pnlFormaDeEnvio.Visible = (opcion == "Envio" || opcion == "DatosEnvio");
@@ -93,20 +93,20 @@ namespace e_commerce.Pag_Cliente
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
-            
+
             Button btn_Opcion = (Button)sender;
             string opcion = btn_Opcion.CommandArgument;
             Pedido pedido = (Pedido)Session["pedido"];
 
             int IDEnvio = pedido.formaDeEnvio.IdFormaDeEnvio;
 
-            if (IDEnvio == 2 && opcion== "Envio")
+            if (IDEnvio == 2 && opcion == "Envio")
             {
                 MostrarPanel("DatosEnvio");
             }
             else
             {
-                MostrarPanel(opcion);              
+                MostrarPanel(opcion);
             }
 
         }
@@ -168,29 +168,18 @@ namespace e_commerce.Pag_Cliente
         }
         protected void btnConfirmar(object sender, EventArgs e)
         {
-            //dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
-            //Usuario usuario = (Usuario)Session["usuario"];
-            //Pedido pedido = new Pedido();
+            dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
+            Usuario usuario = (Usuario)Session["usuario"];
+            Pedido pedido = new Pedido();
             //UsuarioNegocio negocioU = new UsuarioNegocio();
             //DireccionNegocio negocioD = new DireccionNegocio();
-            //PedidoNegocio negocioP = new PedidoNegocio();
-            //ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
+            PedidoNegocio negocioP = new PedidoNegocio();
+            ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
 
-            //if (usuario == null) //si no esta logueado
-            //{
-            //    //SI ELIGIO ENVIO
-            //    if(!string.IsNullOrEmpty(usuario.direccion.Calle)) 
-            //    {
-            //        //OJOOOOOO ----- NO ESTA GUARDANDO LO QUE TIENE DIRECCIONH EN USUARIO TODAVIA
-            //        usuario.direccion.IdDireccion = negocioD.AgregarDireccion(usuario);
-            //    }
-
-            //    pedido.IdCliente = negocioU.AgregarUsuarioSinLoguear(usuario);
-            //}
-            //else //si esta logueado
-            //{
-            //    pedido.IdCliente = usuario.IdUsuario;
-            //}
+            //pedido.IdCliente = usuario.IdUsuario;
+            //pedido.Fecha = DateTime.Now;
+            //pedido.formaDePago.IdFormaDePago = 1;
+            //pedido.formaDeEnvio.IdFormaDeEnvio = 1;
 
             //pedido.IdPedido = negocioP.agregarPedido(pedido);
 
@@ -199,16 +188,22 @@ namespace e_commerce.Pag_Cliente
             //negocioAP.cargarEnBDlistaArticulos(pedido);
 
             EmailService emailService = new EmailService();
-            emailService.armarCorreo("rolycauda@gmail.com", "Asunto del correo", "Este es el contenido del correo electrónico.");
-
+            EmailService emailService2 = new EmailService();
+            string cuerpoMailCompra = emailService.obtenerCuerpoMailConDatosDePedido(pedido, usuario);
+            emailService.armarCorreo("rolycauda@gmail.com", "Información de tu Compra", cuerpoMailCompra);
+            emailService2.armarCorreo("rolycauda@gmail.com", "Nueva Venta", "Nueva venta realizada con éxito.");
             try
             {
                 emailService.enviarCorreo();
+                //emailService2.enviarCorreo();
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
             }
+
+            Response.Redirect("CompraRealizada.aspx");
         }
+
     }
 }

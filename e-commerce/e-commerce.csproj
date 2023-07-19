@@ -73,6 +73,7 @@
     <Content Include="AgregarMarca.aspx" />
     <Content Include="AgregarProducto.aspx" />
     <Content Include="ApagarWeb.aspx" />
+    <Content Include="CompraRealizada.aspx" />
     <Content Include="Cuenta_Usuario.aspx" />
     <Content Include="DetalleCliente.aspx" />
     <Content Include="DetallePedido.aspx" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="AgregarEmpleados.aspx.designer.cs">
       <DependentUpon>AgregarEmpleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompraRealizada.aspx.cs">
+      <DependentUpon>CompraRealizada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompraRealizada.aspx.designer.cs">
+      <DependentUpon>CompraRealizada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cuenta_Usuario.aspx.cs">
       <DependentUpon>Cuenta_Usuario.aspx</DependentUpon>
