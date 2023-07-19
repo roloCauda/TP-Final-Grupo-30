@@ -70,14 +70,52 @@ namespace e_commerce
 
         protected void repRepetidor_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            LinkButton lnkFavorito = (LinkButton)e.Item.FindControl("lnkFavorito");
+
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                CheckBox ckbFavorito = (CheckBox)e.Item.FindControl("ckbFavorito");
-
-                if (Session["usuario"] != null)
+                if (Session["usuario"] == null)
                 {
-                    ckbFavorito.Visible = true;
+                    lnkFavorito.Visible = false;
                 }
+                else
+                {
+                    Usuario user = (Usuario)Session["usuario"];
+                    int idArticulo = (int)DataBinder.Eval(e.Item.DataItem, "IdArticulo");
+
+                    if (user.ListaFavoritos.Any(favorito => favorito.IdArticulo == idArticulo))
+                    {
+                        lnkFavorito.CssClass = "bi bi-heart-fill";
+                    }
+                    else
+                    {
+                        lnkFavorito.CssClass = "bi bi-heart";
+                    }
+                }
+            }
+        }
+
+        protected void lnkFavorito_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkFavorito = (LinkButton)sender;
+            Usuario user = (Usuario)Session["usuario"];
+            int idArticulo = Convert.ToInt32(lnkFavorito.CommandArgument);
+
+            FavoritoNegocio negocioF = new FavoritoNegocio();
+
+            if (user.ListaFavoritos.Any(favorito => favorito.IdArticulo == idArticulo))
+            {
+                negocioF.QuitarFavorito(user.IdUsuario, idArticulo);
+                user.ListaFavoritos.RemoveAll(favorito => favorito.IdArticulo == idArticulo);
+                lnkFavorito.CssClass = "bi bi-heart";
+            }
+            else
+            {
+                negocioF.AgregarFavorito(user.IdUsuario, idArticulo);
+                Favoritos favoritos = new Favoritos();
+                favoritos.IdArticulo = idArticulo;
+                user.ListaFavoritos.Add(favoritos);
+                lnkFavorito.CssClass = "bi bi-heart-fill";
             }
         }
     }

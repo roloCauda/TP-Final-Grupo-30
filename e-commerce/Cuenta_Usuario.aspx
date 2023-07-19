@@ -53,7 +53,7 @@
                             <!-- Grupo: DNI -->
                             <div style="position: relative;">
                                 <label class="formulario__label">DNI</label>
-                                <asp:TextBox ID="txtDNI" type="text" runat="server"  class="formulario__input"></asp:TextBox>
+                                <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
                             </div>
 
                             <!-- Grupo: Nombres -->
@@ -238,10 +238,33 @@
                     </asp:Panel>
 
                     <!-- Contenido de favoritos -->
+
                     <asp:Panel ID="pnl_Favoritos" runat="server">
                         <h3>Favoritos</h3>
-                        <!-- ACA VA UNA GRIDVIEW con botones de accion para eliminar-->
+                            <asp:GridView ID="dgvArticuloFavoritos" runat="server" DataKeyNames="IdArticulo"
+                                CssClass="table" AutoGenerateColumns="false"
+                                OnRowCommand="dgvArticuloFavoritos_RowCommand"
+                                OnPageIndexChanging="dgvArticuloFavoritos_PageIndexChanging"
+                                AllowPaging="true" PageSize="5">
+                                <columns>
+                                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                    <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                                    <asp:BoundField HeaderText="Precio Unit." DataField="Precio" />
+                                    <asp:TemplateField HeaderText="Imagen">
+                                        <itemtemplate>
+                                            <asp:Image ID="imgArticulo" runat="server" ImageUrl='<%# Eval("ListaImagenes[0].ImagenURL") %>' Width="100" Height="100" />
+                                        </itemtemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Acciones">
+                                        <itemtemplate>
+                                            <asp:LinkButton runat="server" ID="lnkVer" Text="🔍" CommandName="Ver" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="lnkEliminar" Text="❌" CommandName="Quitar" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                                        </itemtemplate>
+                                    </asp:TemplateField>
+                                </columns>
+                            </asp:GridView>
                     </asp:Panel>
+
 
                     <!-- Contenido de pedidos -->
                     <asp:Panel ID="pnl_Pedidos" runat="server">
@@ -253,9 +276,9 @@
                             OnPageIndexChanging="dgvPedidosCliente_PageIndexChanging"
                             AllowPaging="true" PageSize="5">
                             <Columns>
-                                <asp:BoundField HeaderText="N° de Pedido" DataField="IDPedido"/>
-                                <asp:BoundField HeaderText="Forma de Pago" DataField="FormaDePago.Descripcion"/>
-                                <asp:BoundField HeaderText="Fecha" DataField="Fecha"/>
+                                <asp:BoundField HeaderText="N° de Pedido" DataField="IDPedido" />
+                                <asp:BoundField HeaderText="Forma de Pago" DataField="FormaDePago.Descripcion" />
+                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
                                 <asp:TemplateField HeaderText="Acciones">
                                     <ItemTemplate>
                                         <asp:LinkButton runat="server" ID="lnkVer" Text="🔍" CommandName="VerPedido" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
@@ -274,11 +297,11 @@
                             OnPageIndexChanging="dgvArtPorPedido_PageIndexChanging"
                             AllowPaging="true" PageSize="5">
                             <Columns>
-                                <asp:BoundField HeaderText="Nombre" DataField="Nombre"/>
-                                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"/>
-                                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad"/>
-                                <asp:BoundField HeaderText="Precio Unit." DataField="PrecioUnitario"/>
-                                <asp:BoundField HeaderText="Precio Total." DataField="PrecioTotal"/>
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                                <asp:BoundField HeaderText="Precio Unit." DataField="PrecioUnitario" />
+                                <asp:BoundField HeaderText="Precio Total." DataField="PrecioTotal" />
                                 <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Width="100" ControlStyle-Height="100" />
                             </Columns>
                         </asp:GridView>

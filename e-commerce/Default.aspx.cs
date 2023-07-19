@@ -89,7 +89,6 @@ namespace e_commerce
                 user.ListaFavoritos.Add(favoritos);
                 lnkFavorito.CssClass = "bi bi-heart-fill";
             }
-
         }
 
         protected void repRepetidor_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -56,7 +56,12 @@
                             <asp:Label ID="lblPrecioArt" runat="server" Text=""></asp:Label>
                     </h3>
                 </div>
-                
+
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <asp:LinkButton ID="lnkFavorito" runat="server" CssClass="bi bi-heart" OnClick="lnkFavorito_Click" CommandArgument='<%# Eval("IdArticulo") %>'></asp:LinkButton>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
 
                 <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 25px;">
@@ -67,8 +72,8 @@
                         <asp:Label ID="lblCantCarrito" runat="server" Text="Agregar Al Carrito"></asp:Label>
                     </button>
                     <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" class="btn btn-primary" OnClick="btnAgregar_click" />
-                
-                        </div>
+
+                </div>
 
 
             </div>

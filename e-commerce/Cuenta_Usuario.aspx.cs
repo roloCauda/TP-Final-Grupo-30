@@ -88,6 +88,10 @@ namespace e_commerce
                 PedidoNegocio negocioU = new PedidoNegocio();
                 dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.IdUsuario);
                 dgvPedidosCliente.DataBind();
+
+                FavoritoNegocio negocioF = new FavoritoNegocio();
+                dgvArticuloFavoritos.DataSource = negocioF.listarFavoritosPorCliente(user.IdUsuario);
+                dgvArticuloFavoritos.DataBind();
             }
 
             lblUsuarioGuardadoConExito.Visible = false;
@@ -130,7 +134,7 @@ namespace e_commerce
                 user.Apellidos = txtApellidos.Text;
                 user.Email = txtEmail.Text;
                 user.Telefono = txtTelefono.Text != "" ? txtTelefono.Text : null;
-                
+
                 negocio.actualizarUsuario(user);
                 MostrarMsj("UsuarioExito");
                 Session["usuario"] = user;
@@ -173,10 +177,10 @@ namespace e_commerce
 
             try
             {
-                if(txtPasswordActual.Text == user.Contraseña.ToString())
+                if (txtPasswordActual.Text == user.Contraseña.ToString())
                 {
                     user.Contraseña = txtPasswordNueva.Text;
-                    
+
                     negocio.actualizarContraseña(user);
                     MostrarMsj("ContraseñaExito");
                     Session["usuario"] = user;
@@ -230,7 +234,39 @@ namespace e_commerce
 
         protected void dgvArtPorPedido_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            dgvArtPorPedido.PageIndex = e.NewPageIndex;
+            dgvArtPorPedido.DataBind();
+        }
 
+        protected void dgvArticuloFavoritos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvArticuloFavoritos.PageIndex = e.NewPageIndex;
+            dgvArticuloFavoritos.DataBind();
+        }
+
+        protected void dgvArticuloFavoritos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Ver" || e.CommandName == "Quitar")
+            {
+                GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+                int IdArticulo = int.Parse(dgvArticuloFavoritos.DataKeys[row.RowIndex].Value.ToString());
+                Usuario user = (Usuario)Session["usuario"];
+
+                // Acciones según el comando seleccionado
+                if (e.CommandName == "Ver")
+                {
+                    Response.Redirect("Detalle.aspx?id=" + IdArticulo);
+                }
+                else if (e.CommandName == "Quitar")
+                {
+                    FavoritoNegocio negocioF = new FavoritoNegocio();
+                    negocioF.QuitarFavorito(user.IdUsuario, IdArticulo);
+                    user.ListaFavoritos.RemoveAll(favorito => favorito.IdArticulo == IdArticulo);
+
+                    dgvArticuloFavoritos.DataSource = negocioF.listarFavoritosPorCliente(user.IdUsuario);
+                    dgvArticuloFavoritos.DataBind();
+                }
+            }
         }
     }
 }

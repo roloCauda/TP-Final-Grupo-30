@@ -32,10 +32,10 @@ namespace e_commerce
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
 
+            /*  Trae el ID de Default */
+            string idArticulo = Request.QueryString["id"].ToString();
             try
             {
-                /*  Trae el ID de Default */
-                string idArticulo = Request.QueryString["id"].ToString();
 
                 if (!string.IsNullOrEmpty(idArticulo))
                 {
@@ -59,10 +59,23 @@ namespace e_commerce
             /*  Carga las imagenes del articulo seleccionado */
             rptItems.DataSource = art.ListaImagenes;
             rptItems.DataBind();
-            
-            if (Session["usuario"] != null)
+
+            if (Session["usuario"] == null)
             {
-                ckbFavorito.Visible = true;
+                lnkFavorito.Visible = false;
+            }
+            else
+            {
+                Usuario user = (Usuario)Session["usuario"];
+
+                if (user.ListaFavoritos.Any(favorito => favorito.IdArticulo == int.Parse(idArticulo)))
+                {
+                    lnkFavorito.CssClass = "bi bi-heart-fill";
+                }
+                else
+                {
+                    lnkFavorito.CssClass = "bi bi-heart";
+                }
             }
         }
 
@@ -145,6 +158,30 @@ namespace e_commerce
 
                 /*  Hace que se actualice la pagina default y actualice el carrito de la master */
                 Response.Redirect("Detalle.aspx?id=" + artSeleccionado.IdArticulo);
+            }
+        }
+
+        protected void lnkFavorito_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkFavorito = (LinkButton)sender;
+            Usuario user = (Usuario)Session["usuario"];
+            int idArticulo = int.Parse(Request.QueryString["id"]);
+
+            FavoritoNegocio negocioF = new FavoritoNegocio();
+
+            if (user.ListaFavoritos.Any(favorito => favorito.IdArticulo == idArticulo))
+            {
+                negocioF.QuitarFavorito(user.IdUsuario, idArticulo);
+                user.ListaFavoritos.RemoveAll(favorito => favorito.IdArticulo == idArticulo);
+                lnkFavorito.CssClass = "bi bi-heart";
+            }
+            else
+            {
+                negocioF.AgregarFavorito(user.IdUsuario, idArticulo);
+                Favoritos favoritos = new Favoritos();
+                favoritos.IdArticulo = idArticulo;
+                user.ListaFavoritos.Add(favoritos);
+                lnkFavorito.CssClass = "bi bi-heart-fill";
             }
         }
     }

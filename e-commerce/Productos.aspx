@@ -13,7 +13,11 @@
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                 <p class="card-text"><%#Eval("Descripcion") %></p>
                                 <a href="Detalle.aspx?id=<%#Eval("IdArticulo") %>" class="btn btn-primary">Ver Detalle</a>
-                                <asp:CheckBox ID="ckbFavorito" Visible="false" runat="server" />
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <asp:LinkButton ID="lnkFavorito" runat="server" CssClass="bi bi-heart" OnClick="lnkFavorito_Click" CommandArgument='<%# Eval("IdArticulo") %>'></asp:LinkButton>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
