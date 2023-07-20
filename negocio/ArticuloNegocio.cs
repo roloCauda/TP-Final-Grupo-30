@@ -136,6 +136,12 @@ namespace negocio
 
                 nuevoId = (int)datos.ejecutarEscalar();
 
+                datos.setearConsulta("Insert into Stock (IdArticulo, Cantidad) VALUES (@IdArticulo, @Cantidad)");
+                datos.setearParametro("@IdArticulo", nuevoId);
+                datos.setearParametro("@Cantidad", nuevo.stock);
+
+                datos.ejecutarAccion();
+
                 return nuevoId;
             }
 

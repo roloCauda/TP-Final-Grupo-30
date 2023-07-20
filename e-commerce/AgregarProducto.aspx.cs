@@ -144,8 +144,11 @@ namespace e_commerce.Pag_Admin
                 articulo.Codigo = (!string.IsNullOrEmpty(txtCodigo.Text)) ? txtCodigo.Text : "Sin codigo";
                 articulo.Descripcion = (!string.IsNullOrEmpty(txtDescripcion.Text)) ? txtDescripcion.Text : "Sin descripcion";
                 articulo.Precio = (decimal.TryParse(txtPrecio.Text, out decimal precio)) ? articulo.Precio = precio : articulo.Precio = 0;
+                articulo.stock = int.Parse(txtStock.Text);
 
                 int nuevoId = negocio.agregar(articulo);
+
+
 
                 List<Imagen> ListaImagenes = (List<Imagen>)Session["ListaImagenes"];
 

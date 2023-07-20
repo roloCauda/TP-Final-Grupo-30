@@ -16,6 +16,7 @@
             <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
             <asp:BoundField HeaderText="Marcas" DataField="IdMarca.Descripcion" />
             <asp:BoundField HeaderText="Categorias" DataField="IdCategoria.Descripcion" />
+            <asp:BoundField HeaderText="Stock" DataField="Stock" />
             <asp:TemplateField HeaderText="Acciones">
             <ItemTemplate>
                 <asp:LinkButton runat="server" ID="lnkVer" Text="🔍" CommandName="Ver" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>

@@ -23,7 +23,7 @@
             </div>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre: </label>
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control"/>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
                 <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
                     ErrorMessage="*El campo Nombre es obligatorio" CssClass="text-danger"
                     ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
@@ -31,10 +31,21 @@
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio: </label>
                 <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
-                
+
                 <asp:RegularExpressionValidator ID="revPrecio" runat="server" ControlToValidate="txtPrecio" ValidationExpression="^\d+(\.\d{1,2})?$"
                     ErrorMessage="El Precio solo debe contener numeros y . de ser necesario" CssClass="text-danger"
                     ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
+            </div>
+            <div class="mb-3">
+                <label for="txtStock" class="form-label">Stock: </label>
+                <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" />
+                <asp:RequiredFieldValidator ID="rfdStock" runat="server"
+                    ControlToValidate="txtStock" ErrorMessage="El campo Stock es obligatorio"
+                    CssClass="text-danger" ValidationGroup="validacionGrupo"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="revStock" runat="server"
+                    ControlToValidate="txtStock" ValidationExpression="^(0|[1-9]\d*)$"
+                    ErrorMessage="El Stock solo debe contener números enteros mayores o iguales a 0"
+                    CssClass="text-danger" ValidationGroup="validacionGrupo"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <label for="ddlMarca" class="form-label">Marca: </label>
@@ -55,7 +66,7 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="txtDescripcion" class="form-label">Descripción: </label>
-                <asp:TextBox runat="server" TextMode="MultiLine" ID="txtDescripcion" CssClass="form-control"/>
+                <asp:TextBox runat="server" TextMode="MultiLine" ID="txtDescripcion" CssClass="form-control" />
             </div>
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -63,7 +74,7 @@
 
                     <div class="mb-3 d-flex align-items-center">
                         <label for="txtURLIMAGEN" class="form-label">URLImagen: </label>
-                        <asp:TextBox runat="server" ID="txtURLIMAGEN" CssClass="form-control"/>
+                        <asp:TextBox runat="server" ID="txtURLIMAGEN" CssClass="form-control" />
                         <asp:RegularExpressionValidator ID="revURLIMAGEN" runat="server" ControlToValidate="txtURLIMAGEN"
                             ValidationExpression="^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?$"
                             ErrorMessage="*El campo URLIMAGEN no puede contener espacios en blanco" CssClass="text-danger"
@@ -96,9 +107,9 @@
         </div>
     </div>
 
-    <asp:Button ID="btnModificar" runat="server" Text="Modificar" type="submit" class="btn btn-primary btn-lg" OnClick="btnModificar_Click" Visible="true"  ValidationGroup="validacionGrupo"/>
+    <asp:Button ID="btnModificar" runat="server" Text="Modificar" type="submit" class="btn btn-primary btn-lg" OnClick="btnModificar_Click" Visible="true" ValidationGroup="validacionGrupo" />
 
-    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" type="submit" class="btn btn-primary btn-lg" OnClick="btnAgregar_Click" Visible="true"  ValidationGroup="validacionGrupo"/>
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" type="submit" class="btn btn-primary btn-lg" OnClick="btnAgregar_Click" Visible="true" ValidationGroup="validacionGrupo" />
 
     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" type="submit" class="btn btn-primary btn-lg" OnClick="btnCancelar_Click" />
 
