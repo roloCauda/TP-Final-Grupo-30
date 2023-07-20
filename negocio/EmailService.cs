@@ -133,6 +133,11 @@ namespace negocio
             <p>Provincia: {ProvinciaPedido}</p>
             <p>Domicilio: {DomicilioPedido}</p>
         </div>
+        <div>
+            <h2>Datos de contacto</h2>
+            <p>Email: glafot@gmail.com</p>
+            <p>Número: +54 9 1187654321</p>
+        </div>
         <div class=""footer"">
             <p>Si tienes alguna pregunta sobre tu pedido, por favor contactanos en glafot@gmail.com</p>
         </div>
@@ -147,7 +152,7 @@ namespace negocio
             emailBody = emailBody.Replace("{EstadoPedido}", pedido.EstadoPedido);
             emailBody = emailBody.Replace("{MetodoPago}", pedido.FormaDePago.Descripcion);
             emailBody = emailBody.Replace("{ProvinciaPedido}", pedido.Direccion.Provincia.Descripcion);
-            emailBody = emailBody.Replace("{DomicilioPedido}", pedido.Direccion.Calle+ " " + pedido.Direccion.Numero);
+            emailBody = emailBody.Replace("{DomicilioPedido}", pedido.Direccion.Calle+ " " + pedido.Direccion.Numero + ", " + pedido.Direccion.Localidad.Descripcion + ", CP" + pedido.Direccion.CodPostal);
             emailBody = emailBody.Replace("{NumeroPedido}", pedido.IdPedido.ToString());
             emailBody = emailBody.Replace("{TotalCompra}", "100000");
 

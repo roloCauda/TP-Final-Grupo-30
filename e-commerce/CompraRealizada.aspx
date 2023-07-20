@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CompraRealizada.aspx.cs" Inherits="e_commerce.CompraRealizada" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -6,6 +7,34 @@
         <div class="row" style="display: flex; justify-content: center;">
 
             <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px;">
+                <div style="margin-top: 50px;">
+                    <img src="https://i.imgur.com/Rqj3HHN.png" alt="Logo" style="width: 150px; height: 150px;" />
+                </div>
+                <div style="margin-top: 30px;">
+                    <h2>¡Compra Realizada con Éxito!</h2>
+                    <p>Gracias por tu compra. Hemos recibido tu pedido y estaremos procesándolo pronto.</p>
+                    <p>Revisá tu casilla de correo para más información!</p>
+                </div>
+                <div style="margin-top: auto; display: flex; flex-direction: column; margin-bottom: 30px;">
+                    <div>
+                        <h4>Detalles de la Compra:</h4>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblNumeroPedido" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblFechaCompra" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblMetodoEnvio" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblMetodoPago" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+                <div style="padding-bottom: 100px;">
+                    <asp:Button ID="btnVolver" runat="server" Text="Volver a la Página Principal" CssClass="btn btn-primary" OnClick="btnVolver_Click" />
+                </div>
 
             </div>
 
