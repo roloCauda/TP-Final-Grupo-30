@@ -47,9 +47,28 @@ namespace e_commerce
                     lblMarca.Text = art.IdMarca.Descripcion;
                     lblCategoria.Text = art.IdCategoria.Descripcion;
                     lblPrecioArt.Text = art.Precio.ToString();
+                    lblStock.Text = art.stock.ToString();
                     Session["ArticuloSeleccionado"] = art;
-                }
 
+                    if (art.stock == 0)
+                    {
+                        btnAgregarAlCarrito.Enabled = false;
+                        lblStock.Text = "SIN STOCK";
+                    }
+
+                    // Validar si la cantidad en el carrito es igual a la cantidad en stock
+                    if (carrito.ListaItems.Any(item => item.Articulo.IdArticulo == art.IdArticulo && item.Cantidad == art.stock))
+                    {
+                        // Si la cantidad en el carrito es igual a la cantidad en stock, deshabilitar el botón de agregar
+                        btnAgregarAlCarrito.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAgregarAlCarrito.Enabled = true;
+                    }
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -77,6 +96,8 @@ namespace e_commerce
                     lnkFavorito.CssClass = "bi bi-heart";
                 }
             }
+
+
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)
@@ -89,6 +110,8 @@ namespace e_commerce
             /*  Busca el art en la lista y le suma una unidad */
             foreach (ItemCarrito item in carrito.ListaItems)
             {
+
+
                 if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
                 {
                     item.Cantidad += 1;

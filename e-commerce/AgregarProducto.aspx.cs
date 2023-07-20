@@ -80,6 +80,8 @@ namespace e_commerce.Pag_Admin
 
                         txtPrecio.Text = articulo.Precio.ToString();
 
+                        txtStock.Text = articulo.stock.ToString();
+
                         negocioIMG = new ImagenNegocio();
                         ListaImagenes = negocioIMG.listar(idArticulo);
                     }
@@ -187,6 +189,7 @@ namespace e_commerce.Pag_Admin
                 articulo.Codigo = (!string.IsNullOrEmpty(txtCodigo.Text)) ? txtCodigo.Text : "Vacio";
                 articulo.Descripcion = (!string.IsNullOrEmpty(txtDescripcion.Text)) ? txtDescripcion.Text : "Vacio";
                 articulo.Precio = (decimal.TryParse(txtPrecio.Text, out decimal precio)) ? articulo.Precio = precio : articulo.Precio = 0;
+                articulo.stock = int.Parse(txtStock.Text);
 
                 negocio.modificar(articulo);
 

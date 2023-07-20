@@ -55,6 +55,9 @@
                     <h3 style="font-size: 20px;">Precio: $
                             <asp:Label ID="lblPrecioArt" runat="server" Text=""></asp:Label>
                     </h3>
+                    <h3 style="font-size: 20px;">Stock Disponible: 
+                            <asp:Label ID="lblStock" runat="server" Text=""></asp:Label>
+                    </h3>
                 </div>
 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">

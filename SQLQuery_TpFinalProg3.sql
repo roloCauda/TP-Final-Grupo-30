@@ -75,6 +75,7 @@ CREATE TABLE Usuarios (
     Apellidos VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Contraseña VARCHAR(100) NOT NULL,
+	RecuperacionContraseña VARCHAR(100) NOT NULL,
     Telefono VARCHAR(100) NULL,
     IDDomicilio INT NULL,
     TipoAcceso INT NOT NULL,
@@ -88,11 +89,10 @@ CREATE TABLE Pedidos (
     IdCliente INT NOT NULL,
 	IdFormaEnvio INT NOT NULL,
     Fecha DATE NOT NULL,
-	IdDireccion int null,
+	EstadoPedido VARCHAR(100) null default 'Pendiente',
     FOREIGN KEY (IdFormaPago) REFERENCES FormasDePago(Id),
     FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id),
-	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id),
-	FOREIGN KEY (IdDireccion) REFERENCES Direcciones(Id)
+	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id)
 );
 
 CREATE TABLE ARTICULOSxPEDIDO (
@@ -109,9 +109,16 @@ CREATE TABLE Stock (
     Id INT PRIMARY KEY IDENTITY NOT NULL,
     IdArticulo INT NOT NULL,
     Cantidad INT NOT NULL DEFAULT(0),
-    Precio DECIMAL(10, 2) NULL CHECK (Precio >= 0),
     FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
+
+
+/*BORRE LA COLUMNA PRECIO DE STCOK primero se borra la restriccion y despues la columna */
+ALTER TABLE Stock
+DROP CONSTRAINT CK__Stock__Precio__3C34F16F;
+
+ALTER TABLE Stock
+DROP COLUMN Precio;
 
 CREATE TABLE Imagenes (
     Id INT PRIMARY KEY IDENTITY,
@@ -186,7 +193,7 @@ VALUES (1, 10, 5200),
 ALTER procedure storedListar
 as
 begin
-	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad as Stock
+	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad
 	From ARTICULOS A, CATEGORIAS C, MARCAS M, Stock S
 	Where C.Id = A.IdCategoria And M.Id = A.IdMarca And A.Id = S.IdArticulo
 end
@@ -200,14 +207,15 @@ BEGIN
    WHERE IDARTICULO = @IdArticulo;
 END
 
-CREATE PROCEDURE storedArticulo
+ALTER PROCEDURE storedArticulo
    @IdArticulo INT
 AS
 BEGIN
-   Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria
+   Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad
 	from ARTICULOS A
 	left join MARCAS M on A.IdMarca = M.Id
 	left join CATEGORIAS C on A.IdCategoria = C.Id
+	left join Stock S ON A.Id = S.IdArticulo
 	where A.Id = @IdArticulo
 END
 
@@ -229,14 +237,14 @@ BEGIN
    WHERE Id = @IdMarca
 END
 
-CREATE PROCEDURE storedFiltro
+alter PROCEDURE storedFiltro
    @filtro varchar(100)
 AS
 BEGIN
-   SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, Precio, A.IdMarca, A.IdCategoria
-   FROM ARTICULOS A, CATEGORIAS C, MARCAS M
-   WHERE C.Id = A.IdCategoria AND M.Id = A.IdMarca
-   GROUP BY A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion, C.Descripcion, Precio, A.IdMarca, A.IdCategoria
+   SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, Precio, A.IdMarca, A.IdCategoria, s.Cantidad
+   FROM ARTICULOS A, CATEGORIAS C, MARCAS M, Stock S
+   WHERE C.Id = A.IdCategoria AND M.Id = A.IdMarca and A.Id = s.IdArticulo
+   GROUP BY A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion, C.Descripcion, Precio, A.IdMarca, A.IdCategoria, s.Cantidad
    HAVING Codigo LIKE '%' + @filtro + '%' OR Nombre LIKE '%' + @filtro + '%' OR A.Descripcion LIKE '%' + @filtro + '%' OR M.Descripcion LIKE '%' + @filtro + '%' OR C.Descripcion LIKE '%' + @filtro + '%'
 END
 
@@ -246,7 +254,9 @@ select * from Pedidos
 select * from FormasDeEnvio
 select * from FormasDePago
 select * from Favoritos
-select * from Articulos
+select * from Articulos INNER JOIN STOCK ON STOCK.IdArticulo = Articulos.Id
+select * from stock
+select * from ARTICULOSxPEDIDO
 
 update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
 update Usuarios set  IDDomicilio = 1 where Id = 2
@@ -255,7 +265,11 @@ alter table Pedidos
 ADD CodigoDeTransaccion VARCHAR(100) null,
 CodigoSeguimiento VARCHAR(100) null,
 Observaciones VARCHAR(300) null,
-EstadoPedido VARCHAR(100) not null default 'Pendiente';
+EstadoPedido VARCHAR(100) null default 'Pendiente';
+
+ALTER TABLE Pedidos
+ADD CONSTRAINT DF_Pedidos_EstadoPedido DEFAULT 'Pendiente' FOR EstadoPedido;
+
 
 alter table Usuarios
 ADD Activo bit not null default 1;

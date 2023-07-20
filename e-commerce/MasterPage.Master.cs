@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 namespace e_commerce
 {
@@ -15,12 +16,13 @@ namespace e_commerce
         public List<ItemCarrito> ListaItems { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
+
             if (!IsPostBack)
             {
                 if (Session["ListaItems"] != null)
                 {
                     carrito = (Carrito)Session["ListaItems"];
-                    Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
                 }
                 else
                 {
@@ -53,6 +55,25 @@ namespace e_commerce
                 repInfoCarrito.DataSource = carrito.ListaItems;
                 repInfoCarrito.DataBind();
             }
+            
+                Button btnAgregar = FindControl("btnAgregar") as Button; // SIEMPREEEEEEEEEEEEEEEEEEEEEEEEE ES NULOOOOOOOOO
+
+                // Validar si el botón "btnAgregar" debe estar habilitado o deshabilitado
+                if (artSeleccionado != null && btnAgregar != null)
+                {
+                    bool cantidadMaximaAlcanzada = carrito.ListaItems.Any(item => item.Articulo.IdArticulo == artSeleccionado.IdArticulo && item.Cantidad == artSeleccionado.stock);
+
+                    // Si el artículo ya está en el carrito o si se alcanzó la cantidad máxima en el carrito, deshabilitar el botón
+                    if (cantidadMaximaAlcanzada)
+                    {
+                        btnAgregar.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAgregar.Enabled = true;
+                    }
+                }
+            
 
             if (Request.Form["__EVENTTARGET"] == "carritoCerrado")
             {
@@ -97,7 +118,6 @@ namespace e_commerce
                 btnConfig.Visible = false;
             }
 
-            
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)

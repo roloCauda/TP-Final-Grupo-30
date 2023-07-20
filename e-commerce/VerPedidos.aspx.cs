@@ -32,12 +32,12 @@ namespace e_commerce
 
         protected void dgvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
-            string IdPedido = dgvPedidos.DataKeys[row.RowIndex].Value.ToString();
-
-            // Acciones según el comando seleccionado
-            if (e.CommandName == "VerPedido")
+            if (e.CommandName == "VerPedido" && e.CommandArgument != null)
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvPedidos.Rows[rowIndex];
+                string IdPedido = dgvPedidos.DataKeys[row.RowIndex].Value.ToString();
+
                 Response.Redirect("DetallePedido.aspx?id=" + IdPedido);
             }
         }
@@ -45,6 +45,19 @@ namespace e_commerce
         protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvPedidos.PageIndex = e.NewPageIndex;
+            string filtro = rblOpciones.SelectedItem.Text;
+
+            PedidoNegocio negocioP = new PedidoNegocio();
+
+            if (filtro == "Todos")
+            {
+                dgvPedidos.DataSource = negocioP.listarPedidos();
+            }
+            else
+            {
+                dgvPedidos.DataSource = negocioP.listarPedidos(filtro);
+            }
+
             dgvPedidos.DataBind();
         }
 

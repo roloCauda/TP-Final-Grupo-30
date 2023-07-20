@@ -183,6 +183,7 @@ namespace e_commerce.Pag_Cliente
             DireccionNegocio negocioD = new DireccionNegocio();
             PedidoNegocio negocioP = new PedidoNegocio();
             ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
+            StockNegocio negocioS = new StockNegocio();
 
             pedido.IdCliente = usuario.IdUsuario;
             pedido.Fecha = DateTime.Now;
@@ -202,7 +203,6 @@ namespace e_commerce.Pag_Cliente
                 pedido.Direccion.Localidad.Descripcion = ddlLocalidad.SelectedItem.ToString();
                 pedido.Direccion.IdDireccion = negocioD.AgregarDireccion(pedido.Direccion);
                 pedido.FormaDeEnvio.Descripcion = "Envio a cargo del vendedor";
-
             }
             else
             {
@@ -221,6 +221,8 @@ namespace e_commerce.Pag_Cliente
             pedido.ListaArtXPedido = negocioAP.agregarListaApedido(carrito.ListaItems);
 
             negocioAP.cargarEnBDlistaArticulos(pedido);
+
+            negocioS.descontarStock(pedido.ListaArtXPedido);
 
             Session["pedido"] = pedido;
 

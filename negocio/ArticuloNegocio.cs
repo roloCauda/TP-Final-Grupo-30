@@ -55,7 +55,7 @@ namespace negocio
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
 
-                    aux.stock = (int)datos.Lector["Stock"];
+                    aux.stock = (int)datos.Lector["Cantidad"];
 
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
@@ -136,11 +136,25 @@ namespace negocio
 
                 nuevoId = (int)datos.ejecutarEscalar();
 
-                datos.setearConsulta("Insert into Stock (IdArticulo, Cantidad) VALUES (@IdArticulo, @Cantidad)");
-                datos.setearParametro("@IdArticulo", nuevoId);
-                datos.setearParametro("@Cantidad", nuevo.stock);
+                AccesoDatos datos2 = new AccesoDatos();
+                try
+                {
+                    datos2.setearConsulta("Insert into Stock (IdArticulo, Cantidad) VALUES (@IdArticulo, @Cantidad)");
+                    datos2.setearParametro("@IdArticulo", nuevoId);
+                    datos2.setearParametro("@Cantidad", nuevo.stock);
 
-                datos.ejecutarAccion();
+                    datos2.ejecutarAccion();
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos2.cerrarConexion();
+                }
 
                 return nuevoId;
             }
@@ -170,6 +184,26 @@ namespace negocio
                 datos.setearParametro("@id", nuevo.IdArticulo);
 
                 datos.ejecutarAccion();
+
+                AccesoDatos datos2 = new AccesoDatos();
+                try
+                {
+                    datos2.setearConsulta("UPDATE STOCK SET Cantidad = @cantidad where IdArticulo = @idArt");
+                    datos2.setearParametro("@cantidad", nuevo.stock);
+                    datos2.setearParametro("@idArt", nuevo.IdArticulo);
+
+                    datos2.ejecutarAccion();
+                }
+                catch (Exception ex)
+                {
+                    
+                    throw ex;
+                }
+                finally
+                {
+                    datos2.cerrarConexion();
+                }
+
             }
             catch (Exception ex)
             {
@@ -272,6 +306,24 @@ namespace negocio
                 datos.setearConsulta("delete from ARTICULOS where id=@idArticulo");
                 datos.setearParametro("@idArticulo", id);
                 datos.ejecutarAccion();
+
+                AccesoDatos datos2 = new AccesoDatos();
+                try
+                {
+                    datos2.setearConsulta("DELETE FROM STOCK where IdArticulo = @idArt");
+                    datos2.setearParametro("@idArt", id);
+
+                    datos2.ejecutarAccion();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos2.cerrarConexion();
+                }
             }
             catch (Exception ex)
             {
@@ -323,6 +375,8 @@ namespace negocio
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.stock = (int)datos.Lector["Cantidad"];
 
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
@@ -426,6 +480,7 @@ namespace negocio
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
 
+                    aux.stock = (int)datos.Lector["Cantidad"];
 
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
@@ -494,10 +549,11 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria " +
+                datos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad " +
                                     "From ARTICULOS A " +
                                     "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria " +
                                     "INNER JOIN MARCAS M ON M.Id = A.IdMarca " +
+                                    "INNER JOIN STOCK S ON A.Id = S.IdArticulo " +
                                     "Where A.IdMarca = @IdMarca");
                 datos.setearParametro("@IdMarca", idMarca);
 
@@ -534,6 +590,8 @@ namespace negocio
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.stock = (int)datos.Lector["Cantidad"];
 
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
@@ -602,10 +660,11 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria " +
+                datos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad " +
                                     "From ARTICULOS A " +
                                     "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria " +
                                     "INNER JOIN MARCAS M ON M.Id = A.IdMarca " +
+                                    "INNER JOIN STOCK S ON A.Id = S.IdArticulo " +
                                     "Where A.IdCategoria = @IdCategoria");
                 datos.setearParametro("@IdCategoria", idCategoria);
 
@@ -642,6 +701,8 @@ namespace negocio
 
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    aux.stock = (int)datos.Lector["Cantidad"];
 
                     //cargar imagenes en la lista de Articulo
                     AccesoDatos datos2 = new AccesoDatos();
