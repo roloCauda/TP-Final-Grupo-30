@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace dominio
 {
     public class FormaDeEnvio
-    {        public int IdFormaDeEnvio { get; set; }
+    {
+        public int IdFormaDeEnvio { get; set; }
         public string Descripcion { get; set; }
     }
 }

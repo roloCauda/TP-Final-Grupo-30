@@ -100,7 +100,7 @@ namespace e_commerce
                 user.Telefono = txtTelefono.Text;
             user.direccion.IdDireccion = IdDireccion;
 
-            negocioU.AgregarUsuario(user);
+            user.IdUsuario = negocioU.AgregarUsuario(user);
 
             Session.Add("usuario", user);
             Response.Redirect("Default.aspx");

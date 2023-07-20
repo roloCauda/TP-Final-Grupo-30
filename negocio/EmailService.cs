@@ -115,6 +115,7 @@ namespace negocio
         </div>
         <div class=""message"">
             <p class=""thank-you"">¡Gracias por tu compra, {NombreCliente}!</p>
+            <p class=""thank-you"">Orden #{NumeroPedido}</p>
             <p>Hemos recibido tu pedido y estamos procesándolo.</p>
         </div>
         <div class=""order-details"">
@@ -123,6 +124,14 @@ namespace negocio
                 {DetallesProductos}
             </ul>
             <p>Total del pedido: <strong>${TotalCompra}</strong></p>
+        </div>
+        <div class='shipping-details'>
+            <h2>Información de tu compra:</h2>
+            <p>Método de envío: {MetodoEnvio}</p>
+            <p>Estado del pedido: {EstadoPedido}</p>
+            <p>Método de pago: {MetodoPago}</p>
+            <p>Provincia: {ProvinciaPedido}</p>
+            <p>Domicilio: {DomicilioPedido}</p>
         </div>
         <div class=""footer"">
             <p>Si tienes alguna pregunta sobre tu pedido, por favor contactanos en glafot@gmail.com</p>
@@ -133,15 +142,37 @@ namespace negocio
             ";
 
             // Reemplazar los marcadores de posición con los datos del cliente y la compra
-            emailBody = emailBody.Replace("{NombreCliente}", usuario.Nombres); // Reemplazar por el nombre real del cliente
-            emailBody = emailBody.Replace("{TotalCompra}", "10000"); // Reemplazar por el total de la compra real
+            emailBody = emailBody.Replace("{NombreCliente}", usuario.Nombres.ToString());
+            emailBody = emailBody.Replace("{MetodoEnvio}", pedido.FormaDeEnvio.Descripcion);
+            emailBody = emailBody.Replace("{EstadoPedido}", pedido.EstadoPedido);
+            emailBody = emailBody.Replace("{MetodoPago}", pedido.FormaDePago.Descripcion);
+            emailBody = emailBody.Replace("{ProvinciaPedido}", pedido.Direccion.Provincia.Descripcion);
+            emailBody = emailBody.Replace("{DomicilioPedido}", pedido.Direccion.Calle+ " " + pedido.Direccion.Numero);
+            emailBody = emailBody.Replace("{NumeroPedido}", pedido.IdPedido.ToString());
+            emailBody = emailBody.Replace("{TotalCompra}", "100000");
 
             // Generar los detalles de la compra en formato HTML
             string detallesProductos = "";
             foreach (var articuloXPedido in pedido.ListaArtXPedido)
             {
-                detallesProductos += $"<li>{articuloXPedido.Nombre} - ${articuloXPedido.PrecioTotal}</li>";
+                // Agregar el contenedor de cada artículo
+                detallesProductos += "<div style='display: inline-block; margin-right: 20px;'>";
+
+                // Agregar la imagen del artículo
+                detallesProductos += $"<img src='{articuloXPedido.ImagenURL}' alt='{articuloXPedido.Nombre}' width='100' height='100' /><br><br>";
+
+                // Agregar el nombre, la descripción, precio unitario y el precio total del artículo
+                detallesProductos += $"<strong>{articuloXPedido.Nombre}</strong><br>";
+                detallesProductos += $"{articuloXPedido.Descripcion}<br>";
+                detallesProductos += $"<span>Cantidad: {articuloXPedido.Cantidad}<br>";
+                detallesProductos += $"<span>Precio Unitario: ${articuloXPedido.PrecioUnitario}</span><br>";
+                detallesProductos += $"<span>Precio Total: ${articuloXPedido.PrecioTotal}</span><br><br>";
+
+                // Cerrar el contenedor del artículo
+                detallesProductos += "</div>";
             }
+
+            // Reemplazar {DetallesProductos} en el emailBody
             emailBody = emailBody.Replace("{DetallesProductos}", detallesProductos);
 
             return emailBody;

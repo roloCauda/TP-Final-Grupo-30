@@ -101,25 +101,27 @@ namespace negocio
             }
         }
 
-        public void AgregarUsuario(Usuario user)
+        public int AgregarUsuario(Usuario user)
         {
             AccesoDatos datos = new AccesoDatos();
+            int IdUsuario;
 
             try
             {
-                datos.setearConsulta("Insert into USUARIOS (DNI, Nombres, Apellidos, Email, Contraseña, RecuperacionContraseña, Telefono, IDDomicilio, TipoAcceso) " +
-                                       "VALUES (@DNI, @Nombres, @Apellidos, @Email, @Contraseña, @RecuperacionContraseña, @Telefono, @IDDomicilio, @TipoAcceso)");
+                datos.setearConsulta("Insert into USUARIOS (DNI, Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso) " +
+                                       "OUTPUT Inserted.ID VALUES (@DNI, @Nombres, @Apellidos, @Email, @Contraseña, @Telefono, @IDDomicilio, @TipoAcceso)");
                 datos.setearParametro("@DNI", user.DNI);
                 datos.setearParametro("@Nombres", user.Nombres);
                 datos.setearParametro("@Apellidos", user.Apellidos);
                 datos.setearParametro("@Email", user.Email);
                 datos.setearParametro("@Contraseña", user.Contraseña);
-                datos.setearParametro("@RecuperacionContraseña", 123);
                 datos.setearParametro("@Telefono", string.IsNullOrEmpty(user.Telefono) ? DBNull.Value : (object)user.Telefono);
                 datos.setearParametro("@IDDomicilio", user.direccion.IdDireccion);
                 datos.setearParametro("@TipoAcceso", 3);
 
-                datos.ejecutarAccion();
+                IdUsuario = datos.ejecutarEscalar();
+
+                return IdUsuario;
             }
             catch (Exception ex)
             {

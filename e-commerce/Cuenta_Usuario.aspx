@@ -102,7 +102,7 @@
                             </div>
 
                             <!-- Grupo: boton Guardar Cambios -->
-                            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <div class="formulario__grupo formulario__grupo-btn-enviar" style="padding-top:50px;">
                                 <asp:Button ID="btn_GuardarCambiosPerfil" runat="server" Text="Guardar Cambios" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupo" OnClick="btn_GuardarCambiosPerfil_Click" />
                                 <asp:Label ID="lblUsuarioGuardadoConExito" runat="server" Text="El usuario fue actualizado con éxito"></asp:Label>

@@ -21,6 +21,7 @@ namespace e_commerce.Pag_Cliente
             {
 
                 dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
+                Pedido pedido = (Pedido)Session["pedido"];
 
                 TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
 
@@ -72,6 +73,8 @@ namespace e_commerce.Pag_Cliente
                     var firstItem = rptFormaDeEnvio.Items[0];
                     var rbtnFormaDeEnvio = (RadioButton)firstItem.FindControl("rbtnFormaDeEnvio");
                     rbtnFormaDeEnvio.Checked = true;
+                    pedido.FormaDeEnvio.IdFormaDeEnvio = 1;
+                    Session["pedido"] = pedido;
                 }
                 // Selecciona automáticamente el primer radiobutton de Pagos
                 if (rptFormaDePago.Items.Count > 0)
@@ -79,6 +82,8 @@ namespace e_commerce.Pag_Cliente
                     var firstItem = rptFormaDePago.Items[0];
                     var rbtnFormaDePago = (RadioButton)firstItem.FindControl("rbtnFormaDePago");
                     rbtnFormaDePago.Checked = true;
+                    pedido.FormaDePago.IdFormaDePago = 1;
+                    Session["pedido"] = pedido;
                 }
             }
         }
@@ -141,12 +146,14 @@ namespace e_commerce.Pag_Cliente
             }
 
             pedido.FormaDeEnvio.IdFormaDeEnvio = idFormaDeEnvio;
+            pedido.FormaDeEnvio.Descripcion = descripcion;
             Session["pedido"] = pedido;
         }
 
         protected void rbtnFormaDePago_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
+            string descripcion = radioButton.Text;
             Pedido pedido = (Pedido)Session["pedido"];
 
             // Deseleccionar los demás RadioButtons
@@ -164,13 +171,14 @@ namespace e_commerce.Pag_Cliente
             int idFormaDePago = int.Parse(radioButton.Attributes["value"]);
 
             pedido.FormaDePago.IdFormaDePago = idFormaDePago;
+            pedido.FormaDePago.Descripcion = descripcion;
             Session["pedido"] = pedido;
         }
         protected void btnConfirmar(object sender, EventArgs e)
         {
             dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
             Usuario usuario = (Usuario)Session["usuario"];
-            Pedido pedido = new Pedido();
+            Pedido pedido = (Pedido)Session["pedido"];
             UsuarioNegocio negocioU = new UsuarioNegocio();
             DireccionNegocio negocioD = new DireccionNegocio();
             PedidoNegocio negocioP = new PedidoNegocio();
@@ -178,9 +186,8 @@ namespace e_commerce.Pag_Cliente
 
             pedido.IdCliente = usuario.IdUsuario;
             pedido.Fecha = DateTime.Now;
-            pedido.FormaDeEnvio.IdFormaDeEnvio = 2;
 
-            if(pedido.FormaDeEnvio.IdFormaDeEnvio == 2)
+            if (pedido.FormaDeEnvio.IdFormaDeEnvio == 2)
             {
                 pedido.Direccion.Calle = txtCalle.Text;
                 pedido.Direccion.Numero = int.Parse(txtNumeracion.Text);
@@ -190,17 +197,17 @@ namespace e_commerce.Pag_Cliente
                     pedido.Direccion.Departamento = txtDepartamento.Text;
                 pedido.Direccion.CodPostal = txtCP.Text;
                 pedido.Direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
+                pedido.Direccion.Provincia.Descripcion = ddlProvincia.SelectedItem.ToString();
                 pedido.Direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
                 pedido.Direccion.IdDireccion = negocioD.AgregarDireccion(pedido.Direccion);
+
             }
 
-
-            pedido.FormaDePago.IdFormaDePago = 1;
-
+            pedido.EstadoPedido = "Pendiente";
 
             pedido.IdPedido = negocioP.agregarPedido(pedido);
 
-            negocioAP.agregarListaApedido(carrito.ListaItems, pedido.ListaArtXPedido);
+            pedido.ListaArtXPedido = negocioAP.agregarListaApedido(carrito.ListaItems);
 
             negocioAP.cargarEnBDlistaArticulos(pedido);
 

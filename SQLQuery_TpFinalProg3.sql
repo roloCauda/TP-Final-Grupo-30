@@ -75,7 +75,6 @@ CREATE TABLE Usuarios (
     Apellidos VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Contraseña VARCHAR(100) NOT NULL,
-	RecuperacionContraseña VARCHAR(100) NOT NULL,
     Telefono VARCHAR(100) NULL,
     IDDomicilio INT NULL,
     TipoAcceso INT NOT NULL,
@@ -89,9 +88,11 @@ CREATE TABLE Pedidos (
     IdCliente INT NOT NULL,
 	IdFormaEnvio INT NOT NULL,
     Fecha DATE NOT NULL,
+	IdDireccion int null,
     FOREIGN KEY (IdFormaPago) REFERENCES FormasDePago(Id),
     FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id),
-	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id)
+	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id),
+	FOREIGN KEY (IdDireccion) REFERENCES Direcciones(Id)
 );
 
 CREATE TABLE ARTICULOSxPEDIDO (
@@ -254,7 +255,7 @@ alter table Pedidos
 ADD CodigoDeTransaccion VARCHAR(100) null,
 CodigoSeguimiento VARCHAR(100) null,
 Observaciones VARCHAR(300) null,
-EstadoPedido VARCHAR(100) null default 'Pendiente';
+EstadoPedido VARCHAR(100) not null default 'Pendiente';
 
 alter table Usuarios
 ADD Activo bit not null default 1;

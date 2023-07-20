@@ -247,13 +247,5 @@ namespace e_commerce
         {
             Response.Redirect("Login.aspx");
         }
-        protected void btnRegistrarme_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Registrarse.aspx");
-        }
-        protected void btnAdministracion_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PrincipalAdmin.aspx");
-        }
     }
 }

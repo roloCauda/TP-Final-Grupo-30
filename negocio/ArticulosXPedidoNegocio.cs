@@ -11,11 +11,11 @@ namespace negocio
 {
     public class ArticulosXPedidoNegocio
     {
-        public List<ArticulosXPedido> listarConSP (int idPedido)
+        public List<ArticulosXPedido> listarConSP(int idPedido)
         {
             List<ArticulosXPedido> lista = new List<ArticulosXPedido>();
 
-            AccesoDatos datos = new AccesoDatos ();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
@@ -27,8 +27,8 @@ namespace negocio
                     "group by A.Nombre, A.Descripcion, AP.Cantidad, AP.PrecioUnitario, i.ImagenURL");
                 datos.setearParametro("@IdPedido", idPedido);
 
-                datos.ejecutarLectura();                
-                
+                datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     ArticulosXPedido aux = new ArticulosXPedido();
@@ -39,7 +39,7 @@ namespace negocio
                     aux.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
                     aux.PrecioTotal = (decimal)datos.Lector["Precio Total"];
 
-                    if(!(datos.Lector["ImagenURL"] is DBNull))
+                    if (!(datos.Lector["ImagenURL"] is DBNull))
                     {
                         aux.ImagenURL = (string)datos.Lector["ImagenURL"];
                     }
@@ -65,24 +65,55 @@ namespace negocio
         }
         public void cargarEnBDlistaArticulos(Pedido pedido)
         {
-            
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                int tamLista = pedido.ListaArtXPedido.Count;
+
+                for (int x = 0; x < tamLista; x++)
+                {
+                    datos.setearConsulta("Insert into ARTICULOSxPEDIDO (IdPedido, IdArticulo, Cantidad, PrecioUnitario) " +
+                        "values (@IdPedido, @IdArticulo, @Cantidad, @PrecioUnitario)");
+                    datos.limpiarParametros(datos);
+                    datos.setearParametro("@IdPedido", pedido.IdPedido);
+                    datos.setearParametro("@IdArticulo", pedido.ListaArtXPedido[x].IdArticulo);
+                    datos.setearParametro("@Cantidad", pedido.ListaArtXPedido[x].Cantidad);
+                    datos.setearParametro("@PrecioUnitario", pedido.ListaArtXPedido[x].PrecioUnitario);
+
+                    datos.ejecutarAccion();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
-        public void agregarListaApedido(List<ItemCarrito> lista, List<ArticulosXPedido> listaPedido)
+        public List<ArticulosXPedido> agregarListaApedido(List<ItemCarrito> listaCarrito)
         {
-            int cantidadCarrito = lista.Count;
+            int cantidadCarrito = listaCarrito.Count;
+            List<ArticulosXPedido> lista = new List<ArticulosXPedido>();
 
-            for(int i = 0; i < cantidadCarrito-1; i++)
+            for (int i = 0; i < cantidadCarrito; i++)
             {
-                listaPedido[i].IdArticulo = lista[i].Articulo.IdArticulo;
-                listaPedido[i].Nombre = lista[i].Articulo.Nombre;
-                listaPedido[i].Descripcion = lista[i].Articulo.Descripcion;
-                listaPedido[i].Cantidad = lista[i].Cantidad;
-                listaPedido[i].PrecioUnitario = lista[i].Articulo.Precio;
-                listaPedido[i].PrecioTotal = lista[i].Articulo.Precio * lista[i].Cantidad;
-                listaPedido[i].ImagenURL = lista[i].Articulo.ListaImagenes[0].ImagenURL;
+                ArticulosXPedido aux = new ArticulosXPedido();
+                aux.IdArticulo = listaCarrito[i].Articulo.IdArticulo;
+                aux.Nombre = listaCarrito[i].Articulo.Nombre;
+                aux.Descripcion = listaCarrito[i].Articulo.Descripcion;
+                aux.Cantidad = listaCarrito[i].Cantidad;
+                aux.PrecioUnitario = listaCarrito[i].Articulo.Precio;
+                aux.PrecioTotal = listaCarrito[i].Articulo.Precio * listaCarrito[i].Cantidad;
+                aux.ImagenURL = listaCarrito[i].Articulo.ListaImagenes[0].ImagenURL;
+
+                lista.Add(aux);
             }
 
+            return lista;
         }
     }
 }

@@ -50,6 +50,7 @@ namespace dominio
 
         public Usuario()
         {
+            ListaFavoritos = new List<Favoritos>();
             direccion = new Direccion();
         }
     }
