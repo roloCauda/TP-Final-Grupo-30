@@ -61,8 +61,8 @@ namespace e_commerce
                 Pedido pedido = negocioP.cargarPedido(IdPedido);
 
                 //cargar id de Pago y de Envio
-                ddlFormaDeEnvio.SelectedValue = pedido.formaDeEnvio.IdFormaDeEnvio.ToString();
-                ddlFormaDePago.SelectedValue = pedido.formaDePago.IdFormaDePago.ToString();
+                ddlFormaDeEnvio.SelectedValue = pedido.FormaDeEnvio.IdFormaDeEnvio.ToString();
+                ddlFormaDePago.SelectedValue = pedido.FormaDePago.IdFormaDePago.ToString();
 
                 //cargar opcion de EstadoPedido
                 if (pedido != null && !string.IsNullOrEmpty(pedido.EstadoPedido))
@@ -136,8 +136,8 @@ namespace e_commerce
             int IdPedido = int.Parse(Request.QueryString["id"]);
 
             pedido.IdPedido = IdPedido;
-            pedido.formaDePago.IdFormaDePago = int.Parse(ddlFormaDePago.SelectedValue);
-            pedido.formaDeEnvio.IdFormaDeEnvio = int.Parse(ddlFormaDeEnvio.SelectedValue);
+            pedido.FormaDePago.IdFormaDePago = int.Parse(ddlFormaDePago.SelectedValue);
+            pedido.FormaDeEnvio.IdFormaDeEnvio = int.Parse(ddlFormaDeEnvio.SelectedValue);
             pedido.CodTransaccion = txtCódigoDeTransacción.Text;
             pedido.CodSeguimiento = txtCodSeguimientio.Text;
             pedido.Observaciones = txtObservaciones.Text;

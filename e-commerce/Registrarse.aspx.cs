@@ -91,7 +91,7 @@ namespace e_commerce
             user.direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
             user.direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
 
-            int IdDireccion = negocioD.AgregarDireccion(user);
+            int IdDireccion = negocioD.AgregarDireccion(user.direccion);
 
             user.Nombres = txtNombres.Text;
             user.Apellidos = txtApellidos.Text;

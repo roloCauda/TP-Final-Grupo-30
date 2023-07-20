@@ -32,10 +32,10 @@ namespace negocio
 
                     aux.IdPedido = (int)datos.Lector["Id"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.formaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
-                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.formaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
-                    aux.formaDeEnvio.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.FormaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
+                    aux.FormaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.FormaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
+                    aux.FormaDeEnvio.Descripcion = (string)datos.Lector["Descripcion"];
 
                     if (!(datos.Lector["CodigoDeTransaccion"] is DBNull))
                         aux.CodTransaccion = (string)datos.Lector["CodigoDeTransaccion"];
@@ -83,9 +83,9 @@ namespace negocio
 
                     aux.IdPedido = (int)datos.Lector["Id"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.formaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
-                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.formaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
+                    aux.FormaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
+                    aux.FormaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.FormaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
                     if (!(datos.Lector["CodigoDeTransaccion"] is DBNull))
                         aux.CodTransaccion = (string)datos.Lector["CodigoDeTransaccion"];
 
@@ -134,9 +134,9 @@ namespace negocio
 
                     aux.IdPedido = (int)datos.Lector["Id"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.formaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
-                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.formaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
+                    aux.FormaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
+                    aux.FormaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.FormaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
                     if (!(datos.Lector["CodigoDeTransaccion"] is DBNull))
                         aux.CodTransaccion = (string)datos.Lector["CodigoDeTransaccion"];
 
@@ -196,7 +196,14 @@ namespace negocio
 
             try
             {
-                //FALTA CONSULTA
+                datos.setearConsulta("INSERT INTO Pedidos (IdCliente, IdFormaPago, IdFormaEnvio, Fecha, IdDireccion) " +
+                    "OUTPUT Inserted.ID VALUES (@IdCliente, @IdFormaPago, @IdFormaEnvio, @Fecha, @IdDireccion);");
+
+                datos.setearParametro("@IdFormaPago", pedido.FormaDePago.IdFormaDePago);
+                datos.setearParametro("@IdCliente", pedido.IdCliente);
+                datos.setearParametro("@IdFormaEnvio", pedido.FormaDeEnvio.IdFormaDeEnvio);
+                datos.setearParametro("@Fecha", pedido.Fecha);
+                datos.setearParametro("@IdDireccion", pedido.Direccion.IdDireccion != null ? (object)pedido.Direccion.IdDireccion : (object)DBNull.Value);
 
                 int nuevoId = (int)datos.ejecutarEscalar();
 
@@ -288,8 +295,8 @@ namespace negocio
                                     "Observaciones = @observaciones, " +
                                     "EstadoPedido = @estadoPedido WHERE Id = @IdPedido");
                 datos.setearParametro("@IdPedido", pedido.IdPedido);
-                datos.setearParametro("@idFormaDePago", pedido.formaDePago.IdFormaDePago);
-                datos.setearParametro("@idFormaDeEnvio", pedido.formaDeEnvio.IdFormaDeEnvio);
+                datos.setearParametro("@idFormaDePago", pedido.FormaDePago.IdFormaDePago);
+                datos.setearParametro("@idFormaDeEnvio", pedido.FormaDeEnvio.IdFormaDeEnvio);
                 datos.setearParametro("@CodTrans", pedido.CodTransaccion != null ? (object)pedido.CodTransaccion : DBNull.Value);
                 datos.setearParametro("@CodSegui", pedido.CodSeguimiento != null ? (object)pedido.CodSeguimiento : DBNull.Value);
                 datos.setearParametro("@observaciones", pedido.Observaciones != null ? (object)pedido.Observaciones : DBNull.Value);
@@ -330,9 +337,9 @@ namespace negocio
                 {
                     aux.IdPedido = (int)datos.Lector["Id"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.formaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
-                    aux.formaDePago.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.formaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
+                    aux.FormaDePago.IdFormaDePago = (int)datos.Lector["IdFormaPago"];
+                    aux.FormaDePago.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.FormaDeEnvio.IdFormaDeEnvio = (int)datos.Lector["IdFormaEnvio"];
                     if (!(datos.Lector["CodigoDeTransaccion"] is DBNull))
                         aux.CodTransaccion = (string)datos.Lector["CodigoDeTransaccion"];
 

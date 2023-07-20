@@ -67,7 +67,7 @@
         </div>
 
         <div style="background-color:#1c3166; text-align:center; color:white;">
-            <img src="https://i.imgur.com/SuthGue.png" alt="mapa" style="padding-bottom:20px;"/>
+            <img src="https://i.imgur.com/SuthGue.png" alt="mapa" style="padding-bottom:15px;"/>
             <p>
                 Estamos en Parque Chacabuco, Capital Federal
             </p>

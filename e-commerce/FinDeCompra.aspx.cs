@@ -98,7 +98,7 @@ namespace e_commerce.Pag_Cliente
             string opcion = btn_Opcion.CommandArgument;
             Pedido pedido = (Pedido)Session["pedido"];
 
-            int IDEnvio = pedido.formaDeEnvio.IdFormaDeEnvio;
+            int IDEnvio = pedido.FormaDeEnvio.IdFormaDeEnvio;
 
             if (IDEnvio == 2 && opcion == "Envio")
             {
@@ -140,7 +140,7 @@ namespace e_commerce.Pag_Cliente
                 MostrarPanel("Envio");
             }
 
-            pedido.formaDeEnvio.IdFormaDeEnvio = idFormaDeEnvio;
+            pedido.FormaDeEnvio.IdFormaDeEnvio = idFormaDeEnvio;
             Session["pedido"] = pedido;
         }
 
@@ -163,7 +163,7 @@ namespace e_commerce.Pag_Cliente
 
             int idFormaDePago = int.Parse(radioButton.Attributes["value"]);
 
-            pedido.formaDePago.IdFormaDePago = idFormaDePago;
+            pedido.FormaDePago.IdFormaDePago = idFormaDePago;
             Session["pedido"] = pedido;
         }
         protected void btnConfirmar(object sender, EventArgs e)
@@ -171,27 +171,46 @@ namespace e_commerce.Pag_Cliente
             dominio.Carrito carrito = (dominio.Carrito)Session["ListaItems"];
             Usuario usuario = (Usuario)Session["usuario"];
             Pedido pedido = new Pedido();
-            //UsuarioNegocio negocioU = new UsuarioNegocio();
-            //DireccionNegocio negocioD = new DireccionNegocio();
+            UsuarioNegocio negocioU = new UsuarioNegocio();
+            DireccionNegocio negocioD = new DireccionNegocio();
             PedidoNegocio negocioP = new PedidoNegocio();
             ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
 
-            //pedido.IdCliente = usuario.IdUsuario;
-            //pedido.Fecha = DateTime.Now;
-            //pedido.formaDePago.IdFormaDePago = 1;
-            //pedido.formaDeEnvio.IdFormaDeEnvio = 1;
+            pedido.IdCliente = usuario.IdUsuario;
+            pedido.Fecha = DateTime.Now;
+            pedido.FormaDeEnvio.IdFormaDeEnvio = 2;
 
-            //pedido.IdPedido = negocioP.agregarPedido(pedido);
+            if(pedido.FormaDeEnvio.IdFormaDeEnvio == 2)
+            {
+                pedido.Direccion.Calle = txtCalle.Text;
+                pedido.Direccion.Numero = int.Parse(txtNumeracion.Text);
+                if (!string.IsNullOrEmpty(txtPiso.Text))
+                    pedido.Direccion.Piso = int.Parse(txtPiso.Text);
+                if (!string.IsNullOrEmpty(txtDepartamento.Text))
+                    pedido.Direccion.Departamento = txtDepartamento.Text;
+                pedido.Direccion.CodPostal = txtCP.Text;
+                pedido.Direccion.Provincia.Id = int.Parse(ddlProvincia.SelectedValue);
+                pedido.Direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
+                pedido.Direccion.IdDireccion = negocioD.AgregarDireccion(pedido.Direccion);
+            }
 
-            //negocioAP.agregarListaApedido(carrito.ListaItems, pedido.IdPedido);
 
-            //negocioAP.cargarEnBDlistaArticulos(pedido);
+            pedido.FormaDePago.IdFormaDePago = 1;
+
+
+            pedido.IdPedido = negocioP.agregarPedido(pedido);
+
+            negocioAP.agregarListaApedido(carrito.ListaItems, pedido.ListaArtXPedido);
+
+            negocioAP.cargarEnBDlistaArticulos(pedido);
+
+            Session["pedido"] = pedido;
 
             EmailService emailService = new EmailService();
             EmailService emailService2 = new EmailService();
             string cuerpoMailCompra = emailService.obtenerCuerpoMailConDatosDePedido(pedido, usuario);
-            emailService.armarCorreo("rolycauda@gmail.com", "Información de tu Compra", cuerpoMailCompra);
-            emailService2.armarCorreo("rolycauda@gmail.com", "Nueva Venta", "Nueva venta realizada con éxito.");
+            emailService.armarCorreo(usuario.Email, "Información de tu Compra", cuerpoMailCompra);
+            emailService2.armarCorreo(usuario.Email, "Nueva Venta", "Nueva venta realizada con éxito.");
             try
             {
                 emailService.enviarCorreo();

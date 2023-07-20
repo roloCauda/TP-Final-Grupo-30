@@ -68,8 +68,20 @@ namespace negocio
             
         }
 
-        public void agregarListaApedido(List<ItemCarrito> lista, int Idpedido)
+        public void agregarListaApedido(List<ItemCarrito> lista, List<ArticulosXPedido> listaPedido)
         {
+            int cantidadCarrito = lista.Count;
+
+            for(int i = 0; i < cantidadCarrito-1; i++)
+            {
+                listaPedido[i].IdArticulo = lista[i].Articulo.IdArticulo;
+                listaPedido[i].Nombre = lista[i].Articulo.Nombre;
+                listaPedido[i].Descripcion = lista[i].Articulo.Descripcion;
+                listaPedido[i].Cantidad = lista[i].Cantidad;
+                listaPedido[i].PrecioUnitario = lista[i].Articulo.Precio;
+                listaPedido[i].PrecioTotal = lista[i].Articulo.Precio * lista[i].Cantidad;
+                listaPedido[i].ImagenURL = lista[i].Articulo.ListaImagenes[0].ImagenURL;
+            }
 
         }
     }
