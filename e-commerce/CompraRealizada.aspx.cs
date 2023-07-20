@@ -15,8 +15,11 @@ namespace e_commerce
             // Se verifica que haya un usuario en session
             if (Session["usuario"] == null)
                 Response.Redirect("Default.aspx");
-
+            // Se verifica que haya un pedido en session
             Pedido pedido = (Pedido)Session["pedido"];
+
+            if (pedido.IdPedido == 0)
+                Response.Redirect("Default.aspx");
 
             Carrito carrito = (Carrito)Session["ListaItems"];
 

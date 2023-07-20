@@ -201,11 +201,17 @@ namespace e_commerce.Pag_Cliente
                 pedido.Direccion.Localidad.Id = int.Parse(ddlLocalidad.SelectedValue);
                 pedido.Direccion.Localidad.Descripcion = ddlLocalidad.SelectedItem.ToString();
                 pedido.Direccion.IdDireccion = negocioD.AgregarDireccion(pedido.Direccion);
+                pedido.FormaDeEnvio.Descripcion = "Envio a cargo del vendedor";
 
             }
             else
             {
                 pedido.FormaDeEnvio.Descripcion = "Retiro";
+            }
+
+            if(pedido.FormaDePago.IdFormaDePago == 1)
+            {
+                pedido.FormaDePago.Descripcion = "Tarjeta de crédito";
             }
 
             pedido.EstadoPedido = "Pendiente";
@@ -225,7 +231,7 @@ namespace e_commerce.Pag_Cliente
             emailService2.armarCorreo(usuario.Email, "Nueva Venta", "Nueva venta realizada con éxito.");
             try
             {
-                //emailService.enviarCorreo();
+                emailService.enviarCorreo();
                 //emailService2.enviarCorreo();
             }
             catch (Exception ex)

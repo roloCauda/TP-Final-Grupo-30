@@ -134,12 +134,12 @@ namespace negocio
             <p>Domicilio: {DomicilioPedido}</p>
         </div>
         <div>
-            <h2>Datos de contacto</h2>
+            <h2>Datos de contacto:</h2>
             <p>Email: glafot@gmail.com</p>
             <p>Número: +54 9 1187654321</p>
         </div>
         <div class=""footer"">
-            <p>Si tienes alguna pregunta sobre tu pedido, por favor contactanos en glafot@gmail.com</p>
+            <p class=""thank-you"">¡Contactanos para finalizar tu compra!</p>
         </div>
     </div>
 </body>
