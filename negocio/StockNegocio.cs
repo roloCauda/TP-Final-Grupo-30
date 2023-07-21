@@ -35,5 +35,29 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int consultarStock(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidad;
+            try
+            {
+                datos.setearConsulta("SELECT Cantidad FROM STOCK WHERE IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", idArticulo);
+
+                cantidad = datos.ejecutarEscalar();
+
+                return cantidad;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

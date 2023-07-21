@@ -2,7 +2,9 @@
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 using dominio;
+using negocio;
 
 namespace e_commerce.Pag_Cliente
 {
@@ -27,6 +29,7 @@ namespace e_commerce.Pag_Cliente
 
             lblPrecio.Text = "$" + carrito.total.ToString();
         }
+
         protected void btnAgregar_click(object sender, EventArgs e)
         {
             /* Le asigno al botonbtnAgregar lo que me trae el boton agregar del front(id), lo casteo y lo guardo en un int */
@@ -162,5 +165,30 @@ namespace e_commerce.Pag_Cliente
             }
         }
 
+        protected void repCarrito_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Obtener los controles del elemento actual del repeater
+                Button btnAgregar = (Button)e.Item.FindControl("btnAgregar");
+
+                StockNegocio negocioS = new StockNegocio();
+
+                dominio.ItemCarrito itemCarrito = (dominio.ItemCarrito)e.Item.DataItem;
+                int idArticulo = itemCarrito.Articulo.IdArticulo;
+
+                int cantArtEnCarrito = itemCarrito.Cantidad;
+                int cantArtEnBD = negocioS.consultarStock(idArticulo);
+
+                if (cantArtEnCarrito == cantArtEnBD)
+                {
+                    btnAgregar.Enabled = false;
+                }
+                else
+                {
+                    btnAgregar.Enabled = true;
+                }
+            }
+        }
     }
 }

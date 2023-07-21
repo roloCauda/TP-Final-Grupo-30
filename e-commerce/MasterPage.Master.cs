@@ -55,25 +55,6 @@ namespace e_commerce
                 repInfoCarrito.DataSource = carrito.ListaItems;
                 repInfoCarrito.DataBind();
             }
-            
-                Button btnAgregar = FindControl("btnAgregar") as Button; // SIEMPREEEEEEEEEEEEEEEEEEEEEEEEE ES NULOOOOOOOOO
-
-                // Validar si el botón "btnAgregar" debe estar habilitado o deshabilitado
-                if (artSeleccionado != null && btnAgregar != null)
-                {
-                    bool cantidadMaximaAlcanzada = carrito.ListaItems.Any(item => item.Articulo.IdArticulo == artSeleccionado.IdArticulo && item.Cantidad == artSeleccionado.stock);
-
-                    // Si el artículo ya está en el carrito o si se alcanzó la cantidad máxima en el carrito, deshabilitar el botón
-                    if (cantidadMaximaAlcanzada)
-                    {
-                        btnAgregar.Enabled = false;
-                    }
-                    else
-                    {
-                        btnAgregar.Enabled = true;
-                    }
-                }
-            
 
             if (Request.Form["__EVENTTARGET"] == "carritoCerrado")
             {
@@ -159,9 +140,7 @@ namespace e_commerce
             Button btnQuitar = (Button)sender;
             int idArticulo = Convert.ToInt32(btnQuitar.CommandArgument);
 
-            /* Le asigna a carrito lo que esta guardado en Session["ListaItems"] */
             Carrito carrito = (Carrito)Session["ListaItems"];
-
 
             foreach (ItemCarrito item in carrito.ListaItems)
             {
@@ -266,6 +245,32 @@ namespace e_commerce
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+        }
+
+        protected void repInfoCarrito_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Obtener los controles del elemento actual del repeater
+                Button btnAgregar = (Button)e.Item.FindControl("btnAgregar");
+
+                StockNegocio negocioS = new StockNegocio();
+
+                dominio.ItemCarrito itemCarrito = (dominio.ItemCarrito)e.Item.DataItem;
+                int idArticulo = itemCarrito.Articulo.IdArticulo;
+
+                int cantArtEnCarrito = itemCarrito.Cantidad;
+                int cantArtEnBD = negocioS.consultarStock(idArticulo);
+
+                if (cantArtEnCarrito == cantArtEnBD)
+                {
+                    btnAgregar.Enabled = false;
+                }
+                else
+                {
+                    btnAgregar.Enabled = true;
+                }
+            }
         }
     }
 }

@@ -28,7 +28,7 @@
                     </div>
 
                 </div>
-                <asp:Repeater ID="repCarrito" runat="server">
+                <asp:Repeater ID="repCarrito" runat="server" OnItemDataBound="repCarrito_ItemDataBound">
                     <ItemTemplate>
                         <div class="row" style="justify-content: space-around; align-items: center; text-align: center;">
                             <div class="col-lg-2 col-md-2 custom-img">
