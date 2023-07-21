@@ -49,7 +49,7 @@
                             <!-- Grupo: DNI -->
                             <div style="position: relative;">
                                 <label class="formulario__label">DNI</label>
-                                <asp:TextBox ID="txtDNI" type="text" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:TextBox ID="txtDNI" type="text" runat="server" CssClass="formulario__input"></asp:TextBox>
                             </div>
 
                             <!-- Grupo: Nombres -->

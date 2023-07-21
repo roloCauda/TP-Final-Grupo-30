@@ -39,11 +39,11 @@
                 <ItemTemplate>
                     <div class="col">
                         <div class="card custom-card" style="align-items: center;">
-                            <img src="<%#Eval("ListaImagenes[0]") %>" class="card-img-top" alt="..." style="padding-top: 15px; height: 350px; width: 270px;">
+                            <img src="<%#Eval("ListaImagenes[0]") %>" class="card-img-top" alt="..." style="padding-top: 15px; height: 300px; width: 270px;">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                 <p class="card-text"><%#Eval("Descripcion") %></p>
-                                <a href="Detalle.aspx?id=<%#Eval("IdArticulo") %>" class="btn btn-primary">Ver Detalle</a>
+                                <a href="Detalle.aspx?id=<%#Eval("IdArticulo") %>" class="btn btn-primary" style="margin-bottom:15px;">Ver Detalle</a>
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
                                         <asp:LinkButton ID="lnkFavorito" runat="server" CssClass="bi bi-heart" OnClick="lnkFavoritoClick" CommandArgument='<%# Eval("IdArticulo") %>'></asp:LinkButton>

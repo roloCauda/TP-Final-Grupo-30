@@ -46,7 +46,7 @@
                             <div class="row" style="margin-top: 15px;">
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Nombre:</label>
-                                    <asp:TextBox ID="txtNombre" runat="server" class="formulario__input"></asp:TextBox>
+                                    <asp:TextBox ID="txtNombre" runat="server" CssClass="formulario__input"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="*El campo Nombre es obligatorio"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Nombre no puede contener números"
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Apellido:</label>
-                                    <asp:TextBox ID="txtApellido" runat="server" class="formulario__input"></asp:TextBox>
+                                    <asp:TextBox ID="txtApellido" runat="server" CssClass="formulario__input"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="*El campo Apellido es obligatorio"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellido" ValidationExpression="^[A-Za-z\s]+$" ErrorMessage="*El campo Apellido no puede contener números"
@@ -63,7 +63,7 @@
                             </div>
                             <div style="display: flex; flex-direction: column; text-align: left; margin-top: 25px; position: relative;">
                                 <label class="formulario__label">Email:</label>
-                                <asp:TextBox ID="txtEmail" runat="server" class="formulario__input"></asp:TextBox>
+                                <asp:TextBox ID="txtEmail" runat="server" CssClass="formulario__input"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*El campo Email es obligatorio"
                                     ValidationGroup="validacionGrupoDatos" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="*Ingrese un email válido"
@@ -72,7 +72,7 @@
                             <div class="row" style="margin-top: 25px;">
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">DNI:</label>
-                                    <asp:TextBox ID="txtDNI" runat="server" class="formulario__input"></asp:TextBox>
+                                    <asp:TextBox ID="txtDNI" runat="server" CssClass="formulario__input"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="*El campo DNI es obligatorio"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo DNI solo puede contener números"
@@ -80,15 +80,18 @@
                                 </div>
                                 <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left; position: relative;">
                                     <label class="formulario__label">Teléfono:</label>
-                                    <asp:TextBox ID="txtTelefono" runat="server" class="formulario__input"></asp:TextBox>
+                                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="formulario__input"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*El campo Teléfono es obligatorio"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" ErrorMessage="*El campo Teléfono solo puede contener números"
                                         ValidationGroup="validacionGrupoDatos" CssClass="text-danger" Style="padding-left: 12px;"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
+                            <div style="padding-top: 45px;">
+                                <h2 style="font-size:medium;">Para modificar tus datos personales dirígete a tu perfil.</h2>
+                            </div>
                             <div>
-                                <asp:Button ID="btnContinuarDatos" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 70px;" class="formulario__btn"
+                                <asp:Button ID="btnContinuarDatos" runat="server" Text="Continuar" OnClick="btnContinuar_Click" CommandArgument="Envio" Style="margin-top: 45px;" class="formulario__btn"
                                     CausesValidation="true" ValidationGroup="validacionGrupoDatos" />
                             </div>
                         </asp:Panel>

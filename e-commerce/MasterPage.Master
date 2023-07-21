@@ -249,28 +249,26 @@
         <div class="arrow-down" style="height: 0px; position: relative;"></div>
 
         <!--Footer-->
-        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom: 20px;">
+        <footer style="background-color: #1C3166; height: 250px; display: flex; text-align: center; justify-content: space-around; align-items: end; padding-bottom: 10px;">
 
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Empresa</h3>
-                <div>
-                    <h4 style="font-size: medium;">Nosotros</h4>
-                    <h4 style="font-size: medium;">Productos</h4>
-                    <h4 style="font-size: medium;">Alquileres</h4>
-                    <h4 style="font-size: medium;">FAQs</h4>
-                </div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="Nosotros.aspx" style="font-size: medium; color: white;">Nosotros</a></li>
+                    <li><a href="Productos.aspx" style="font-size: medium; color: white;">Productos</a></li>
+                    <li><a href="Alquileres.aspx" style="font-size: medium; color: white;">Alquileres</a></li>
+                    <li><a href="FAQs.aspx" style="font-size: medium; color: white;">FAQs</a></li>
+                </ul>
             </div>
             <div class="footer-list" style="justify-content: center; color: white;">
                 <h3>Contacto</h3>
-                <div>
-                    <h4 style="font-size: medium;">José María Moreno 1354</h4>
-                    <h4 style="font-size: medium;">Buenos Aires, Capital Federal</h4>
-                    <h4 style="font-size: medium;">+54 9 1112345678</h4>
-                    <h4 style="font-size: medium;">glafot@gmail.com</h4>
-                </div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a style="font-size: medium; color: white;">José María Moreno 1354</a></li>
+                    <li><a style="font-size: medium; color: white;">Buenos Aires, Capital Federal</a></li>
+                    <li><a style="font-size: medium; color: white;">+54 9 1112345678</a></li>
+                    <li><a style="font-size: medium; color: white;">glafot@gmail.com</a></li>
+                </ul>
             </div>
-
-
         </footer>
     </form>
     <script src="Js/formulario.js"></script>

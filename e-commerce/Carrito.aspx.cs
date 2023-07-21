@@ -28,6 +28,7 @@ namespace e_commerce.Pag_Cliente
             repResumen.DataBind();
 
             lblPrecio.Text = "$" + carrito.total.ToString();
+
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)

@@ -85,6 +85,27 @@ namespace e_commerce.Pag_Cliente
                     pedido.FormaDePago.IdFormaDePago = 1;
                     Session["pedido"] = pedido;
                 }
+
+                //Cargar datos en campos
+                Usuario user = (Usuario)Session["usuario"];
+
+                txtNombre.Text = user.Nombres.ToString();
+                txtApellido.Text = user.Apellidos.ToString();
+                txtDNI.Text = user.DNI.ToString();
+                txtEmail.Text = user.Email.ToString();
+                txtTelefono.Text = user.Telefono.ToString();
+
+                txtNombre.Enabled = false;
+                txtApellido.Enabled = false;
+                txtDNI.Enabled = false;
+                txtEmail.Enabled = false;
+                txtTelefono.Enabled = false;
+
+                txtCalle.Text = user.direccion.Calle;
+                txtNumeracion.Text = user.direccion.Numero.ToString();
+                txtPiso.Text = user.direccion.Piso.ToString();
+                txtDepartamento.Text = user.direccion.Departamento;
+                txtCP.Text = user.direccion.CodPostal;
             }
         }
         private void MostrarPanel(string opcion)
@@ -190,6 +211,7 @@ namespace e_commerce.Pag_Cliente
 
             if (pedido.FormaDeEnvio.IdFormaDeEnvio == 2)
             {
+
                 pedido.Direccion.Calle = txtCalle.Text;
                 pedido.Direccion.Numero = int.Parse(txtNumeracion.Text);
                 if (!string.IsNullOrEmpty(txtPiso.Text))
@@ -234,7 +256,7 @@ namespace e_commerce.Pag_Cliente
             emailService2.armarCorreo(usuario.Email, "Nueva Venta", cuerpoMailVenta); // Debería llevar el mail del vendedor
             try
             {
-                //emailService.enviarCorreo();
+                emailService.enviarCorreo();
                 emailService2.enviarCorreo();
             }
             catch (Exception ex)

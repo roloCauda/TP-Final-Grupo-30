@@ -10,7 +10,7 @@
             <div class="col-md-6 carousel-estilo" style="background-color: white;">
 
                 <!--Inicio Carousel-->
-                <div id="carouselExample" class="carousel slide carousel-dark">
+                <div id="carouselExample" class="carousel slide carousel-dark" style="width:600px;; height:600px;">
                     <div class="carousel-inner">
                         <asp:Repeater ID="rptItems" runat="server">
                             <ItemTemplate>
@@ -70,11 +70,11 @@
                 <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 25px;">
 
 
-                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click" />
+                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnQuitar_click" />
                     <button type="button" class="btn btn-primary custom-button">
                         <asp:Label ID="lblCantCarrito" runat="server" Text="Agregar Al Carrito"></asp:Label>
                     </button>
-                    <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" class="btn btn-primary" OnClick="btnAgregar_click" />
+                    <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" CssClass="btn btn-primary btn-sm" OnClick="btnAgregar_click" />
 
                 </div>
 
