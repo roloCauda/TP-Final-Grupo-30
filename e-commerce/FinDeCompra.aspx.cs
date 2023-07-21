@@ -229,12 +229,13 @@ namespace e_commerce.Pag_Cliente
             EmailService emailService = new EmailService();
             EmailService emailService2 = new EmailService();
             string cuerpoMailCompra = emailService.obtenerCuerpoMailConDatosDePedido(pedido, usuario);
-            emailService.armarCorreo(usuario.Email, "Información de tu Compra", cuerpoMailCompra);
-            emailService2.armarCorreo(usuario.Email, "Nueva Venta", "Nueva venta realizada con éxito.");
+            string cuerpoMailVenta = emailService2.obtenerCuerpoMailConDatosDeVenta(pedido, usuario);
+            emailService.armarCorreo(usuario.Email, "Compra Realizada", cuerpoMailCompra);
+            emailService2.armarCorreo(usuario.Email, "Nueva Venta", cuerpoMailVenta); // Debería llevar el mail del vendedor
             try
             {
                 //emailService.enviarCorreo();
-                //emailService2.enviarCorreo();
+                emailService2.enviarCorreo();
             }
             catch (Exception ex)
             {
