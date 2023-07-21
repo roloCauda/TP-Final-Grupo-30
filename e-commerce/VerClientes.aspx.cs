@@ -28,12 +28,16 @@ namespace e_commerce
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 dgvClientes.DataSource = negocio.listarSegunAcceso(3, -1);
                 dgvClientes.DataBind();
+
+                dgvClientes.PageIndexChanging += dgvClientes_PageIndexChanging;
             }
         }
 
         protected void dgvClientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvClientes.PageIndex = e.NewPageIndex;
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            dgvClientes.DataSource = negocio.listarSegunAcceso(3, -1);
             dgvClientes.DataBind();
         }
 

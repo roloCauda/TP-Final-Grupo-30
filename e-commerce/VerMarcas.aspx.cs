@@ -37,14 +37,15 @@ namespace e_commerce
                         lnkEliminar.Visible = false;
                     }
                 }
+                dgvMarca.PageIndexChanging += dgvMarca_PageIndexChanging;
             }
-
-            
         }
 
         protected void dgvMarca_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMarca.PageIndex = e.NewPageIndex;
+            MarcaNegocio negocio = new MarcaNegocio();
+            dgvMarca.DataSource = negocio.listar();
             dgvMarca.DataBind();
         }
 

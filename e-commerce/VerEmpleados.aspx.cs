@@ -27,12 +27,16 @@ namespace e_commerce
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 dgvEmpleados.DataSource = negocio.listarSegunAcceso(2, -1);
                 dgvEmpleados.DataBind();
+
+                dgvEmpleados.PageIndexChanging += dgvEmpleados_PageIndexChanging;
             }
         }
 
         protected void dgvEmpleados_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvEmpleados.PageIndex = e.NewPageIndex;
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            dgvEmpleados.DataSource = negocio.listarSegunAcceso(2, -1);
             dgvEmpleados.DataBind();
         }
 

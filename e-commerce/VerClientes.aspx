@@ -13,7 +13,6 @@
         </asp:RadioButtonList>
     </div>
 
-  
             <asp:GridView ID="dgvClientes" runat="server" DataKeyNames="IdUsuario"
                 CssClass="table" AutoGenerateColumns="false"
                 OnRowCommand="dgvClientes_RowCommand"

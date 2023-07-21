@@ -34,11 +34,15 @@ namespace e_commerce
         {
             if (e.CommandName == "VerPedido" && e.CommandArgument != null)
             {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = dgvPedidos.Rows[rowIndex];
-                string IdPedido = dgvPedidos.DataKeys[row.RowIndex].Value.ToString();
+                GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+                string idArticulo = dgvPedidos.DataKeys[row.RowIndex].Value.ToString();
 
-                Response.Redirect("DetallePedido.aspx?id=" + IdPedido);
+                // Acciones según el comando seleccionado
+                if (e.CommandName == "VerPedido")
+                {
+                    // Acción cuando se presiona el botón "Ver"
+                    Response.Redirect("DetallePedido.aspx?id=" + idArticulo);
+                }
             }
         }
 

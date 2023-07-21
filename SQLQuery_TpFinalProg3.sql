@@ -79,6 +79,7 @@ CREATE TABLE Usuarios (
     Telefono VARCHAR(100) NULL,
     IDDomicilio INT NULL,
     TipoAcceso INT NOT NULL,
+	Activo bit not null default 1,
     FOREIGN KEY (TipoAcceso) REFERENCES TipoDeAcceso(Id),
     FOREIGN KEY (IDDomicilio) REFERENCES Direcciones(Id)
 );
@@ -90,6 +91,9 @@ CREATE TABLE Pedidos (
 	IdFormaEnvio INT NOT NULL,
     Fecha DATE NOT NULL,
 	EstadoPedido VARCHAR(100) null default 'Pendiente',
+	CodigoDeTransaccion VARCHAR(100) null,
+	CodigoSeguimiento VARCHAR(100) null,
+	Observaciones VARCHAR(300) null,
     FOREIGN KEY (IdFormaPago) REFERENCES FormasDePago(Id),
     FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id),
 	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id)
@@ -119,6 +123,8 @@ DROP CONSTRAINT CK__Stock__Precio__3C34F16F;
 
 ALTER TABLE Stock
 DROP COLUMN Precio;
+/*------------------------------------------*/
+
 
 CREATE TABLE Imagenes (
     Id INT PRIMARY KEY IDENTITY,
@@ -135,8 +141,9 @@ CREATE TABLE Favoritos (
 	FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id)
 );
 
-select * from Favoritos
--- Inserciones en las tablas
+
+
+-- Inserciones en las tablas (QUEDO VIEJO)
 
 INSERT INTO Categorias (Descripcion)
 VALUES ('Impresoras'), ('Cartuchos'), ('Chip'), ('Tóner'), ('Repuestos');
@@ -188,6 +195,7 @@ INSERT INTO Stock (IdArticulo, Cantidad, Precio)
 VALUES (1, 10, 5200),
        (2, 5, 710),
        (3, 8, 950.5);
+
 
 -- Procedimientos almacenados
 ALTER procedure storedListar
@@ -248,6 +256,12 @@ BEGIN
    HAVING Codigo LIKE '%' + @filtro + '%' OR Nombre LIKE '%' + @filtro + '%' OR A.Descripcion LIKE '%' + @filtro + '%' OR M.Descripcion LIKE '%' + @filtro + '%' OR C.Descripcion LIKE '%' + @filtro + '%'
 END
 
+
+
+
+
+/*PARA PROBAR*/
+
 select * from Usuarios
 select * from direcciones
 select * from Pedidos
@@ -258,30 +272,12 @@ select * from Articulos INNER JOIN STOCK ON STOCK.IdArticulo = Articulos.Id
 select * from stock
 select * from ARTICULOSxPEDIDO
 
-update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
-update Usuarios set  IDDomicilio = 1 where Id = 2
-
-alter table Pedidos
-ADD CodigoDeTransaccion VARCHAR(100) null,
-CodigoSeguimiento VARCHAR(100) null,
-Observaciones VARCHAR(300) null,
-EstadoPedido VARCHAR(100) null default 'Pendiente';
-
-ALTER TABLE Pedidos
-ADD CONSTRAINT DF_Pedidos_EstadoPedido DEFAULT 'Pendiente' FOR EstadoPedido;
-
-
-alter table Usuarios
-ADD Activo bit not null default 1;
-
-/*borrar Entregado y Cancelado*/ 
-
-SELECT IdFormaEnvio from PEDIDOS WHERE Id = 1
-
-ALTER TABLE Favoritos
 
 /*para saber las restricciones de una tabla*/
 SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
 WHERE TABLE_SCHEMA = 'dbo'
 AND TABLE_NAME = 'Favoritos';
+
+update pedidos set  EstadoPedido = 'En Proceso' where Id = 2
+update Usuarios set  IDDomicilio = 1 where Id = 2

@@ -92,6 +92,8 @@ namespace e_commerce
                 FavoritoNegocio negocioF = new FavoritoNegocio();
                 dgvArticuloFavoritos.DataSource = negocioF.listarFavoritosPorCliente(user.IdUsuario);
                 dgvArticuloFavoritos.DataBind();
+
+                dgvPedidosCliente.PageIndexChanging += dgvPedidosCliente_PageIndexChanging;
             }
 
             lblUsuarioGuardadoConExito.Visible = false;
@@ -206,24 +208,30 @@ namespace e_commerce
 
         protected void dgvPedidosCliente_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
-            int IdPedido = int.Parse(dgvPedidosCliente.DataKeys[row.RowIndex].Value.ToString());
+            if (e.CommandName == "VerPedido")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int IdPedido = Convert.ToInt32(dgvPedidosCliente.DataKeys[rowIndex].Value);
 
-            lblNroPedido.Text = "#" + IdPedido.ToString();
+                lblNroPedido.Text = "#" + IdPedido.ToString();
 
-            ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
-            dgvArtPorPedido.DataSource = negocioAP.listarConSP(IdPedido);
-            dgvArtPorPedido.DataBind();
+                ArticulosXPedidoNegocio negocioAP = new ArticulosXPedidoNegocio();
+                dgvArtPorPedido.DataSource = negocioAP.listarConSP(IdPedido);
+                dgvArtPorPedido.DataBind();
 
-            PedidoNegocio negocioP = new PedidoNegocio();
-            decimal total = negocioP.totalPedido(IdPedido);
-            lblTotal.Text = "Total: $ " + total.ToString();
-            MostrarPanel("PedidosXArt");
+                PedidoNegocio negocioP = new PedidoNegocio();
+                decimal total = negocioP.totalPedido(IdPedido);
+                lblTotal.Text = "Total: $ " + total.ToString();
+                MostrarPanel("PedidosXArt");
+            }
         }
 
         protected void dgvPedidosCliente_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvPedidosCliente.PageIndex = e.NewPageIndex;
+            Usuario user = (Usuario)Session["usuario"];
+            PedidoNegocio negocioU = new PedidoNegocio();
+            dgvPedidosCliente.DataSource = negocioU.listarPedidosPorCliente(user.IdUsuario);
             dgvPedidosCliente.DataBind();
         }
 

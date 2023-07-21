@@ -37,17 +37,17 @@ namespace e_commerce
                         lnkEliminar.Visible = false;
                     }
                 }
+
+                dgvArticulo.PageIndexChanging += dgvArticulo_PageIndexChanging;
             }
-
         }
-
-
         protected void dgvArticulo_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvArticulo.PageIndex = e.NewPageIndex;
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            dgvArticulo.DataSource = negocio.listarConSP();
             dgvArticulo.DataBind();
         }
-
         protected void dgvArticulo_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Ver" || e.CommandName == "Modificar" || e.CommandName == "Eliminar")
@@ -75,6 +75,5 @@ namespace e_commerce
                 }
             }
         }
-       
     }
 }
