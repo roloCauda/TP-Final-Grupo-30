@@ -86,7 +86,7 @@ namespace e_commerce.Pag_Cliente
                     Session["pedido"] = pedido;
                 }
 
-                //Cargar datos en campos
+                //Cargar datos personales
                 Usuario user = (Usuario)Session["usuario"];
 
                 txtNombre.Text = user.Nombres.ToString();
@@ -95,12 +95,14 @@ namespace e_commerce.Pag_Cliente
                 txtEmail.Text = user.Email.ToString();
                 txtTelefono.Text = user.Telefono.ToString();
 
+                //Inhabilita los campos de datos personales
                 txtNombre.Enabled = false;
                 txtApellido.Enabled = false;
                 txtDNI.Enabled = false;
                 txtEmail.Enabled = false;
                 txtTelefono.Enabled = false;
 
+                //Carga Forma de Envio = Acordar con el vendedor
                 txtCalle.Text = user.direccion.Calle;
                 txtNumeracion.Text = user.direccion.Numero.ToString();
                 txtPiso.Text = user.direccion.Piso.ToString();
