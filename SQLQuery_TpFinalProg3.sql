@@ -75,7 +75,6 @@ CREATE TABLE Usuarios (
     Apellidos VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Contraseña VARCHAR(100) NOT NULL,
-	RecuperacionContraseña VARCHAR(100) NOT NULL,
     Telefono VARCHAR(100) NULL,
     IDDomicilio INT NULL,
     TipoAcceso INT NOT NULL,
@@ -94,9 +93,11 @@ CREATE TABLE Pedidos (
 	CodigoDeTransaccion VARCHAR(100) null,
 	CodigoSeguimiento VARCHAR(100) null,
 	Observaciones VARCHAR(300) null,
+	IdDireccion INT NULL,
     FOREIGN KEY (IdFormaPago) REFERENCES FormasDePago(Id),
     FOREIGN KEY (IdCliente) REFERENCES Usuarios(Id),
-	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id)
+	FOREIGN KEY (IdFormaEnvio) REFERENCES FormasDeEnvio(Id),
+	FOREIGN KEY (IdDireccion) REFERENCES Direcciones(Id)	
 );
 
 CREATE TABLE ARTICULOSxPEDIDO (
@@ -115,16 +116,6 @@ CREATE TABLE Stock (
     Cantidad INT NOT NULL DEFAULT(0),
     FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
-
-
-/*BORRE LA COLUMNA PRECIO DE STCOK primero se borra la restriccion y despues la columna */
-ALTER TABLE Stock
-DROP CONSTRAINT CK__Stock__Precio__3C34F16F;
-
-ALTER TABLE Stock
-DROP COLUMN Precio;
-/*------------------------------------------*/
-
 
 CREATE TABLE Imagenes (
     Id INT PRIMARY KEY IDENTITY,
@@ -174,10 +165,10 @@ VALUES (1, 'CABA'),
 INSERT INTO Direcciones (Calle, Numero, CP, IdLocalidad, IdProvincia)
 VALUES ('Nazca', 3258, '1419', 1, 1);
 
-INSERT INTO Usuarios (DNI, Nombres, Apellidos, Email, Contraseña, RecuperacionContraseña, Telefono, IDDomicilio, TipoAcceso)
-VALUES (33359541, 'Marta', 'Tripoli', 'MartaT@gmail.com', '123', '123','43826524', 1, 3),
-       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456','123', '1543826524', NULL, 2),
-       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123','123', '45826544', 1, 1);
+INSERT INTO Usuarios (DNI, Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso)
+VALUES (33359541, 'Marta', 'Tripoli', 'MartaT@gmail.com', '123','43826524', 1, 3),
+       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456', '1543826524', NULL, 2),
+       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123', '45826544', 1, 1);
 
 INSERT INTO FormasDeEnvio (Descripcion)
 VALUES ('Retiro'),('Envio a cargo del vendedor');
@@ -198,7 +189,7 @@ VALUES (1, 10, 5200),
 
 
 -- Procedimientos almacenados
-ALTER procedure storedListar
+CREATE procedure storedListar
 as
 begin
 	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad
@@ -215,7 +206,7 @@ BEGIN
    WHERE IDARTICULO = @IdArticulo;
 END
 
-ALTER PROCEDURE storedArticulo
+CREATE PROCEDURE storedArticulo
    @IdArticulo INT
 AS
 BEGIN
@@ -245,7 +236,7 @@ BEGIN
    WHERE Id = @IdMarca
 END
 
-alter PROCEDURE storedFiltro
+CREATE PROCEDURE storedFiltro
    @filtro varchar(100)
 AS
 BEGIN

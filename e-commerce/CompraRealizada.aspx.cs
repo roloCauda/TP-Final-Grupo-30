@@ -39,12 +39,11 @@ namespace e_commerce
                     lblMetodoPago.Text = "Método de Pago: " + pedido.FormaDePago.Descripcion;
                 }
             }
+            Session.Remove("pedido");
+            Session.Remove("ListaItems");
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Session.Remove("pedido");
-            Session.Remove("ListaItems");
-
             Response.Redirect("Default.aspx");
         }
     }

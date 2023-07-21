@@ -233,7 +233,7 @@ namespace e_commerce.Pag_Cliente
             emailService2.armarCorreo(usuario.Email, "Nueva Venta", "Nueva venta realizada con éxito.");
             try
             {
-                emailService.enviarCorreo();
+                //emailService.enviarCorreo();
                 //emailService2.enviarCorreo();
             }
             catch (Exception ex)

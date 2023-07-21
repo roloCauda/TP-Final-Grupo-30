@@ -20,9 +20,10 @@ namespace negocio
 
                 foreach (ArticulosXPedido item in lista)
                 {
-                    datos.setearParametro("@cantidad", item.Cantidad);
-                    datos.setearParametro("@idArticulo", item.IdArticulo);
+                    datos.setearParametro("@Cantidad", item.Cantidad);
+                    datos.setearParametro("@IdArticulo", item.IdArticulo);
                     datos.ejecutarAccion();
+                    datos.limpiarParametros(datos);
                 }
             }
             catch (Exception ex)

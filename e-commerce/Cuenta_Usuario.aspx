@@ -11,10 +11,6 @@
             left: 0;
         }
     </style>
-    <div>
-        <label>Hola Pipu!</label>
-    </div>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 

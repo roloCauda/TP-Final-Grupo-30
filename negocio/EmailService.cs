@@ -154,7 +154,16 @@ namespace negocio
             emailBody = emailBody.Replace("{ProvinciaPedido}", pedido.Direccion.Provincia.Descripcion);
             emailBody = emailBody.Replace("{DomicilioPedido}", pedido.Direccion.Calle+ " " + pedido.Direccion.Numero + ", " + pedido.Direccion.Localidad.Descripcion + ", CP" + pedido.Direccion.CodPostal);
             emailBody = emailBody.Replace("{NumeroPedido}", pedido.IdPedido.ToString());
-            emailBody = emailBody.Replace("{TotalCompra}", "100000");
+
+            decimal PrecioTotalPedido = 0;
+
+            // Sumar los valores de la lista a PrecioTotal
+            foreach (ArticulosXPedido articuloxPedido in pedido.ListaArtXPedido)
+            {
+                PrecioTotalPedido += articuloxPedido.PrecioTotal;
+            }
+
+            emailBody = emailBody.Replace("{TotalCompra}", PrecioTotalPedido.ToString());
 
             // Generar los detalles de la compra en formato HTML
             string detallesProductos = "";
