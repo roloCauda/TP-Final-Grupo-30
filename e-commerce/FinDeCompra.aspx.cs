@@ -108,6 +108,8 @@ namespace e_commerce.Pag_Cliente
                 txtPiso.Text = user.direccion.Piso.ToString();
                 txtDepartamento.Text = user.direccion.Departamento;
                 txtCP.Text = user.direccion.CodPostal;
+                ddlLocalidad.SelectedValue = user.direccion.Localidad.Id.ToString();
+                ddlProvincia.SelectedValue = user.direccion.Provincia.Id.ToString();
             }
         }
         private void MostrarPanel(string opcion)
@@ -258,8 +260,8 @@ namespace e_commerce.Pag_Cliente
             emailService2.armarCorreo(usuario.Email, "Nueva Venta", cuerpoMailVenta); // Debería llevar el mail del vendedor
             try
             {
-                emailService.enviarCorreo();
-                emailService2.enviarCorreo();
+                //emailService.enviarCorreo();
+                //emailService2.enviarCorreo();
             }
             catch (Exception ex)
             {

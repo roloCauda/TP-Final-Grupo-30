@@ -12,14 +12,23 @@ namespace e_commerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Pedido pedido = (Pedido)Session["pedido"];
+
             // Se verifica que haya un usuario en session
             if (Session["usuario"] == null)
                 Response.Redirect("Default.aspx");
-            // Se verifica que haya un pedido en session
-            Pedido pedido = (Pedido)Session["pedido"];
 
-            if (pedido.IdPedido == 0)
+            if (Session["pedido"] == null)
+            {
                 Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                // Se verifica que haya un pedido en session
+
+                if (pedido.IdPedido == 0)
+                    Response.Redirect("Default.aspx");
+            }
 
             Carrito carrito = (Carrito)Session["ListaItems"];
 
@@ -38,9 +47,9 @@ namespace e_commerce
                     lblMetodoEnvio.Text = "Método de Envío: " + pedido.FormaDeEnvio.Descripcion;
                     lblMetodoPago.Text = "Método de Pago: " + pedido.FormaDePago.Descripcion;
                 }
+                Session.Remove("pedido");
+                Session.Remove("ListaItems");
             }
-            Session.Remove("pedido");
-            Session.Remove("ListaItems");
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {

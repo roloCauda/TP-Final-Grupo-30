@@ -150,6 +150,22 @@ VALUES ('ELEC001', 'Lexmark 464', 'Impresora multifunción', 2, 1, 120000),
        ('CLOTH001', 'Samsung 6322', 'Impresora Multifunción', 1, 1, 100000),
        ('HOME001', 'Samsung 2851', 'Impresora doble faz', 1, 1, 60000);
 
+INSERT INTO Imagenes (IdArticulo, ImagenURL)
+VALUES (2, 'https://intercompras.com/images/product/LEXMARK_13C1242.jpg'),
+		(3,'https://2.bp.blogspot.com/-Yl9mEBVUeA0/W7RAmlmuPNI/AAAAAAAAB4o/1pBKpgFkjBse5YB-1R93pB7GQVNqN-3ZwCPcBGAYYCw/s1600/Samsung%2BSCX-6322DN.jpg'),
+		(4,'https://tonerribeirao.com.br/wp-content/uploads/2019/05/impressora-semi-nova-samsung-ml-2851nd-15836-2000-23153.jpg');
+
+
+INSERT INTO Articulos (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)
+VALUES ('HP664', 'Cartucho 664', 'Cartucho negro', 3, 2, 8200),
+       ('T3020', 'Toner 3020', 'Toner Alternativo Para Xerox 3020 106r02773 Phaser 3020', 4, 4, 15700),
+       ('R601', 'Toner 407823', 'Toner Ricoh Original Mp 601/501spf/601spf/sp5300dn (407823)', 5, 4, 6000);
+
+INSERT INTO Imagenes (IdArticulo, ImagenURL)
+VALUES (5, 'https://ar-media.hptiendaenlinea.com/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/F/6/F6V29AL-1_T1679641584.png'),
+		(6,'https://http2.mlstatic.com/D_NQ_NP_2X_756828-MLA51162136243_082022-F.webp'),
+		(7,'https://http2.mlstatic.com/D_NQ_NP_865913-MLA47049744757_082021-O.webp');
+
 INSERT INTO TipoDeAcceso (Descripcion)
 VALUES ('Administrador'), ('Empleado'), ('Cliente');
 
@@ -163,12 +179,14 @@ VALUES (1, 'CABA'),
        (2, 'Ataliva Roca');
 
 INSERT INTO Direcciones (Calle, Numero, CP, IdLocalidad, IdProvincia)
-VALUES ('Nazca', 3258, '1419', 1, 1);
+VALUES ('Mosconi', 1485, '1684', 3, 2),
+		('Griveo', 2630, '1406', 2, 1),
+		('Nazca', 3258, '1419', 1, 1);
 
 INSERT INTO Usuarios (DNI, Nombres, Apellidos, Email, Contraseña, Telefono, IDDomicilio, TipoAcceso)
 VALUES (33359541, 'Marta', 'Tripoli', 'MartaT@gmail.com', '123','43826524', 1, 3),
-       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456', '1543826524', NULL, 2),
-       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123', '45826544', 1, 1);
+       (23359521, 'Catalina', 'Carod', 'Cata126@gmail.com', '123456', '1543826524', 2, 2),
+       (32359042, 'Juan', 'Perez', 'admin@example.com', 'admin123', '45826544', 3, 1);
 
 INSERT INTO FormasDeEnvio (Descripcion)
 VALUES ('Retiro'),('Envio a cargo del vendedor');
@@ -178,21 +196,44 @@ VALUES ('2023-06-10', 1, 1, 1),
        ('2023-06-11', 2, 2, 2);
 
 INSERT INTO ARTICULOSxPEDIDO (IdPedido, IdArticulo, Cantidad, PrecioUnitario)
-VALUES (1, 1, 2, 1000),
+VALUES (1, 2, 2, 1000),
        (1, 3, 1, 2500),
-       (2, 1, 3, 9600);
+       (2, 2, 3, 9600);
 
-INSERT INTO Stock (IdArticulo, Cantidad, Precio)
-VALUES (1, 10, 5200),
-       (2, 5, 710),
-       (3, 8, 950.5);
+INSERT INTO Stock (IdArticulo, Cantidad)
+VALUES (2, 10),
+       (3, 5),
+       (4, 8);
 
+INSERT INTO Stock (IdArticulo, Cantidad)
+VALUES (5, 1),
+       (6, 3),
+       (7, 8);
+
+INSERT INTO Favoritos(IdCliente, IdArticulo)
+VALUES (1, 2),
+		(1, 3),
+       (2, 3),
+	   (3, 2),
+       (3, 4);
+
+UPDATE Marcas SET ImagenURL = 'https://img.freepik.com/iconos-gratis/samsung_318-668804.jpg' where Id = 1;
+UPDATE Marcas SET ImagenURL = 'https://marcas-logos.net/wp-content/uploads/2020/11/Lexmark-Logo-1991.jpg' where Id = 2;
+UPDATE Marcas SET ImagenURL = 'https://vectorseek.com/wp-content/uploads/2021/01/HP-Logo-Vector-scaled.jpg' where Id = 3;
+UPDATE Marcas SET ImagenURL = 'https://1000marcas.net/wp-content/uploads/2020/02/Xerox-s%C3%ADmbolo.jpg' where Id = 4;
+UPDATE Marcas SET ImagenURL = 'https://www.vectorizados.com/muestras/ricoh.jpg' where Id = 5;
+
+UPDATE Categorias SET ImagenURL = 'https://img2.freepng.es/20180314/rzw/kisspng-printer-free-content-printing-clip-art-free-microsoft-office-clipart-5aa9bacb40b896.6468117015210728432651.jpg' where Id = 1;
+UPDATE Categorias SET ImagenURL = 'https://media.istockphoto.com/id/1172928330/es/vector/ilustraci%C3%B3n-plana-simple-vectorial-de-cartuchos-de-tinta-cmyk-que-consisten-en-cian-magenta.jpg?s=612x612&w=0&k=20&c=AFj0bc0l_tzHs4IDo9rV9ivyCepZVJh-0hHDxuEOrZM=' where Id = 2;
+UPDATE Categorias SET ImagenURL = 'https://media.istockphoto.com/id/1449014621/es/vector/silueta-de-chip-o-componente-esquem%C3%A1tico-simple-para-microcircuitos-aislados-sobre-fondo.jpg?s=170667a&w=0&k=20&c=2xdrZp6O_7Dk9ZE4P18QJwkVlqLBfnAT7ldejXDyHOc=' where Id = 3;
+UPDATE Categorias SET ImagenURL = 'https://png.pngtree.com/png-vector/20220607/ourlarge/pngtree-toner-cartridge-icon-simple-vector-png-image_4853317.png' where Id = 4;
+UPDATE Categorias SET ImagenURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvY4LggLlVcm40a-3o79LNugk3hk8dh63hSeGj3P7g4Dkqvpwbsla_lu56DUZam0TjFiw&usqp=CAU' where Id = 5;
 
 -- Procedimientos almacenados
-CREATE procedure storedListar
+alter procedure storedListar
 as
 begin
-	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad
+	Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.Precio, A.IdMarca, A.IdCategoria, S.Cantidad
 	From ARTICULOS A, CATEGORIAS C, MARCAS M, Stock S
 	Where C.Id = A.IdCategoria And M.Id = A.IdMarca And A.Id = S.IdArticulo
 end
@@ -206,11 +247,11 @@ BEGIN
    WHERE IDARTICULO = @IdArticulo;
 END
 
-CREATE PROCEDURE storedArticulo
+alter PROCEDURE storedArticulo
    @IdArticulo INT
 AS
 BEGIN
-   Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, PrecioDescuento, A.IdMarca, A.IdCategoria, S.Cantidad
+   Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, A.IdMarca, A.IdCategoria, S.Cantidad
 	from ARTICULOS A
 	left join MARCAS M on A.IdMarca = M.Id
 	left join CATEGORIAS C on A.IdCategoria = C.Id
@@ -252,7 +293,8 @@ END
 
 
 /*PARA PROBAR*/
-
+select * from Marcas
+select * from Categorias
 select * from Usuarios
 select * from direcciones
 select * from Pedidos

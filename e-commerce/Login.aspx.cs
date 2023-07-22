@@ -16,6 +16,8 @@ namespace e_commerce
         public dominio.Carrito carrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblAviso.Visible = false;
+            
             TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
 
             if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
@@ -34,6 +36,10 @@ namespace e_commerce
 
             if (!IsPostBack)
             {
+                if (Request.UrlReferrer != null && Request.UrlReferrer.AbsoluteUri == "https://localhost:44330/Carrito.aspx")
+                {
+                    lblAviso.Visible = true;
+                }
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 carrito = (dominio.Carrito)Session["ListaItems"];

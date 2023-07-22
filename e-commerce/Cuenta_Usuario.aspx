@@ -241,7 +241,7 @@
                                 CssClass="table" AutoGenerateColumns="false"
                                 OnRowCommand="dgvArticuloFavoritos_RowCommand"
                                 OnPageIndexChanging="dgvArticuloFavoritos_PageIndexChanging"
-                                AllowPaging="true" PageSize="5">
+                                AllowPaging="true" PageSize="10">
                                 <columns>
                                     <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                                     <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
@@ -270,7 +270,7 @@
                             CssClass="table" AutoGenerateColumns="false"
                             OnRowCommand="dgvPedidosCliente_RowCommand"
                             OnPageIndexChanging="dgvPedidosCliente_PageIndexChanging"
-                            AllowPaging="true" PageSize="5">
+                            AllowPaging="true" PageSize="10">
                             <Columns>
                                 <asp:BoundField HeaderText="N° de Pedido" DataField="IDPedido" />
                                 <asp:BoundField HeaderText="Forma de Pago" DataField="FormaDePago.Descripcion" />
@@ -291,7 +291,7 @@
                             CssClass="table" AutoGenerateColumns="false"
                             OnRowCommand="dgvArtPorPedido_RowCommand"
                             OnPageIndexChanging="dgvArtPorPedido_PageIndexChanging"
-                            AllowPaging="true" PageSize="5">
+                            AllowPaging="true" PageSize="10">
                             <Columns>
                                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />

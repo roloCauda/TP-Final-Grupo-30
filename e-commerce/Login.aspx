@@ -5,6 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="row">
+        <div class="formulario__label" style="text-align: center;" padding-right: 70px; padding-left: 70px;>
+            <asp:Label ID="lblAviso" runat="server" style="font-size: 20px; color: red;">Necesitas registarte o loguearte para continuar con tu compra</asp:Label>
+        </div>
         <div class="col-md-5" style="padding-right: 70px; padding-left: 70px; background-color: #F8F5F4; color: black; border-radius: 50px; border: 3px solid #3b71ca;">
             <div id="Login" style="padding: 35px;">
                 <!-- Grupo: DNI -->
